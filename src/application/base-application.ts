@@ -1,12 +1,11 @@
 import { Config } from '../bin/libs/config';
 import { Container } from '../container/container';
-import { Progress } from '../libs/progress';
-import { BaseScript } from './libs/script/base-script';
+import { BaseScript } from './libs/base-script';
 
 export interface BaseApplicationOptions {
-    runnerConfig: Config,
-    runnerVersion: string,
-    headless: boolean
+    runnerConfig: Config;
+    runnerVersion: string;
+    headless: boolean;
 }
 
 export interface Provider {
@@ -26,38 +25,20 @@ export class BaseApplication {
     protected providers: Provider[] = [];
     protected scripts: Script[] = [];
 
-    private progress = new Progress('Start Application');
-
     constructor(config: BaseApplicationOptions) {
         this.config = config;
-
-        this.progress.addProgress(.1, 'Initializing Application');
     }
 
     public async boot(): Promise<BaseApplication> {
-        this.progress.addProgress(.1, 'Booting Application');
-
         await this.loadInjectables();
-
-        this.progress.interpolate(1, .95, 'Configure Application');
-
         await this.configure();
-
-        this.progress.setProgress(1, 'Done');
 
         return this;
     }
 
     public async bootHeadless(): Promise<BaseApplication> {
-        this.progress.addProgress(.1, 'Booting Application Headless');
-
         await this.loadInjectables();
-
-        this.progress.interpolate(1, .95, 'Configure Application Headless');
-
         await this.configureHeadless();
-
-        this.progress.setProgress(1, 'Done');
 
         return this;
     }
@@ -107,16 +88,6 @@ export class BaseApplication {
             this.container.register(script.injectable, script.config);
         }
 
-        const subscription = this.container.booting$.subscribe((v) => {
-            const targetPercentage = .9;
-            const percentage = v.initialized / (v.injectables ?? 0);
-            const message = `container ${v.activity} ${v.record?.config?.name ?? ''}`;
-
-            this.progress.interpolate(percentage, targetPercentage, message);
-        });
-
         await this.container.boot();
-
-        subscription.unsubscribe();
     }
 }

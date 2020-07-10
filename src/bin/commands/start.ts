@@ -5,6 +5,10 @@ import { BaseApplication } from '../../application/base-application';
 import { Config } from '../libs/config';
 import { ApplicationRunner } from '../runner/application-runner';
 
+export enum StartError {
+    MissingScriptName = 'StartErrorMissingScriptName'
+}
+
 export class Start {
     public static async run(options: Arguments<any>): Promise<BaseApplication> {
         const instance = new Start();
@@ -22,7 +26,7 @@ export class Start {
         const scriptName = options.argv.scriptName;
 
         if (!scriptName) {
-            throw new Error('MissingScriptName');
+            throw new Error(StartError.MissingScriptName);
         }
 
         const application = await this.runHeadless(options);

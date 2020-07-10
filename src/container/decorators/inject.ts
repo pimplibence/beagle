@@ -1,5 +1,9 @@
 import { addInject, initConfig } from '../libs/provider';
 
+export enum InjectError {
+    PossibleCircularDependencyError = 'InjectErrorPossibleCircularDependency'
+}
+
 /**
  * Inject class-member decorator
  * With this decorator you can inject another injectable into an injectable
@@ -17,7 +21,7 @@ export const inject = () => {
         const type = Reflect.getOwnMetadata('design:type', target, key);
 
         if (!type?.prototype) {
-            throw new Error('PossibleCircularDependencyError');
+            throw new Error(InjectError.PossibleCircularDependencyError);
         }
 
         addInject(target, type, key);

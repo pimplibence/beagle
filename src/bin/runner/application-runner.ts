@@ -2,6 +2,10 @@ import * as tsn from 'ts-node';
 import { BaseApplication } from '../../application/base-application';
 import { Config } from '../libs/config';
 
+export enum ApplicationRunnerError {
+    MissingApplication = 'ApplicationRunnerErrorMissingApplication'
+}
+
 export class ApplicationRunner {
     public static readonly VERSION = '0.0.1';
 
@@ -22,10 +26,14 @@ export class ApplicationRunner {
         /**
          * Load typescript runtime
          */
-        tsn.register({
-            ...tsRuntimeOptions,
-            project: this.config.getTsConfigPath(),
-        });
+        const isRegistered = !!process[Symbol.for('ts-node.register.instance')];
+
+        if (!isRegistered) {
+            tsn.register({
+                ...tsRuntimeOptions,
+                project: this.config.getTsConfigPath(),
+            });
+        }
 
         /**
          * THIS IS THE MAGIC
@@ -35,7 +43,7 @@ export class ApplicationRunner {
         const application: typeof BaseApplication = source.Application;
 
         if (!application) {
-            throw new Error('ApplicationErrorMissingApplication');
+            throw new Error(ApplicationRunnerError.MissingApplication);
         }
 
         const instance = new application({

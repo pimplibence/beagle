@@ -22,9 +22,9 @@
     "yargs": "^15.4.0"
   },
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js --exec \\\"./node_modules/ts-node/dist/bin.js\\\" examples/index.ts",
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
-    "dist": "rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json",
+    "start": "./node_modules/nodemon/bin/nodemon.js --exec \\\"./node_modules/ts-node/dist/bin.js\\\" examples/index.ts",
+    "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json",
     "start-bin-dist": "./node_modules/node/bin/node ./dist/bin/bin.js",
     "start-bin": "./node_modules/ts-node/dist/bin.js src/bin/bin.ts"
   }

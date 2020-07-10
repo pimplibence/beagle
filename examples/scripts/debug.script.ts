@@ -1,4 +1,4 @@
-import { BaseScript } from '../../src/application/libs/script/base-script';
+import { BaseScript } from '../../src/application/libs/base-script';
 import { injectable } from '../../src/container/decorators/injectable';
 
 @injectable()

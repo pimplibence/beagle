@@ -1,6 +1,10 @@
 import { resolve } from 'path';
 import * as process from 'process';
 
+export enum ConfigError {
+    MissingEntity = 'ConfigErrorMissingEntity'
+}
+
 interface TypescriptOptions {
     /**
      * Specify custom path of tsconfig.json
@@ -53,7 +57,7 @@ export class Config {
 
     public validate() {
         if (!this.entry) {
-            throw new Error('ConfigValidationErrorMissingEntry');
+            throw new Error(ConfigError.MissingEntity);
         }
     }
 
@@ -61,9 +65,7 @@ export class Config {
      * Int this step, you have to push the developers
      */
     public warn() {
-        if (!this.typescript?.lint) {
-            console.warn('You should use linter');
-        }
+        //
     }
 
     public getTsConfigPath() {

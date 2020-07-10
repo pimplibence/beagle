@@ -1,11 +1,10 @@
-import { Subject } from 'rxjs';
 import { getCurrentConfig, InjectableConfig } from './libs/provider';
 
-interface BootLog {
-    injectables: number;
-    initialized: number;
-    record?: InjectableRecord | null
-    activity: string;
+export enum ContainerError {
+    InjectableIsAlreadyRegistered = 'ContainerErrorInjectableIsAlreadyRegistered',
+    UnknownInjectable = 'ContainerErrorUnknownInjectable',
+    UnableToGeInjectableConfig = 'ContainerErrorUnableToGetInjectableConfig',
+    UninitializedInjectable = 'ContainerErrorUninitializedInjectable'
 }
 
 interface InjectableRecord {
@@ -21,18 +20,14 @@ interface InitializedRecord {
 }
 
 export class Container {
-    public booting$ = new Subject<BootLog>();
-
     public injectables: InjectableRecord[] = [];
     public initialized: InitializedRecord[] = [];
-
-    private booted: boolean = false;
 
     public register(injectable: Function, options?: any): void {
         const exists = this.hasRecord(injectable);
 
         if (exists) {
-            throw new Error('InjectableIsAlreadyRegistered');
+            throw new Error(ContainerError.InjectableIsAlreadyRegistered);
         }
 
         this.addRecord(injectable, options);
@@ -42,30 +37,16 @@ export class Container {
         const initialized = this.getInitialized(injectable);
 
         if (!initialized) {
-            throw new Error('UnknownInjectable');
+            throw new Error(ContainerError.UnknownInjectable);
         }
 
         return initialized.instance;
     }
 
     public async boot() {
-        this.logBooting(null, 'boot');
-
         for (const item of this.injectables) {
-            this.logBooting(item, 'initialize');
-
             await this.bootInjectable(item);
-
-            this.logBooting(item, 'initialized');
         }
-
-        this.booted = true;
-
-        this.logBooting(null, 'finish');
-    }
-
-    public isBooted() {
-        return this.booted;
     }
 
     private async bootInjectable(injectable: InjectableRecord): Promise<any> {
@@ -97,7 +78,7 @@ export class Container {
         const config = getCurrentConfig(injectable.prototype);
 
         if (!config) {
-            throw new Error('UnableToGetInjectableConfig');
+            throw new Error(ContainerError.UnableToGeInjectableConfig);
         }
 
         return {
@@ -129,7 +110,7 @@ export class Container {
         const record = this.extractRecord(injectable);
 
         if (!record) {
-            throw new Error('UninitializedInjectable');
+            throw new Error(ContainerError.UninitializedInjectable);
         }
 
         return this.initialized.find((i) => (i?.config?.identifier === record?.config?.identifier));
@@ -145,15 +126,6 @@ export class Container {
         this.initialized.push({
             ...record,
             instance: instance
-        });
-    }
-
-    private logBooting(record: InjectableRecord | null, activity: string) {
-        this.booting$.next({
-            injectables: this.injectables.length,
-            initialized: this.initialized.length,
-            record: record,
-            activity: activity
         });
     }
 }
