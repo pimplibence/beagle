@@ -1,0 +1,8 @@
+{
+  "app": "Example Airedale Application",
+  "entry": "./examples/index.ts",
+  "language": "typescript",
+  "typescript": {
+    "tsconfig": "./tsconfig.json"
+  }
+}
