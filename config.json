@@ -1,5 +1,5 @@
 {
-  "app": "Example Airedale Application",
+  "app": "Beagle Application",
   "entry": "./examples/index.ts",
   "language": "typescript",
   "typescript": {

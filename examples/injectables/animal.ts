@@ -7,6 +7,6 @@ export class Animal {
 
     @onInit()
     public async initialize() {
-        return new Promise((resolve) => setTimeout(() => resolve(), 800));
+        return new Promise((resolve) => setTimeout(() => resolve(), 200));
     }
 }

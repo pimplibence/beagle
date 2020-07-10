@@ -1,4 +1,12 @@
+import { Subject } from 'rxjs';
 import { getCurrentConfig, InjectableConfig } from './libs/provider';
+
+interface BootLog {
+    injectables: number;
+    initialized: number;
+    record?: InjectableRecord | null
+    activity: string;
+}
 
 interface InjectableRecord {
     target: Function;
@@ -13,6 +21,8 @@ interface InitializedRecord {
 }
 
 export class Container {
+    public booting$ = new Subject<BootLog>();
+
     public injectables: InjectableRecord[] = [];
     public initialized: InitializedRecord[] = [];
 
@@ -39,11 +49,19 @@ export class Container {
     }
 
     public async boot() {
+        this.logBooting(null, 'boot');
+
         for (const item of this.injectables) {
+            this.logBooting(item, 'initialize');
+
             await this.bootInjectable(item);
+
+            this.logBooting(item, 'initialized');
         }
 
         this.booted = true;
+
+        this.logBooting(null, 'finish');
     }
 
     public isBooted() {
@@ -127,6 +145,15 @@ export class Container {
         this.initialized.push({
             ...record,
             instance: instance
+        });
+    }
+
+    private logBooting(record: InjectableRecord | null, activity: string) {
+        this.booting$.next({
+            injectables: this.injectables.length,
+            initialized: this.initialized.length,
+            record: record,
+            activity: activity
         });
     }
 }

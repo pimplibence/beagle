@@ -1,16 +1,38 @@
 import { resolve } from 'path';
 import * as process from 'process';
 import { Arguments } from 'yargs';
-import { ApplicationRunner } from '../runner/application-runner';
+import { BaseApplication } from '../../application/base-application';
 import { Config } from '../libs/config';
+import { ApplicationRunner } from '../runner/application-runner';
 
 export class Start {
-    public static async run(options: Arguments<any>) {
+    public static async run(options: Arguments<any>): Promise<BaseApplication> {
         const instance = new Start();
-        await instance.command(options.argv);
+
+        return instance.run(options.argv, false);
     }
 
-    public async command(args: any) {
+    public static async runHeadless(options: Arguments<any>): Promise<BaseApplication> {
+        const instance = new Start();
+
+        return instance.run(options.argv, true);
+    }
+
+    public static async runScript(options: Arguments<any>): Promise<BaseApplication> {
+        const scriptName = options.argv.scriptName;
+
+        if (!scriptName) {
+            throw new Error('MissingScriptName');
+        }
+
+        const application = await this.runHeadless(options);
+
+        await application.runScript(scriptName, options.argv);
+
+        return application;
+    }
+
+    public async run(args: any, headless: boolean): Promise<BaseApplication> {
         /**
          * Collect arguments
          */
@@ -33,6 +55,8 @@ export class Start {
         /**
          * Start Application
          */
-        ApplicationRunner.run(config);
+        const instance = new ApplicationRunner(config, headless);
+
+        return instance.run();
     }
 }
