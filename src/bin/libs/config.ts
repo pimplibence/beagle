@@ -32,6 +32,13 @@ export class Config {
     public entry: string;
 
     /**
+     * Entry file
+     * - it contains the Application
+     * - its extension can be .(js|ts|jsx|tsx) (depends on tsconfig)
+     */
+    public environment?: string;
+
+    /**
      * Name of application
      * - it is an informative name
      * - it will be used as third party statistics title, debugger title, etc...
@@ -46,6 +53,7 @@ export class Config {
     constructor(options: any) {
         this.entry = options?.entry;
         this.app = options?.app;
+        this.environment = options?.environment;
 
         this.typescript = {
             ...options?.typescript,
@@ -78,5 +86,17 @@ export class Config {
 
     public getEntryPath() {
         return resolve(process.cwd(), this.entry);
+    }
+
+    public hasEnvironment() {
+        return !!this.environment;
+    }
+
+    public isEnvLoadable() {
+        return typeof this.environment === 'string';
+    }
+
+    public getEnvironmentPath() {
+        return resolve(process.cwd(), this.environment);
     }
 }

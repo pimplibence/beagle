@@ -2,6 +2,7 @@
   "app": "Beagle Application",
   "entry": "./examples/index.ts",
   "language": "typescript",
+  "environment": "./envs/env.ts",
   "typescript": {
     "tsconfig": "./tsconfig.json"
   }

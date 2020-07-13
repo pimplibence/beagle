@@ -6,6 +6,7 @@ export interface BaseApplicationOptions {
     runnerConfig: Config;
     runnerVersion: string;
     headless: boolean;
+    environment: object;
 }
 
 export interface Provider {

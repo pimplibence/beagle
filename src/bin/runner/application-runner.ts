@@ -46,10 +46,21 @@ export class ApplicationRunner {
             throw new Error(ApplicationRunnerError.MissingApplication);
         }
 
+        let environment = {};
+
+        if (this.config.hasEnvironment()) {
+            if (this.config.isEnvLoadable()) {
+                environment = require(this.config.getEnvironmentPath());
+            } else {
+                environment = this.config.environment;
+            }
+        }
+
         const instance = new application({
             runnerConfig: this.config,
             runnerVersion: ApplicationRunner.VERSION,
-            headless: this.headless
+            headless: this.headless,
+            environment: environment
         });
 
         if (this.headless) {
