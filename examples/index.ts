@@ -21,6 +21,5 @@ export class Application extends BaseApplication {
 
     public async configureHeadless(): Promise<void> {
         console.log('This application is running headless');
-        console.log(this.config);
     }
 }
