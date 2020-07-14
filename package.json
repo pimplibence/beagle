@@ -1,6 +1,6 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",
@@ -30,6 +30,6 @@
     "start-bin": "./node_modules/ts-node/dist/bin.js src/bin/bin.js"
   },
   "bin": {
-    "kifly-beagle": "./src/bin/bin.js"
+    "kifly-beagle": "src/bin/bin.js"
   }
 }
