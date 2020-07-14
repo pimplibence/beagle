@@ -10,6 +10,7 @@
     "@types/node": "^14.0.12",
     "@types/uuid": "^8.0.0",
     "@types/yargs": "^15.0.5",
+    "global": "^4.4.0",
     "lodash": "^4.17.15",
     "node": "^14.4.0",
     "nodemon": "^2.0.4",
@@ -22,12 +23,13 @@
     "uuid": "^8.1.0",
     "yargs": "^15.4.0"
   },
+  "devDependencies": {
+    "docsify-cli": "^4.4.1"
+  },
   "scripts": {
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
-    "start": "./node_modules/nodemon/bin/nodemon.js --exec \\\"./node_modules/ts-node/dist/bin.js\\\" examples/index.ts",
-    "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist",
-    "start-bin-dist": "./node_modules/node/bin/node ./dist/bin/bin.js",
-    "start-bin": "./node_modules/ts-node/dist/bin.js src/bin/bin.ts"
+    "docs": "./node_modules/docsify-cli/bin/docsify serve docs",
+    "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist"
   },
   "bin": {
     "kifly-beagle": "./bin/bin.js"
