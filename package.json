@@ -1,6 +1,6 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",
@@ -27,9 +27,9 @@
     "start": "./node_modules/nodemon/bin/nodemon.js --exec \\\"./node_modules/ts-node/dist/bin.js\\\" examples/index.ts",
     "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist",
     "start-bin-dist": "./node_modules/node/bin/node ./dist/bin/bin.js",
-    "start-bin": "./node_modules/ts-node/dist/bin.js src/bin/bin.js"
+    "start-bin": "./node_modules/ts-node/dist/bin.js src/bin/bin.ts"
   },
   "bin": {
-    "kifly-beagle": "src/bin/bin.js"
+    "kifly-beagle": "./bin/bin.js"
   }
 }

@@ -16,5 +16,4 @@ yargs
         type: 'string'
     });
 
-// tslint:disable-next-line
 yargs.argv;
