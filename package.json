@@ -1,4 +1,5 @@
 {
+  "name": "@kifly/beagle",
   "version": "0.0.1",
   "description": "",
   "main": "examples/index.ts",
@@ -27,5 +28,8 @@
     "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json",
     "start-bin-dist": "./node_modules/node/bin/node ./dist/bin/bin.js",
     "start-bin": "./node_modules/ts-node/dist/bin.js src/bin/bin.ts"
+  },
+  "bin": {
+    "kifly-beagle": "./src/bin/bin.js"
   }
 }
