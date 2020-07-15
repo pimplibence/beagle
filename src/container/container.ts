@@ -59,7 +59,9 @@ export class Container {
         const children = injectable.config.injects;
 
         for (const child of children) {
-            injectable.target.prototype[child.key] = await this.bootInjectable(child);
+            const refreshed = this.getRecord(child.target);
+
+            injectable.target.prototype[child.key] = await this.bootInjectable(refreshed);
         }
 
         // @ts-ignore
