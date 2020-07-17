@@ -1,6 +1,6 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",
@@ -29,7 +29,8 @@
   "scripts": {
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
     "docs": "./node_modules/docsify-cli/bin/docsify serve docs",
-    "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist"
+    "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist",
+    "example": "ts-node ./src/bin/bin.ts start"
   },
   "bin": {
     "kifly-beagle": "./bin/bin.js"

@@ -11,12 +11,12 @@ export interface BaseApplicationOptions {
 
 export interface Provider {
     injectable: Function;
-    config?: any;
+    options?: any;
 }
 
 export interface Script {
     injectable: typeof BaseScript;
-    config?: any;
+    options?: any;
     name: string;
 }
 
@@ -82,11 +82,11 @@ export class BaseApplication {
      */
     protected async loadInjectables() {
         for (const provider of this.providers) {
-            this.container.register(provider.injectable, provider.config);
+            this.container.register(provider.injectable, provider.options);
         }
 
         for (const script of this.scripts) {
-            this.container.register(script.injectable, script.config);
+            this.container.register(script.injectable, script.options);
         }
 
         await this.container.boot();

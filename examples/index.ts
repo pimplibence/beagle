@@ -6,9 +6,9 @@ import { DebugScript } from './scripts/debug.script';
 
 export class Application extends BaseApplication {
     protected providers: Provider[] = [
-        { injectable: Dog },
-        { injectable: Cat },
-        { injectable: Bird },
+        { injectable: Dog, options: 'This is a Dog' },
+        { injectable: Cat, options: 'This is a Cat' },
+        { injectable: Bird, options: 'This is a Bird' },
     ];
 
     protected scripts: Script[] = [
@@ -16,7 +16,7 @@ export class Application extends BaseApplication {
     ];
 
     public async configure(): Promise<void> {
-        console.log('This application is running normally');
+        console.log('This application is running normally', this.container.resolve(Cat));
     }
 
     public async configureHeadless(): Promise<void> {
