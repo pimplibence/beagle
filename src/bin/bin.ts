@@ -1,19 +1,51 @@
 #!/usr/bin/env node
 
 import * as yargs from 'yargs';
+import { BuilderCallback } from 'yargs';
 import { Start } from './commands/start';
 
-yargs
-    .command('start', 'Start Application', (args) => Start.run(args))
-    .command('start-headless', 'Start Application Headless', (args) => Start.runHeadless(args))
-    .command('script', 'Run Application Script', (args) => Start.runScript(args));
+const startCommandBuilder: BuilderCallback<any, any> = (builder) => {
 
-yargs
-    .options('c', {
-        alias: 'config',
-        default: './config.json',
-        describe: 'Specify custom config.json path',
-        type: 'string'
+    builder.default({
+        config: 'config.json'
     });
 
-yargs.argv;
+    builder.alias({
+        c: 'config'
+    });
+
+    builder.describe({
+        config: 'Custom config file path'
+    });
+};
+
+const scriptCommandBuilder: BuilderCallback<any, any> = (builder) => {
+
+    startCommandBuilder(builder);
+
+    builder.positional('scriptName', {
+        describe: 'Name of registered script',
+        type: 'string'
+    });
+};
+
+yargs
+    .command(
+        'start',
+        'Start Application',
+        (builder) => startCommandBuilder(builder),
+        (args) => Start.run(args)
+    )
+    .command(
+        'start-headless',
+        'Start Application Headless',
+        (builder) => startCommandBuilder(builder),
+        (args) => Start.run(args)
+    )
+    .command(
+        'script [scriptName]',
+        'Execute Application Script',
+        (builder) => scriptCommandBuilder(builder),
+        (args) => Start.runScript(args)
+    )
+    .argv;

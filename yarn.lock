@@ -50,6 +50,28 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
+"@kifly/beagle@^0.0.8":
+  version "0.0.8"
+  resolved "http://verdaccio.repository.codebuild.hu/@kifly%2fbeagle/-/beagle-0.0.8.tgz#2b7930d9d6ddc24acd8734e6e1cf7c4c584d785f"
+  integrity sha512-bdqcRgBwdRgBPgSVaguSbPIA/SySv7lzDm8DLwgY4U04xao8dBErbBQ1RQ0ByqiNwDlciTIvnijCUAHRbd7F/w==
+  dependencies:
+    "@types/lodash" "^4.14.155"
+    "@types/node" "^14.0.12"
+    "@types/uuid" "^8.0.0"
+    "@types/yargs" "^15.0.5"
+    global "^4.4.0"
+    lodash "^4.17.15"
+    node "^14.4.0"
+    nodemon "^2.0.4"
+    reflect-metadata "^0.1.13"
+    rxjs "^6.6.0"
+    ts-node "^8.10.2"
+    tslint "^6.1.2"
+    tslint-config-airbnb "^5.11.2"
+    typescript "^3.9.5"
+    uuid "^8.1.0"
+    yargs "^15.4.0"
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "http://verdaccio.repository.codebuild.hu/@sindresorhus%2fis/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"

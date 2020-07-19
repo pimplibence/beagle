@@ -13,17 +13,17 @@ export class Start {
     public static async run(options: Arguments<any>): Promise<BaseApplication> {
         const instance = new Start();
 
-        return instance.run(options.argv, false);
+        return instance.run(options, false);
     }
 
     public static async runHeadless(options: Arguments<any>): Promise<BaseApplication> {
         const instance = new Start();
 
-        return instance.run(options.argv, true);
+        return instance.run(options, true);
     }
 
     public static async runScript(options: Arguments<any>): Promise<BaseApplication> {
-        const scriptName = options.argv.scriptName;
+        const scriptName = options.scriptName;
 
         if (!scriptName) {
             throw new Error(StartError.MissingScriptName);
@@ -31,7 +31,7 @@ export class Start {
 
         const application = await this.runHeadless(options);
 
-        await application.runScript(scriptName, options.argv);
+        await application.runScript(scriptName, options);
 
         return application;
     }

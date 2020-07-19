@@ -6,6 +6,7 @@
   "license": "MIT",
   "author": "Bence Pimpli <pimplibence@gmail.com>",
   "dependencies": {
+    "@kifly/beagle": "^0.0.8",
     "@types/lodash": "^4.14.155",
     "@types/node": "^14.0.12",
     "@types/uuid": "^8.0.0",
@@ -30,7 +31,7 @@
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
     "docs": "./node_modules/docsify-cli/bin/docsify serve docs",
     "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist",
-    "example": "ts-node ./src/bin/bin.ts start"
+    "start-bin": "ts-node ./src/bin/bin.ts"
   },
   "bin": {
     "kifly-beagle": "./bin/bin.js"
