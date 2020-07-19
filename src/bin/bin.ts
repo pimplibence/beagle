@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
 import * as yargs from 'yargs';
-import { BuilderCallback } from 'yargs';
 import { Start } from './commands/start';
 
-const startCommandBuilder: BuilderCallback<any, any> = (builder) => {
+const startCommandBuilder: yargs.BuilderCallback<any, any> = (builder) => {
 
     builder.default({
         config: 'config.json'
@@ -19,7 +18,7 @@ const startCommandBuilder: BuilderCallback<any, any> = (builder) => {
     });
 };
 
-const scriptCommandBuilder: BuilderCallback<any, any> = (builder) => {
+const scriptCommandBuilder: yargs.BuilderCallback<any, any> = (builder) => {
 
     startCommandBuilder(builder);
 
