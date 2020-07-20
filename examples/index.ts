@@ -17,6 +17,10 @@ export class Application extends BaseApplication {
 
     public async configure(): Promise<void> {
         console.log('This application is running normally', this.container.resolve(Cat));
+
+        setTimeout(() => {
+            throw new Error('TriggeredByUser');
+        }, 3000);
     }
 
     public async configureHeadless(): Promise<void> {

@@ -5,5 +5,7 @@
   "environment": {},
   "typescript": {
     "tsconfig": "./tsconfig.json"
-  }
+  },
+  "restart": true,
+  "restartDelay": 3000
 }

@@ -50,10 +50,17 @@ export class Config {
      */
     public typescript?: TypescriptOptions;
 
+    public restart?: boolean;
+    public restartDelay?: number;
+    public reporter?: string;
+
     constructor(options: any) {
         this.entry = options?.entry;
         this.app = options?.app;
         this.environment = options?.environment;
+        this.reporter = options?.reporter || 'default';
+        this.restart = !!options?.restart;
+        this.restartDelay = options?.restartDelay || 1000;
 
         this.typescript = {
             ...options?.typescript,

@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import * as process from 'process';
 import { Arguments } from 'yargs';
 import { BaseApplication } from '../../application/base-application';
+import { sleep } from '../../libs/sleep';
 import { Config } from '../libs/config';
 import { ApplicationRunner } from '../runner/application-runner';
 
@@ -53,6 +54,8 @@ export class Start {
          */
         const config = new Config(require(configPath));
 
+        this.registerEvents(config, args, headless);
+
         config.validate();
         config.warn();
 
@@ -62,5 +65,40 @@ export class Start {
         const instance = new ApplicationRunner(config, headless);
 
         return instance.run();
+    }
+
+    private registerEvents(config: Config, args: any, headless: boolean) {
+        const listener = process.on('uncaughtException', async (e) => {
+            listener.removeAllListeners();
+
+            await this.handleError(config, args, headless, e);
+        });
+    }
+
+    private async handleError(config: Config, args: any, headless: boolean, error: any) {
+        const restart = config.restart;
+        const restartDelay = config.restartDelay;
+
+        if (error) {
+            this.reportError(config, error);
+        }
+
+        if (restart) {
+            console.log(`
+            ---------------------------
+            -- Application Error 
+            -- Restarting in ${restartDelay} ms
+            ---------------------------
+            `);
+
+            await sleep(restartDelay);
+            await this.run(args, headless);
+        }
+
+    }
+
+    private reportError(config: Config, error: any) {
+        // const reporter = Reporters.getReporter(config.reporter, config);
+        // reporter.reportError(error);
     }
 }

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { interval } from 'rxjs';
 import * as yargs from 'yargs';
 import { Start } from './commands/start';
 
@@ -39,7 +40,7 @@ yargs
         'start-headless',
         'Start Application Headless',
         (builder) => startCommandBuilder(builder),
-        (args) => Start.run(args)
+        (args) => Start.runHeadless(args)
     )
     .command(
         'script [scriptName]',
