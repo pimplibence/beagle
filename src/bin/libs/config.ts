@@ -1,5 +1,6 @@
 import { resolve } from 'path';
 import * as process from 'process';
+import { ResourceLimits } from 'worker_threads';
 
 export enum ConfigError {
     MissingEntity = 'ConfigErrorMissingEntity'
@@ -16,11 +17,19 @@ interface TypescriptOptions {
      * - it will be only used if tslint is enabled
      */
     tslint?: string;
+}
 
-    /**
-     * Enable|Disable tslint
-     */
-    lint?: boolean;
+export interface CompiledConfig {
+    app?: string;
+    restart?: boolean;
+    restartDelay?: number;
+    entryPath?: string;
+    environmentPath?: string;
+    resourceLimits?: ResourceLimits,
+    typescript?: {
+        tsLintPath?: string;
+        tsConfigPath?: string;
+    }
 }
 
 export class Config {
@@ -52,15 +61,16 @@ export class Config {
 
     public restart?: boolean;
     public restartDelay?: number;
-    public reporter?: string;
+
+    public resourceLimits?: ResourceLimits;
 
     constructor(options: any) {
         this.entry = options?.entry;
         this.app = options?.app;
         this.environment = options?.environment;
-        this.reporter = options?.reporter || 'default';
         this.restart = !!options?.restart;
         this.restartDelay = options?.restartDelay || 1000;
+        this.resourceLimits = options?.resourceLimits;
 
         this.typescript = {
             ...options?.typescript,
@@ -76,13 +86,6 @@ export class Config {
         }
     }
 
-    /**
-     * Int this step, you have to push the developers
-     */
-    public warn() {
-        //
-    }
-
     public getTsConfigPath() {
         return resolve(process.cwd(), this.typescript.tsconfig);
     }
@@ -95,15 +98,26 @@ export class Config {
         return resolve(process.cwd(), this.entry);
     }
 
-    public hasEnvironment() {
-        return !!this.environment;
-    }
-
-    public isEnvLoadable() {
-        return typeof this.environment === 'string';
-    }
-
     public getEnvironmentPath() {
+        if (!this.environment) {
+            return null;
+        }
+
         return resolve(process.cwd(), this.environment);
+    }
+
+    public getCompiledConfig(): CompiledConfig {
+        return {
+            app: this.app,
+            restart: this.restart,
+            restartDelay: this.restartDelay,
+            entryPath: this.getEntryPath(),
+            environmentPath: this.getEnvironmentPath(),
+            resourceLimits: this.resourceLimits || {},
+            typescript: {
+                tsLintPath: this.getTsLintPath(),
+                tsConfigPath: this.getTsConfigPath()
+            }
+        };
     }
 }

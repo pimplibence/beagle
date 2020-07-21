@@ -1,8 +1,6 @@
 import { resolve } from 'path';
 import * as process from 'process';
 import { Arguments } from 'yargs';
-import { BaseApplication } from '../../application/base-application';
-import { sleep } from '../../libs/sleep';
 import { Config } from '../libs/config';
 import { ApplicationRunner } from '../runner/application-runner';
 
@@ -11,35 +9,51 @@ export enum StartError {
 }
 
 export class Start {
-    public static async run(options: Arguments<any>): Promise<BaseApplication> {
+    public static async run(options: Arguments<any>): Promise<void> {
         const instance = new Start();
 
-        return instance.run(options, false);
+        return instance.run(options);
     }
 
-    public static async runHeadless(options: Arguments<any>): Promise<BaseApplication> {
+    public static async runHeadless(options: Arguments<any>): Promise<void> {
         const instance = new Start();
 
-        return instance.run(options, true);
+        return instance.runHeadless(options);
     }
 
-    public static async runScript(options: Arguments<any>): Promise<BaseApplication> {
-        const scriptName = options.scriptName;
+    public static async runScript(options: Arguments<any>): Promise<void> {
+        const instance = new Start();
 
-        if (!scriptName) {
-            throw new Error(StartError.MissingScriptName);
-        }
-
-        const application = await this.runHeadless(options);
-
-        await application.runScript(scriptName, options);
-
-        return application;
+        return instance.runScript(options);
     }
 
-    public async run(args: any, headless: boolean): Promise<BaseApplication> {
+    public async run(args: Arguments): Promise<void> {
+        const config = this.extractConfig(args);
+
+        const instance = new ApplicationRunner(config);
+
+        await instance.run();
+    }
+
+    public async runHeadless(args: Arguments): Promise<void> {
+        const config = this.extractConfig(args);
+
+        const instance = new ApplicationRunner(config);
+
+        await instance.runHeadless();
+    }
+
+    public async runScript(args: Arguments): Promise<void> {
+        const config = this.extractConfig(args);
+
+        const instance = new ApplicationRunner(config);
+
+        await instance.runScript(args);
+    }
+
+    private extractConfig(args: Arguments<any>): Config {
         /**
-         * Collect arguments
+         * Get arguments
          */
         const argConfig = args.config;
 
@@ -54,47 +68,8 @@ export class Start {
          */
         const config = new Config(require(configPath));
 
-        this.registerEvents(config, args, headless);
-
         config.validate();
-        config.warn();
 
-        /**
-         * Start Application
-         */
-        const instance = new ApplicationRunner(config, headless);
-
-        return instance.run();
-    }
-
-    private registerEvents(config: Config, args: any, headless: boolean) {
-        /**
-         * This feature requires even more thinking
-         */
-        const listener = process.on('uncaughtException', async (e) => {
-            listener.removeAllListeners();
-
-            await this.handleError(config, args, headless, e);
-        });
-    }
-
-    private async handleError(config: Config, args: any, headless: boolean, error: any) {
-        const restart = config.restart;
-        const restartDelay = config.restartDelay;
-
-        if (error) {
-            await this.reportError(config, error);
-        }
-
-        if (restart) {
-            await sleep(restartDelay);
-            await this.run(args, headless);
-        }
-
-    }
-
-    private reportError(config: Config, error: any) {
-        // const reporter = Reporters.getReporter(config.reporter, config);
-        // reporter.reportError(error);
+        return config;
     }
 }

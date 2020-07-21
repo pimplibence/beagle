@@ -1,9 +1,9 @@
-import { Config } from '../bin/libs/config';
+import { CompiledConfig } from '../bin/libs/config';
 import { Container } from '../container/container';
 import { BaseScript } from './libs/base-script';
 
 export interface BaseApplicationOptions {
-    runnerConfig: Config;
+    runnerConfig: CompiledConfig;
     runnerVersion: string;
     headless: boolean;
     environment: object;

@@ -1,5 +1,6 @@
-import * as tsn from 'ts-node';
-import { BaseApplication } from '../../application/base-application';
+import { resolve } from 'path';
+import * as WorkerThreads from 'worker_threads';
+import { Arguments } from 'yargs';
 import { Config } from '../libs/config';
 
 export enum ApplicationRunnerError {
@@ -7,68 +8,72 @@ export enum ApplicationRunnerError {
 }
 
 export class ApplicationRunner {
-    public static readonly VERSION = '0.0.1';
-
     public config: Config;
-    public headless: boolean;
 
-    constructor(config: Config, headless: boolean) {
+    constructor(config: Config) {
         this.config = config;
-        this.headless = headless;
     }
 
-    public async run(): Promise<BaseApplication> {
-        const tsRuntimeOptions = {
-            pretty: true,
-            logError: true
-        };
+    public async run(): Promise<void> {
+        const executable = resolve(__dirname, './executable/start.js');
 
-        /**
-         * Load typescript runtime
-         */
-        const isRegistered = !!process[Symbol.for('ts-node.register.instance')];
-
-        if (!isRegistered) {
-            tsn.register({
-                ...tsRuntimeOptions,
-                project: this.config.getTsConfigPath(),
-            });
-        }
-
-        /**
-         * THIS IS THE MAGIC
-         * Load Application
-         */
-        const source = require(this.config.getEntryPath());
-        const application: typeof BaseApplication = source.Application;
-
-        if (!application) {
-            throw new Error(ApplicationRunnerError.MissingApplication);
-        }
-
-        let environment = {};
-
-        if (this.config.hasEnvironment()) {
-            if (this.config.isEnvLoadable()) {
-                environment = require(this.config.getEnvironmentPath());
-            } else {
-                environment = this.config.environment;
-            }
-        }
-
-        const instance = new application({
-            runnerConfig: this.config,
-            runnerVersion: ApplicationRunner.VERSION,
-            headless: this.headless,
-            environment: environment
+        const worker = new WorkerThreads.Worker(executable, {
+            resourceLimits: this.config.resourceLimits,
+            workerData: {
+                config: this.config.getCompiledConfig()
+            },
         });
 
-        if (this.headless) {
-            await instance.bootHeadless();
-        } else {
-            await instance.boot();
+        worker.on('error', (error) => this.handleWorkerError(worker, error));
+        worker.on('exit', (code) => this.handleWorkerExit(worker, code));
+    }
+
+    public async runHeadless(): Promise<void> {
+        const executable = resolve(__dirname, './executable/start-headless.js');
+
+        const worker = new WorkerThreads.Worker(executable, {
+            resourceLimits: this.config.resourceLimits,
+            workerData: {
+                config: this.config.getCompiledConfig()
+            },
+        });
+
+        worker.on('error', (error) => this.handleWorkerError(worker, error));
+        worker.on('exit', (code) => this.handleWorkerExit(worker, code));
+    }
+
+    public async runScript(args: Arguments): Promise<void> {
+        const executable = resolve(__dirname, './executable/run-script.js');
+
+        const script = args.script;
+
+        if (!script) {
+            throw new Error('MissingScript');
         }
 
-        return instance;
+        const worker = new WorkerThreads.Worker(executable, {
+            resourceLimits: this.config.resourceLimits,
+            workerData: {
+                config: this.config.getCompiledConfig(),
+                script: script,
+                args: args
+            },
+        });
+    }
+
+    private handleWorkerError(worker: WorkerThreads.Worker, error: Error) {
+        worker.removeAllListeners();
+
+        console.log('Error');
+    }
+
+    private handleWorkerExit(worker: WorkerThreads.Worker, code: number) {
+        worker.removeAllListeners();
+
+        console.log('Exit');
+    }
+
+    private handleWorkerMessage(worker: WorkerThreads.Worker, message: any) {
+        console.log('Message', message);
     }
 }
