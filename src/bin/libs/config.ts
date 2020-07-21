@@ -25,11 +25,11 @@ export interface CompiledConfig {
     restartDelay?: number;
     entryPath?: string;
     environmentPath?: string;
-    resourceLimits?: ResourceLimits,
+    resourceLimits?: ResourceLimits;
     typescript?: {
         tsLintPath?: string;
         tsConfigPath?: string;
-    }
+    };
 }
 
 export class Config {
