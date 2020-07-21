@@ -68,6 +68,9 @@ export class Start {
     }
 
     private registerEvents(config: Config, args: any, headless: boolean) {
+        /**
+         * This feature requires even more thinking
+         */
         const listener = process.on('uncaughtException', async (e) => {
             listener.removeAllListeners();
 
@@ -80,17 +83,10 @@ export class Start {
         const restartDelay = config.restartDelay;
 
         if (error) {
-            this.reportError(config, error);
+            await this.reportError(config, error);
         }
 
         if (restart) {
-            console.log(`
-            ---------------------------
-            -- Application Error 
-            -- Restarting in ${restartDelay} ms
-            ---------------------------
-            `);
-
             await sleep(restartDelay);
             await this.run(args, headless);
         }

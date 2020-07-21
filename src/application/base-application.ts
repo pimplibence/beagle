@@ -21,7 +21,16 @@ export interface Script {
 }
 
 export class BaseApplication {
+    /**
+     * Configuration from Application Runner
+     */
     protected config: BaseApplicationOptions;
+
+    /**
+     * Container to initialize
+     * - providers
+     * - scripts
+     */
     protected container = new Container();
     protected providers: Provider[] = [];
     protected scripts: Script[] = [];
@@ -44,7 +53,7 @@ export class BaseApplication {
         return this;
     }
 
-    public runScript(name: string, options: any): Promise<void> {
+    public runScript(name: string, args: any): Promise<void> {
         const script = this.scripts.find((s) => (s.name === name));
 
         if (!script) {
@@ -53,7 +62,7 @@ export class BaseApplication {
 
         const instance: BaseScript = this.container.resolve(script.injectable);
 
-        return instance.run();
+        return instance.run(args);
     }
 
     /**
