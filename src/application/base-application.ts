@@ -1,12 +1,11 @@
 import { CompiledConfig } from '../bin/libs/config';
 import { Container } from '../container/container';
-import { BaseScript } from './libs/base-script';
+import { BaseScript } from './base-script';
 
 export interface BaseApplicationOptions {
     runnerConfig: CompiledConfig;
-    runnerVersion: string;
-    headless: boolean;
     environment: object;
+    headless: boolean;
 }
 
 export interface Provider {
@@ -82,6 +81,10 @@ export class BaseApplication {
      */
     protected async configureHeadless(): Promise<void> {
         //
+    }
+
+    protected async shutdown(): Promise<void> {
+        console.log('ShutDown');
     }
 
     /**

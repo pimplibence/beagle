@@ -8,7 +8,7 @@ module.exports = (config, environment, headless) => {
     }
 
     return new entry.Application({
-        config: config,
+        runnerConfig: config,
         environment: environment,
         headless: headless,
     });

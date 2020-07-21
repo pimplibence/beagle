@@ -1,6 +1,5 @@
 import { resolve } from 'path';
 import * as process from 'process';
-import { ResourceLimits } from 'worker_threads';
 
 export enum ConfigError {
     MissingEntity = 'ConfigErrorMissingEntity'
@@ -25,7 +24,6 @@ export interface CompiledConfig {
     restartDelay?: number;
     entryPath?: string;
     environmentPath?: string;
-    resourceLimits?: ResourceLimits;
     typescript?: {
         tsLintPath?: string;
         tsConfigPath?: string;
@@ -62,15 +60,12 @@ export class Config {
     public restart?: boolean;
     public restartDelay?: number;
 
-    public resourceLimits?: ResourceLimits;
-
     constructor(options: any) {
         this.entry = options?.entry;
         this.app = options?.app;
         this.environment = options?.environment;
         this.restart = !!options?.restart;
         this.restartDelay = options?.restartDelay || 1000;
-        this.resourceLimits = options?.resourceLimits;
 
         this.typescript = {
             ...options?.typescript,
@@ -113,7 +108,6 @@ export class Config {
             restartDelay: this.restartDelay,
             entryPath: this.getEntryPath(),
             environmentPath: this.getEnvironmentPath(),
-            resourceLimits: this.resourceLimits || {},
             typescript: {
                 tsLintPath: this.getTsLintPath(),
                 tsConfigPath: this.getTsConfigPath()

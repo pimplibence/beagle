@@ -1,3 +1,4 @@
+import * as WorkerThreads from 'worker_threads';
 import { BaseApplication, Provider, Script } from '../src/application/base-application';
 import { Bird } from './injectables/bird';
 import { Cat } from './injectables/cat';
@@ -16,11 +17,7 @@ export class Application extends BaseApplication {
     ];
 
     public async configure(): Promise<void> {
-        console.log('This application is running normally', this.container.resolve(Cat));
-
-        setTimeout(() => {
-            throw new Error('TriggeredByUser');
-        }, 3000);
+        console.log('This application is running normally');
     }
 
     public async configureHeadless(): Promise<void> {
