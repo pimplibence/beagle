@@ -1,6 +1,6 @@
-const tsNode = require('ts-node');
-
 module.exports = (config) => {
+    const tsNode = require('ts-node');
+
     /**
      * Register typescript runtime
      */

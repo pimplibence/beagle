@@ -1,3 +1,4 @@
+import { NodeOptions as SentryOptions } from '@sentry/node';
 import { resolve } from 'path';
 import * as process from 'process';
 
@@ -28,6 +29,7 @@ export interface CompiledConfig {
         tsLintPath?: string;
         tsConfigPath?: string;
     };
+    sentry?: any;
 }
 
 export class Config {
@@ -52,10 +54,8 @@ export class Config {
      */
     public app?: string;
 
-    /**
-     * Typescript options
-     */
     public typescript?: TypescriptOptions;
+    public sentry?: SentryOptions;
 
     public restart?: boolean;
     public restartDelay?: number;
@@ -72,6 +72,10 @@ export class Config {
             lint: options?.typescript?.lint ?? false,
             tslint: options?.typescript?.tslint ?? './tslint.json',
             tsconfig: options?.typescript?.tsconfig ?? './tsconfig.json'
+        };
+
+        this.sentry = {
+            ...options?.sentry
         };
     }
 
@@ -111,7 +115,8 @@ export class Config {
             typescript: {
                 tsLintPath: this.getTsLintPath(),
                 tsConfigPath: this.getTsConfigPath()
-            }
+            },
+            sentry: this.sentry
         };
     }
 }

@@ -31,6 +31,7 @@ export class BaseApplication {
      * - scripts
      */
     protected container = new Container();
+
     protected providers: Provider[] = [];
     protected scripts: Script[] = [];
 
@@ -81,10 +82,6 @@ export class BaseApplication {
      */
     protected async configureHeadless(): Promise<void> {
         //
-    }
-
-    protected async shutdown(): Promise<void> {
-        console.log('ShutDown');
     }
 
     /**

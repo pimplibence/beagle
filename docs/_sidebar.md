@@ -1,3 +1,3 @@
 * [Home](/)
-* [CLI](cli.md)
-* [Questions & Answers](qna.md)
+* [CLI](content/cli.md)
+* [Questions & Answers](content/qna.md)

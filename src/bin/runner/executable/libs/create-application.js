@@ -1,5 +1,6 @@
 module.exports = (config, environment, headless) => {
     require('./register-tsnode')(config);
+    require('./initialize-sentry')(config);
 
     const entry = require(config.entryPath);
 

@@ -7,5 +7,8 @@
     "tsconfig": "./tsconfig.json"
   },
   "restart": true,
-  "restartDelay": 3000
+  "restartDelay": 3000,
+  "sentry": {
+    "dsn": "https://7eecc3c2506f4d9f813152896a3908be@o40711.ingest.sentry.io/192849"
+  }
 }

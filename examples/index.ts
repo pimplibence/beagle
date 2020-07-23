@@ -1,4 +1,3 @@
-import * as WorkerThreads from 'worker_threads';
 import { BaseApplication, Provider, Script } from '../src/application/base-application';
 import { Bird } from './injectables/bird';
 import { Cat } from './injectables/cat';
@@ -18,6 +17,10 @@ export class Application extends BaseApplication {
 
     public async configure(): Promise<void> {
         console.log('This application is running normally');
+
+        setTimeout(() => {
+            throw new Error('ExampleError');
+        }, 2000);
     }
 
     public async configureHeadless(): Promise<void> {
