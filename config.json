@@ -7,8 +7,6 @@
     "tsconfig": "./tsconfig.json"
   },
   "sentry": {
-    "dsn": "https://7eecc3c2506f4d9f813152896a3908be@o40711.ingest.sentry.io/192849",
-    "release": "1.0.0",
-    "environment": "development"
+    "dsn": "https://7eecc3c2506f4d9f813152896a3908be@o40711.ingest.sentry.io/192849"
   }
 }

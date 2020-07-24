@@ -21,7 +21,7 @@ export class DogController extends Controller {
 
     public helloHttpError(req: Request, res: Response) {
         try {
-            throw new BadRequest('TestBadRequest');
+            throw new BadRequest();
         } catch (e) {
             res.error(e);
         }

@@ -12,6 +12,11 @@ export class Application extends BaseApplication {
         const app = express();
         const server = createServer(app);
 
+        if (this.config.libs?.sentry) {
+            app.use(this.config.libs?.sentry.Handlers.requestHandler());
+            app.use(this.config.libs?.sentry.Handlers.errorHandler());
+        }
+
         app.use('/dog', this.container.resolve<DogController>(DogController).app);
 
         server.listen(3032);

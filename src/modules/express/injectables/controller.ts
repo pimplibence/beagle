@@ -2,12 +2,6 @@ import * as express from 'express';
 import { injectable } from '../../../container/decorators/injectable';
 import { InternalServerError } from '../errors';
 
-interface ParsedError {
-    statusCode: number;
-    message: string;
-    payload: any;
-}
-
 export interface Application extends express.Application {
     //
 }
@@ -29,32 +23,21 @@ export class Controller {
     public app: Application = express();
 
     constructor() {
-        this.app.use((req: Request, res: Response, next: NextFunction) => {
-            res.error = (error: Error | any) => {
-                const parsed = this.parseError(error);
-
-                res.status(500).json(parsed);
-            };
-
-            next();
-        });
+        this.app.use((req: Request, res: Response, next: NextFunction) => this.handleError(req, res, next));
     }
 
-    private parseError(error?: Error | any): ParsedError {
-        console.log('lashflkasfj', error);
+    private handleError(req: Request, res: Response, next: NextFunction) {
+        res.error = (error: Error | any) => {
+            const e = error?.isHttpError ? error : new InternalServerError(error?.message, error);
 
-        if (!error) {
-            const e = new InternalServerError();
+            return res.status(e.statusCode).json({
+                message: error.message,
+                payload: error.payload,
+                statusCode: error.statusCode
+            });
+        };
 
-            return e.toJSON();
-        }
-
-        if (error.isHttpError) {
-            return error.toJSON();
-        }
-
-        const e = new InternalServerError(error.message, error);
-
-        return e.toJSON();
+        next();
     }
+
 }
