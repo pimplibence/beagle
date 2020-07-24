@@ -1,25 +1,19 @@
-import { BaseApplication, Provider, Script } from '../src/application/base-application';
-import { Bird } from './injectables/bird';
-import { Cat } from './injectables/cat';
-import { Dog } from './injectables/dog';
-import { DebugScript } from './scripts/debug.script';
+import * as express from 'express';
+import { createServer } from 'http';
+import { BaseApplication, Provider } from '../src/application/base-application';
+import { DogController } from './modules/express/controllers/dog.controller';
 
 export class Application extends BaseApplication {
     protected providers: Provider[] = [
-        { injectable: Dog, options: 'This is a Dog' },
-        { injectable: Cat, options: 'This is a Cat' },
-        { injectable: Bird, options: 'This is a Bird' },
+        { injectable: DogController }
     ];
 
-    protected scripts: Script[] = [
-        { name: 'debug', injectable: DebugScript }
-    ];
+    protected async configure(): Promise<void> {
+        const app = express();
+        const server = createServer(app);
 
-    public async configure(): Promise<void> {
-        console.log('This application is running normally');
-    }
+        app.use('/dog', this.container.resolve<DogController>(DogController).app);
 
-    public async configureHeadless(): Promise<void> {
-        console.log('This application is running headless');
+        server.listen(3032);
     }
 }
