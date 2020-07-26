@@ -10,5 +10,9 @@ module.exports = (config) => {
             logError: true,
             project: config.typescript.tsConfigPath
         });
+
+        return tsNode;
     }
+
+    return null;
 }
