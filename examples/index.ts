@@ -17,10 +17,6 @@ export class Application extends BaseApplication {
 
     public async configure(): Promise<void> {
         console.log('This application is running normally');
-
-        setTimeout(() => {
-            throw new Error('ExampleError');
-        }, 2000);
     }
 
     public async configureHeadless(): Promise<void> {
