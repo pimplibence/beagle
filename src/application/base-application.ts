@@ -6,6 +6,7 @@ export interface BaseApplicationOptions {
     runnerConfig: CompiledConfig;
     environment: object;
     headless: boolean;
+    libs: any;
 }
 
 export interface Provider {
