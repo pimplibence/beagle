@@ -8,7 +8,7 @@ module.exports = (config, environment, headless) => {
         throw new Error('MissingApplication');
     }
 
-    return new entry.Application({
+    const compiledConfig = {
         runnerConfig: config,
         environment: environment,
         headless: headless,
@@ -16,5 +16,9 @@ module.exports = (config, environment, headless) => {
             tsNode: tsNode,
             sentry: sentry
         }
-    });
+    };
+
+    entry.Application.prototype.config = compiledConfig;
+
+    return new entry.Application(compiledConfig);
 }

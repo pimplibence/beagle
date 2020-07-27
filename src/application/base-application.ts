@@ -1,10 +1,11 @@
+import { Register } from 'ts-node';
 import { CompiledConfig } from '../bin/libs/config';
 import { Container } from '../container/container';
 import { BaseScript } from './base-script';
 
 export interface BaseApplicationOptions {
     runnerConfig: CompiledConfig;
-    environment: object;
+    environment: any;
     headless: boolean;
     libs: any;
 }
@@ -23,6 +24,8 @@ export interface Script {
 export class BaseApplication {
     /**
      * Configuration from Application Runner
+     *
+     * This value will be available before this class constructed (init hack in runner)
      */
     protected config: BaseApplicationOptions;
 

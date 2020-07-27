@@ -12,18 +12,10 @@ export class DogController extends Controller {
     }
 
     public helloWorld(req: Request, res: Response) {
-        try {
-            res.json({ hello: 'Bello' });
-        } catch (e) {
-            res.error(e);
-        }
+        res.json({ hello: 'Bello' });
     }
 
     public helloHttpError(req: Request, res: Response) {
-        try {
-            throw new BadRequest();
-        } catch (e) {
-            res.error(e);
-        }
+        throw new BadRequest();
     }
 }

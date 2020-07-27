@@ -22,22 +22,19 @@ export interface NextFunction extends express.NextFunction {
 export class Controller {
     public app: Application = express();
 
-    constructor() {
-        this.app.use((req: Request, res: Response, next: NextFunction) => this.handleError(req, res, next));
-    }
-
-    private handleError(req: Request, res: Response, next: NextFunction) {
-        res.error = (error: Error | any) => {
+    public static handleError(nextError: boolean = true) {
+        return (error: any, req: Request, res: Response, next: NextFunction): void => {
             const e = error?.isHttpError ? error : new InternalServerError(error?.message, error);
 
-            return res.status(e.statusCode).json({
-                message: error.message,
-                payload: error.payload,
-                statusCode: error.statusCode
+            res.status(e.statusCode).json({
+                message: e.message,
+                payload: e.payload,
+                statusCode: e.statusCode
             });
+
+            if (nextError) {
+                next(error);
+            }
         };
-
-        next();
     }
-
 }
