@@ -1,6 +1,5 @@
 module.exports = (config, environment, headless) => {
-    const tsNode = require('./register-tsnode')(config);
-    const sentry = require('./register-sentry')(config);
+    require('./register-tsnode')(config);
 
     const entry = require(config.entryPath);
 
@@ -11,11 +10,7 @@ module.exports = (config, environment, headless) => {
     const compiledConfig = {
         runnerConfig: config,
         environment: environment,
-        headless: headless,
-        libs: {
-            tsNode: tsNode,
-            sentry: sentry
-        }
+        headless: headless
     };
 
     entry.Application.prototype.config = compiledConfig;

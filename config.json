@@ -5,8 +5,5 @@
   "environment": "./env.json",
   "typescript": {
     "tsconfig": "./tsconfig.json"
-  },
-  "sentry": {
-    "dsn": "https://7eecc3c2506f4d9f813152896a3908be@o40711.ingest.sentry.io/192849"
   }
 }

@@ -1,4 +1,3 @@
-import { Register } from 'ts-node';
 import { CompiledConfig } from '../bin/libs/config';
 import { Container } from '../container/container';
 import { BaseScript } from './base-script';
@@ -7,7 +6,6 @@ export interface BaseApplicationOptions {
     runnerConfig: CompiledConfig;
     environment: any;
     headless: boolean;
-    libs: any;
 }
 
 export interface Provider {

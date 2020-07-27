@@ -3,6 +3,8 @@ import { createServer } from 'http';
 import { BaseApplication, Provider } from '../src/application/base-application';
 import { Controller } from '../src/modules/express/injectables/controller';
 import { DogController } from './modules/express/controllers/dog.controller';
+import * as Sentry from '@sentry/node';
+import * as Apm from '@sentry/apm';
 
 export class Application extends BaseApplication {
     protected providers: Provider[] = [
@@ -13,12 +15,10 @@ export class Application extends BaseApplication {
         const app = express();
         const server = createServer(app);
 
-        app.use(this.config.libs?.sentry?.Handlers.requestHandler());
-
+        Sentry.init(this.config.environment.sentry);
         app.use('/dog', this.container.resolve<DogController>(DogController).app);
-
         app.use(Controller.handleError(true));
-        app.use((e, req, res, next) => this.config.libs?.sentry?.captureException(e));
+        app.use(Sentry.Handlers.errorHandler());
 
         server.listen(this.config.environment?.expressPort, () => console.log('Server is running on port', this.config.environment?.expressPort));
     }
