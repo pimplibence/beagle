@@ -1,10 +1,9 @@
+import * as Sentry from '@sentry/node';
 import * as express from 'express';
 import { createServer } from 'http';
 import { BaseApplication, Provider } from '../src/application/base-application';
 import { Controller } from '../src/modules/express/injectables/controller';
 import { DogController } from './modules/express/controllers/dog.controller';
-import * as Sentry from '@sentry/node';
-import * as Apm from '@sentry/apm';
 
 export class Application extends BaseApplication {
     protected providers: Provider[] = [
@@ -16,7 +15,9 @@ export class Application extends BaseApplication {
         const server = createServer(app);
 
         Sentry.init(this.config.environment.sentry);
+
         app.use('/dog', this.container.resolve<DogController>(DogController).app);
+
         app.use(Controller.handleError(true));
         app.use(Sentry.Handlers.errorHandler());
 
