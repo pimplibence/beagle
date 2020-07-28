@@ -11,7 +11,7 @@ export interface Request extends express.Request {
 }
 
 export interface Response extends express.Response {
-    error: (error?: Error | any) => void;
+    //
 }
 
 export interface NextFunction extends express.NextFunction {
