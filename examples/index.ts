@@ -18,8 +18,8 @@ export class Application extends BaseApplication {
 
         app.use('/dog', this.container.resolve<DogController>(DogController).app);
 
-        app.use(Controller.handleError(true));
         app.use(Sentry.Handlers.errorHandler());
+        app.use(Controller.handleError(false));
 
         server.listen(this.config.environment?.expressPort, () => console.log('Server is running on port', this.config.environment?.expressPort));
     }

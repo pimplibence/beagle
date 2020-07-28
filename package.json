@@ -27,6 +27,7 @@
     "yargs": "^15.4.0"
   },
   "devDependencies": {
+    "husky": "^4.2.5",
     "docsify-cli": "^4.4.1"
   },
   "scripts": {
@@ -34,6 +35,11 @@
     "docs": "./node_modules/docsify-cli/bin/docsify serve docs",
     "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist",
     "start-bin": "ts-node ./src/bin/bin.ts"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
   },
   "bin": {
     "kifly-beagle": "./bin/bin.js"
