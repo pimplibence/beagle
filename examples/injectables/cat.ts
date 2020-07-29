@@ -1,5 +1,5 @@
-import { inject } from '../../src/container/decorators/inject';
-import { injectable } from '../../src/container/decorators/injectable';
+import { inject } from '../../src/core/container/decorators/inject';
+import { injectable } from '../../src/core/container/decorators/injectable';
 import { Animal } from './animal';
 import { Dog } from './dog';
 

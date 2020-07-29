@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/node';
 import * as express from 'express';
 import { createServer } from 'http';
-import { BaseApplication, Provider } from '../src/application/base-application';
+import { BaseApplication, Provider } from '../src/core/application/base-application';
 import { Controller } from '../src/modules/express/injectables/controller';
 import { DogController } from './modules/express/controllers/dog.controller';
 
