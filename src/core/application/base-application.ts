@@ -1,4 +1,4 @@
-import { CompiledConfig } from '../bin/libs/config';
+import { CompiledConfig } from '../../bin/libs/config';
 import { Container } from '../container/container';
 import { BaseScript } from './base-script';
 

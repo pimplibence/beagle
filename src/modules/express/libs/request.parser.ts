@@ -16,7 +16,7 @@ export interface RequestParserOptions {
 }
 
 export class RequestParser {
-    private static readonly AVAILABLE_SORT_VALUES = [1, -1];
+    private static readonly POSSIBLE_SORT_VALUES = [1, -1];
 
     public readonly request: Request;
     private readonly enabledSortKeys: string[] = [];
@@ -142,7 +142,7 @@ export class RequestParser {
             const value = raw[key];
             const parsed = parseInt(value, 10);
 
-            if (!RequestParser.AVAILABLE_SORT_VALUES.includes(parsed)) {
+            if (!RequestParser.POSSIBLE_SORT_VALUES.includes(parsed)) {
                 continue;
             }
 

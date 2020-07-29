@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { injectable } from '../../../container/decorators/injectable';
+import { injectable } from '../../../core/container/decorators/injectable';
 import { InternalServerError } from '../errors';
 
 export interface Application extends express.Application {

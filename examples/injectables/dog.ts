@@ -1,4 +1,4 @@
-import { injectable } from '../../src/container/decorators/injectable';
+import { injectable } from '../../src/core/container/decorators/injectable';
 import { Animal } from './animal';
 
 @injectable()
