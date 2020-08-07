@@ -37,4 +37,16 @@ export class Controller {
             }
         };
     }
+
+    protected handle(method: string, route: any, handler: any): void {
+        this.app[method](route, async (req, res, next) => {
+            try {
+                const response = await handler(req, res, next);
+
+                res.json(response);
+            } catch (e) {
+                Controller.handleError(false)(e, req, res, next);
+            }
+        });
+    }
 }
