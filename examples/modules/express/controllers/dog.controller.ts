@@ -1,5 +1,5 @@
-import { injectable } from '../../../../src/container/decorators/injectable';
-import { onInit } from '../../../../src/container/decorators/on-init';
+import { injectable } from '../../../../src/core/container/decorators/injectable';
+import { onInit } from '../../../../src/core/container/decorators/on-init';
 import { BadRequest } from '../../../../src/modules/express/errors';
 import { Controller, Request, Response, SupportedHandlerType } from '../../../../src/modules/express/injectables/controller';
 

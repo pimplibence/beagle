@@ -29,17 +29,19 @@ export interface NextFunction extends express.NextFunction {
 
 @injectable()
 export class Controller {
+    public static staticNextError() {
+        return (error: any, req: Request, res: Response, next: NextFunction): void => {
+            next(error?.isHttpError ? error : new InternalServerError(error?.message, error));
+        };
+    }
+
     public static handleError() {
         return (error: any, req: Request, res: Response, next: NextFunction): void => {
-            const e = error?.isHttpError ? error : new InternalServerError(error?.message, error);
-
-            res.status(e.statusCode).json({
-                message: e.message,
-                payload: e.payload,
-                statusCode: e.statusCode
+            res.status(error.statusCode || 500).json({
+                message: error.message,
+                payload: error.payload,
+                statusCode: error.statusCode
             });
-
-            next(error);
         };
     }
 
@@ -58,7 +60,7 @@ export class Controller {
 
                 res.json(response);
             } catch (e) {
-                Controller.handleError()(e, req, res, next);
+                Controller.staticNextError()(e, req, res, next);
             }
         });
     }
