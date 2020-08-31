@@ -1,14 +1,14 @@
 import { injectable } from '../../../../src/core/container/decorators/injectable';
 import { onInit } from '../../../../src/core/container/decorators/on-init';
 import { BadRequest } from '../../../../src/modules/express/errors';
-import { Controller, Request, Response, SupportedHandlerType } from '../../../../src/modules/express/injectables/controller';
+import { Controller, Request, Response } from '../../../../src/modules/express/injectables/controller';
 
 @injectable()
 export class DogController extends Controller {
     @onInit()
     public initialize() {
-        this.handle(SupportedHandlerType.GET, '/', this.helloWorld.bind(this));
-        this.handle(SupportedHandlerType.GET, '/http-error', this.helloHttpError.bind(this));
+        this.json.get('/', this.helloWorld.bind(this));
+        this.json.get('/error', this.helloHttpError.bind(this));
     }
 
     public helloWorld(req: Request, res: Response) {

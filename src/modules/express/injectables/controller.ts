@@ -29,38 +29,70 @@ export interface NextFunction extends express.NextFunction {
 
 @injectable()
 export class Controller {
-    public static staticNextError() {
-        return (error: any, req: Request, res: Response, next: NextFunction): void => {
-            next(error?.isHttpError ? error : new InternalServerError(error?.message, error));
-        };
-    }
-
-    public static handleError() {
+    public static handleError(nextError = false) {
         return (error: any, req: Request, res: Response, next: NextFunction): void => {
             res.status(error.statusCode || 500).json({
                 message: error.message,
                 payload: error.payload,
                 statusCode: error.statusCode
             });
-        };
-    }
 
-    public static handleVoid() {
-        return (error: any, req: Request, res: Response, next: NextFunction): void => {
-            next();
+            if (nextError) {
+                next(error);
+            }
         };
     }
 
     public app: Application = express();
 
-    protected handle(method: SupportedHandlerType, path: any, handler: any): void {
+    protected json: Record<SupportedHandlerType, any> = {
+        [SupportedHandlerType.ALL]: (path: any, handler: any) => this._handleJson(SupportedHandlerType.ALL, path, handler),
+        [SupportedHandlerType.USE]: (path: any, handler: any) => this._handleJson(SupportedHandlerType.USE, path, handler),
+        [SupportedHandlerType.GET]: (path: any, handler: any) => this._handleJson(SupportedHandlerType.GET, path, handler),
+        [SupportedHandlerType.POST]: (path: any, handler: any) => this._handleJson(SupportedHandlerType.POST, path, handler),
+        [SupportedHandlerType.PUT]: (path: any, handler: any) => this._handleJson(SupportedHandlerType.PUT, path, handler),
+        [SupportedHandlerType.DELETE]: (path: any, handler: any) => this._handleJson(SupportedHandlerType.DELETE, path, handler),
+    };
+
+    protected middleware: Record<SupportedHandlerType, any> = {
+        [SupportedHandlerType.ALL]: (path: any, handler: any) => this._middleware(SupportedHandlerType.ALL, path, handler),
+        [SupportedHandlerType.USE]: (path: any, handler: any) => this._middleware(SupportedHandlerType.USE, path, handler),
+        [SupportedHandlerType.GET]: (path: any, handler: any) => this._middleware(SupportedHandlerType.GET, path, handler),
+        [SupportedHandlerType.POST]: (path: any, handler: any) => this._middleware(SupportedHandlerType.POST, path, handler),
+        [SupportedHandlerType.PUT]: (path: any, handler: any) => this._middleware(SupportedHandlerType.PUT, path, handler),
+        [SupportedHandlerType.DELETE]: (path: any, handler: any) => this._middleware(SupportedHandlerType.DELETE, path, handler),
+    };
+
+    // tslint:disable-next-line function-name
+    private _handleJson(method: SupportedHandlerType, path: any, handler: any): void {
         this.app[method](path, async (req: any, res: any, next: any) => {
             try {
                 const response = await handler(req, res, next);
 
-                res.json(response);
+                return res.json(response);
             } catch (e) {
-                Controller.staticNextError()(e, req, res, next);
+                if (!e) {
+                    return next(new InternalServerError('UnknownError', e));
+                }
+
+                return next(e?.isHttpError ? e : new InternalServerError(e?.message, e));
+            }
+        });
+    }
+
+    // tslint:disable-next-line function-name
+    private _middleware(method: SupportedHandlerType, path: any, handler: any): void {
+        this.app[method](path, async (req: any, res: any, next: any) => {
+            try {
+                await handler(req, res, next);
+
+                return next();
+            } catch (e) {
+                if (!e) {
+                    return next(new InternalServerError('UnknownError', e));
+                }
+
+                return next(e?.isHttpError ? e : new InternalServerError(e?.message, e));
             }
         });
     }

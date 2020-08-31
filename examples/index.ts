@@ -15,11 +15,12 @@ export class Application extends BaseApplication {
         const server = createServer(app);
 
         Sentry.init(this.config.environment.sentry);
-
         app.use(Sentry.Handlers.requestHandler());
+
         app.use('/dog', this.container.resolve<DogController>(DogController).app);
+
         app.use(Sentry.Handlers.errorHandler());
-        app.use(Controller.handleVoid());
+        app.use(Controller.handleError());
 
         server.listen(this.config.environment?.expressPort, () => console.log('Server is running on port', this.config.environment?.expressPort));
     }
