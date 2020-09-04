@@ -1,27 +1,17 @@
-import * as Sentry from '@sentry/node';
-import * as express from 'express';
-import { createServer } from 'http';
 import { BaseApplication, Provider } from '../src/core/application/base-application';
-import { Controller } from '../src/modules/express/injectables/controller';
-import { DogController } from './modules/express/controllers/dog.controller';
+import { UserAdapter } from '../src/modules/codebuild/user-adapter/user.adapter';
+import { SpecialUser } from './libs/special-user';
 
 export class Application extends BaseApplication {
     protected providers: Provider[] = [
-        { injectable: DogController }
+        { injectable: UserAdapter, options: { endpoint: 'http://localhost:3034', dao: SpecialUser } }
     ];
 
     protected async configure(): Promise<void> {
-        const app = express();
-        const server = createServer(app);
+        const user = this.container.resolve<UserAdapter<SpecialUser>>(UserAdapter);
 
-        Sentry.init(this.config.environment.sentry);
-        app.use(Sentry.Handlers.requestHandler());
+        const u = await user.user.findById('5f5295afd2eeae1d53583cdd');
 
-        app.use('/dog', this.container.resolve<DogController>(DogController).app);
-
-        app.use(Sentry.Handlers.errorHandler());
-        app.use(Controller.handleError());
-
-        server.listen(this.config.environment?.expressPort, () => console.log('Server is running on port', this.config.environment?.expressPort));
+        console.log(u);
     }
 }
