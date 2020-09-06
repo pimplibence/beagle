@@ -1,5 +1,7 @@
 export class UserPresenter {
+    // tslint:disable-next-line variable-name
     public _id: string;
+    // tslint:disable-next-line variable-name
     public _version: string;
     public sid: string;
     public email: string;

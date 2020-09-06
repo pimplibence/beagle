@@ -42,83 +42,72 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
-"@sentry/apm@5.20.0":
-  version "5.20.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fapm/-/apm-5.20.0.tgz#14c1900ce83582c988c7620ab41d0d2d95956059"
-  integrity sha512-6zfMRYXG/9VzsmgQqYqFFvg/5XJYOimY/KIrJAijemMLb0Xhwu3xw/2eelWxkWilTBXUWO+dQel5P7JBA8QsKw==
+"@sentry/core@5.22.3":
+  version "5.22.3"
+  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fcore/-/core-5.22.3.tgz#030f435f2b518f282ba8bd954dac90cd70888bd7"
+  integrity sha512-eGL5uUarw3o4i9QUb9JoFHnhriPpWCaqeaIBB06HUpdcvhrjoowcKZj1+WPec5lFg5XusE35vez7z/FPzmJUDw==
   dependencies:
-    "@sentry/browser" "5.20.0"
-    "@sentry/hub" "5.20.0"
-    "@sentry/minimal" "5.20.0"
-    "@sentry/types" "5.20.0"
-    "@sentry/utils" "5.20.0"
+    "@sentry/hub" "5.22.3"
+    "@sentry/minimal" "5.22.3"
+    "@sentry/types" "5.22.3"
+    "@sentry/utils" "5.22.3"
     tslib "^1.9.3"
 
-"@sentry/browser@5.20.0":
-  version "5.20.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fbrowser/-/browser-5.20.0.tgz#010ae9a09060ca1859dcc1dbfa186798db82ef7e"
-  integrity sha512-xVPL7/RuAPcemfSzXiyPHAt4M+0BfzkdTlN+PZb6frCEo4k6E0UiN6WLsGj/iwa2gXhyfTQXtbTuP+tDuNPEJw==
+"@sentry/hub@5.22.3":
+  version "5.22.3"
+  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fhub/-/hub-5.22.3.tgz#08309a70d2ea8d5e313d05840c1711f34f2fffe5"
+  integrity sha512-INo47m6N5HFEs/7GMP9cqxOIt7rmRxdERunA3H2L37owjcr77MwHVeeJ9yawRS6FMtbWXplgWTyTIWIYOuqVbw==
   dependencies:
-    "@sentry/core" "5.20.0"
-    "@sentry/types" "5.20.0"
-    "@sentry/utils" "5.20.0"
+    "@sentry/types" "5.22.3"
+    "@sentry/utils" "5.22.3"
     tslib "^1.9.3"
 
-"@sentry/core@5.20.0":
-  version "5.20.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fcore/-/core-5.20.0.tgz#4c6daad108af94cd0ec5a13fd20b2bfe61ccd586"
-  integrity sha512-fzzWKEolc0O6H/phdDenzKs7JXDSb0sooxVn0QCUkwWSzACALQh+NR/UciOXyhyuoUiqu4zthYQx02qtGqizeQ==
+"@sentry/minimal@5.22.3":
+  version "5.22.3"
+  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fminimal/-/minimal-5.22.3.tgz#706e4029ae5494123d3875c658ba8911aa5cc440"
+  integrity sha512-HoINpYnVYCpNjn2XIPIlqH5o4BAITpTljXjtAftOx6Hzj+Opjg8tR8PWliyKDvkXPpc4kXK9D6TpEDw8MO0wZA==
   dependencies:
-    "@sentry/hub" "5.20.0"
-    "@sentry/minimal" "5.20.0"
-    "@sentry/types" "5.20.0"
-    "@sentry/utils" "5.20.0"
-    tslib "^1.9.3"
-
-"@sentry/hub@5.20.0":
-  version "5.20.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fhub/-/hub-5.20.0.tgz#3c8ceb29debaea4184bca210cfa7fdd4aad639cb"
-  integrity sha512-DiU8fpjAAMOgSx5tsTekMtHPCAtSNWSNS91FFkDCqPn6fYG+/aK/hB5kTlJwr+GTM1815+WWrtXP6y2ecSmZuA==
-  dependencies:
-    "@sentry/types" "5.20.0"
-    "@sentry/utils" "5.20.0"
-    tslib "^1.9.3"
-
-"@sentry/minimal@5.20.0":
-  version "5.20.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fminimal/-/minimal-5.20.0.tgz#309ab4159b44ce3350698294e47da97903593dad"
-  integrity sha512-oA+0g7p3bapzjgGKQIkSjcjA85VG1HPmjxBD9wpRvNjmYuVmm80Cl1H/P+xg/hupw/kNmASAX4IOd5Z9pEeboA==
-  dependencies:
-    "@sentry/hub" "5.20.0"
-    "@sentry/types" "5.20.0"
+    "@sentry/hub" "5.22.3"
+    "@sentry/types" "5.22.3"
     tslib "^1.9.3"
 
 "@sentry/node@^5.20.0":
-  version "5.20.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fnode/-/node-5.20.0.tgz#8efd42aa86289c0ba98eca7601b4d5032bcae3a5"
-  integrity sha512-xOSP+sWptQff1dQR8G9DCpATT99odsnEpg+X/uqW6bUvjfgsabiPN4nc/orwkTNtm4MhffZiXVq48IAgl/x8Uw==
+  version "5.22.3"
+  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2fnode/-/node-5.22.3.tgz#adea622eae6811e11edc8f34209c912caed91336"
+  integrity sha512-TCCKO7hJKiQi1nGmJcQfvbbqv98P08LULh7pb/NaO5pV20t1FtICfGx8UMpORRDehbcAiYq/f7rPOF6X/Xl5iw==
   dependencies:
-    "@sentry/apm" "5.20.0"
-    "@sentry/core" "5.20.0"
-    "@sentry/hub" "5.20.0"
-    "@sentry/types" "5.20.0"
-    "@sentry/utils" "5.20.0"
+    "@sentry/core" "5.22.3"
+    "@sentry/hub" "5.22.3"
+    "@sentry/tracing" "5.22.3"
+    "@sentry/types" "5.22.3"
+    "@sentry/utils" "5.22.3"
     cookie "^0.4.1"
     https-proxy-agent "^5.0.0"
     lru_map "^0.3.3"
     tslib "^1.9.3"
 
-"@sentry/types@5.20.0":
-  version "5.20.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2ftypes/-/types-5.20.0.tgz#0bccbc96ce6fabd115545ec4e70c78ba6c506644"
-  integrity sha512-/9tiGiXBRsOKM66HeCpt0iSF0vnAIqHzXgC97icNQIstx/ZA8tcLs9540cHDeaN0cyZUyZF1o8ECqcLXGNODWQ==
-
-"@sentry/utils@5.20.0":
-  version "5.20.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2futils/-/utils-5.20.0.tgz#d67636d83a3001008ad442e3a13f6cc88d48aaf6"
-  integrity sha512-w0AeAzWEf35h9U9QL/4lgS9MqaTPjeSmQYNU/n4ef3FKr+u8HP68Ra7NZ0adiKgi67Yxr652kWopOLPl7CxvZg==
+"@sentry/tracing@5.22.3":
+  version "5.22.3"
+  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2ftracing/-/tracing-5.22.3.tgz#9b5a376e3164c007a22e8642ec094104468cac0c"
+  integrity sha512-Zp59kMCk5v56ZAyErqjv/QvGOWOQ5fRltzeVQVp8unIDTk6gEFXfhwPsYHOokJe1mfkmrgPDV6xAkYgtL3KCDQ==
   dependencies:
-    "@sentry/types" "5.20.0"
+    "@sentry/hub" "5.22.3"
+    "@sentry/minimal" "5.22.3"
+    "@sentry/types" "5.22.3"
+    "@sentry/utils" "5.22.3"
+    tslib "^1.9.3"
+
+"@sentry/types@5.22.3":
+  version "5.22.3"
+  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2ftypes/-/types-5.22.3.tgz#d1d547b30ee8bd7771fa893af74c4f3d71f0fd18"
+  integrity sha512-cv+VWK0YFgCVDvD1/HrrBWOWYG3MLuCUJRBTkV/Opdy7nkdNjhCAJQrEyMM9zX0sac8FKWKOHT0sykNh8KgmYw==
+
+"@sentry/utils@5.22.3":
+  version "5.22.3"
+  resolved "http://verdaccio.repository.codebuild.hu/@sentry%2futils/-/utils-5.22.3.tgz#e3bda3e789239eb16d436f768daa12829f33d18f"
+  integrity sha512-AHNryXMBvIkIE+GQxTlmhBXD0Ksh+5w1SwM5qi6AttH+1qjWLvV6WB4+4pvVvEoS8t5F+WaVUZPQLmCCWp6zKw==
+  dependencies:
+    "@sentry/types" "5.22.3"
     tslib "^1.9.3"
 
 "@sindresorhus/is@^0.14.0":
@@ -159,18 +148,18 @@
   integrity sha512-aRnpPa7ysx3aNW60hTiCtLHlQaIFsXFCgQlpakNgDNVFzbtusSY8PwjAQgRWfSk0ekNoBjO51eQRB6upA9uuyw==
 
 "@types/express-serve-static-core@*":
-  version "4.17.9"
-  resolved "http://verdaccio.repository.codebuild.hu/@types%2fexpress-serve-static-core/-/express-serve-static-core-4.17.9.tgz#2d7b34dcfd25ec663c25c85d76608f8b249667f1"
-  integrity sha512-DG0BYg6yO+ePW+XoDENYz8zhNGC3jDDEpComMYn7WJc4mY1Us8Rw9ax2YhJXxpyk2SF47PQAoQ0YyVT1a0bEkA==
+  version "4.17.12"
+  resolved "http://verdaccio.repository.codebuild.hu/@types%2fexpress-serve-static-core/-/express-serve-static-core-4.17.12.tgz#9a487da757425e4f267e7d1c5720226af7f89591"
+  integrity sha512-EaEdY+Dty1jEU7U6J4CUWwxL+hyEGMkO5jan5gplfegUgCUsIUWqXxqw47uGjimeT4Qgkz/XUfwoau08+fgvKA==
   dependencies:
     "@types/node" "*"
     "@types/qs" "*"
     "@types/range-parser" "*"
 
 "@types/express@^4.17.7":
-  version "4.17.7"
-  resolved "http://verdaccio.repository.codebuild.hu/@types%2fexpress/-/express-4.17.7.tgz#42045be6475636d9801369cd4418ef65cdb0dd59"
-  integrity sha512-dCOT5lcmV/uC2J9k0rPafATeeyz+99xTt54ReX11/LObZgfzJqZNcW27zGhYyX+9iSEGXGt5qLPwRSvBZcLvtQ==
+  version "4.17.8"
+  resolved "http://verdaccio.repository.codebuild.hu/@types%2fexpress/-/express-4.17.8.tgz#3df4293293317e61c60137d273a2e96cd8d5f27a"
+  integrity sha512-wLhcKh3PMlyA2cNAB9sjM1BntnhPMiM0JOBwPBqttjHev2428MLEB4AYVN+d8s2iyCVZac+o41Pflm/ZH5vLXQ==
   dependencies:
     "@types/body-parser" "*"
     "@types/express-serve-static-core" "*"
@@ -178,9 +167,9 @@
     "@types/serve-static" "*"
 
 "@types/lodash@^4.14.155":
-  version "4.14.157"
-  resolved "http://verdaccio.repository.codebuild.hu/@types%2flodash/-/lodash-4.14.157.tgz#fdac1c52448861dfde1a2e1515dbc46e54926dc8"
-  integrity sha512-Ft5BNFmv2pHDgxV5JDsndOWTRJ+56zte0ZpYLowp03tW+K+t8u8YMOzAnpuqPgzX6WO1XpDIUm7u04M8vdDiVQ==
+  version "4.14.161"
+  resolved "http://verdaccio.repository.codebuild.hu/@types%2flodash/-/lodash-4.14.161.tgz#a21ca0777dabc6e4f44f3d07f37b765f54188b18"
+  integrity sha512-EP6O3Jkr7bXvZZSZYlsgt5DIjiGr0dXP1/jVEwVLTFgg0d+3lWVQkRavYVQszV7dYUwvg0B8R0MBDpcmXg7XIA==
 
 "@types/mime@*":
   version "2.0.3"
@@ -194,15 +183,10 @@
   dependencies:
     moment "*"
 
-"@types/node@*":
-  version "14.0.26"
-  resolved "http://verdaccio.repository.codebuild.hu/@types%2fnode/-/node-14.0.26.tgz#22a3b8a46510da8944b67bfc27df02c34a35331c"
-  integrity sha512-W+fpe5s91FBGE0pEa0lnqGLL4USgpLgs4nokw16SrBBco/gQxuua7KnArSEOd5iaMqbbSHV10vUDkJYJJqpXKA==
-
-"@types/node@^14.0.12":
-  version "14.0.24"
-  resolved "http://verdaccio.repository.codebuild.hu/@types%2fnode/-/node-14.0.24.tgz#b0f86f58564fa02a28b68f8b55d4cdec42e3b9d6"
-  integrity sha512-btt/oNOiDWcSuI721MdL8VQGnjsKjlTMdrKyTcLCKeQp/n4AAMFJ961wMbp+09y8WuGPClDEv07RIItdXKIXAA==
+"@types/node@*", "@types/node@^14.0.12":
+  version "14.6.4"
+  resolved "http://verdaccio.repository.codebuild.hu/@types%2fnode/-/node-14.6.4.tgz#a145cc0bb14ef9c4777361b7bbafa5cf8e3acb5a"
+  integrity sha512-Wk7nG1JSaMfMpoMJDKUsWYugliB2Vy55pdjLpmLixeyMi7HizW2I/9QoxsPCkXl3dO+ZOVqPumKaDUv5zJu2uQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -220,9 +204,9 @@
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
 
 "@types/serve-static@*":
-  version "1.13.4"
-  resolved "http://verdaccio.repository.codebuild.hu/@types%2fserve-static/-/serve-static-1.13.4.tgz#6662a93583e5a6cabca1b23592eb91e12fa80e7c"
-  integrity sha512-jTDt0o/YbpNwZbQmE/+2e+lfjJEJJR0I3OFaKQKPWkASkCoW3i6fsUnqudSMcNAfbtmADGu8f4MV4q+GqULmug==
+  version "1.13.5"
+  resolved "http://verdaccio.repository.codebuild.hu/@types%2fserve-static/-/serve-static-1.13.5.tgz#3d25d941a18415d3ab092def846e135a08bbcf53"
+  integrity sha512-6M64P58N+OXjU432WoLLBQxbA0LRGBCRm7aAGQJ+SMC1IMl0dgRVi9EFfoDcS2a7Xogygk/eGN94CfwU9UF7UQ==
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
@@ -236,9 +220,9 @@
     "@types/node" "*"
 
 "@types/uuid@^8.0.0":
-  version "8.0.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@types%2fuuid/-/uuid-8.0.0.tgz#165aae4819ad2174a17476dbe66feebd549556c0"
-  integrity sha512-xSQfNcvOiE5f9dyd4Kzxbof1aTrLobL278pGLKOZI6esGfZ7ts9Ka16CzIN6Y8hFHE1C7jIBZokULhK1bOgjRw==
+  version "8.3.0"
+  resolved "http://verdaccio.repository.codebuild.hu/@types%2fuuid/-/uuid-8.3.0.tgz#215c231dff736d5ba92410e6d602050cce7e273f"
+  integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
 
 "@types/yargs-parser@*":
   version "15.0.0"
@@ -355,9 +339,9 @@ balanced-match@^1.0.0:
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
 binary-extensions@^2.0.0:
-  version "2.0.0"
-  resolved "http://verdaccio.repository.codebuild.hu/binary-extensions/-/binary-extensions-2.0.0.tgz#23c0df14f6a88077f5f986c0d167ec03c3d5537c"
-  integrity sha512-Phlt0plgpIIBOGTT/ehfFnbNlfsDEiqmzE2KRXoX1bLIlir4X/MR+zSyBEkL05ffWgnRSf/DXv+WrUAVr93/ow==
+  version "2.1.0"
+  resolved "http://verdaccio.repository.codebuild.hu/binary-extensions/-/binary-extensions-2.1.0.tgz#30fa40c9e7fe07dbc895678cd287024dea241dd9"
+  integrity sha512-1Yj8h9Q+QDF5FzhMs/c9+6UntbD5MkRfRwac8DoEm9ZfUBZ7tZ55YcGVAzEe4bXsdQHEk+s9S5wsOKVdZrw0tQ==
 
 body-parser@1.19.0:
   version "1.19.0"
@@ -471,9 +455,9 @@ chalk@^4.0.0:
     supports-color "^7.1.0"
 
 chokidar@^3.3.0:
-  version "3.4.0"
-  resolved "http://verdaccio.repository.codebuild.hu/chokidar/-/chokidar-3.4.0.tgz#b30611423ce376357c765b9b8f904b9fba3c0be8"
-  integrity sha512-aXAaho2VJtisB/1fg1+3nlLJqGOuewTzQpd/Tz0yTg2R0e4IGtshYvtjowyEumcBv2z+y4+kc75Mz7j5xJskcQ==
+  version "3.4.2"
+  resolved "http://verdaccio.repository.codebuild.hu/chokidar/-/chokidar-3.4.2.tgz#38dc8e658dec3809741eb3ef7bb0a47fe424232d"
+  integrity sha512-IZHaDeBeI+sZJRX7lGcXsdzgvZqKv6sECqsbErJA4mHWfpRrD8B97kSFN4cQz6nGBGiuFia1MKR4d6c1o8Cv7A==
   dependencies:
     anymatch "~3.1.1"
     braces "~3.0.2"
@@ -491,13 +475,13 @@ ci-info@^2.0.0:
   integrity sha512-5tK7EtrZ0N+OLFMthtqOj4fI2Jeb88C4CAZPu25LDVUgXJ0A3Js4PMGqrn0JU1W0Mh1/Z8wZzYPxqUrXeBboCQ==
 
 cli-boxes@^2.2.0:
-  version "2.2.0"
-  resolved "http://verdaccio.repository.codebuild.hu/cli-boxes/-/cli-boxes-2.2.0.tgz#538ecae8f9c6ca508e3c3c95b453fe93cb4c168d"
-  integrity sha512-gpaBrMAizVEANOpfZp/EEUixTXDyGt7DFzdK5hU+UbWt/J0lB0w20ncZj59Z9a93xHb9u12zF5BS6i9RKbtg4w==
+  version "2.2.1"
+  resolved "http://verdaccio.repository.codebuild.hu/cli-boxes/-/cli-boxes-2.2.1.tgz#ddd5035d25094fce220e9cab40a45840a440318f"
+  integrity sha512-y4coMcylgSCdVinjiDBuR8PCC2bLjyGTwEmPb9NHR/QaNU6EUOXcTY/s6VjGMD6ENSEaeQYHCY0GNGS5jfMwPw==
 
 clipboard@^2.0.0:
   version "2.0.6"
-  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-2.0.6.tgz#52921296eec0fdf77ead1749421b21c968647376"
+  resolved "http://verdaccio.repository.codebuild.hu/clipboard/-/clipboard-2.0.6.tgz#52921296eec0fdf77ead1749421b21c968647376"
   integrity sha512-g5zbiixBRk/wyKakSwCKd7vQXDjFnAMGHoEyBogG/bw9kTD9GvdAvaoRR1ALcEzt3pVKxZR0pViekPMIS0QyGg==
   dependencies:
     good-listener "^1.2.2"
@@ -717,7 +701,7 @@ delayed-stream@~1.0.0:
 
 delegate@^3.1.2:
   version "3.2.0"
-  resolved "https://registry.yarnpkg.com/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
+  resolved "http://verdaccio.repository.codebuild.hu/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
   integrity sha512-IofjkYBZaZivn0V8nnsMJGBr4jVLxHDheKSW88PyxS5QC4Vo9ZbZVvhzlSxY87fVq3STR6r+4cGepyHkcWOQSw==
 
 depd@~1.1.2:
@@ -757,28 +741,28 @@ docsify-cli@^4.4.1:
     yargs "^14.2.0"
 
 docsify-server-renderer@>=4:
-  version "4.11.4"
-  resolved "http://verdaccio.repository.codebuild.hu/docsify-server-renderer/-/docsify-server-renderer-4.11.4.tgz#4f88058ad6b37b89feda251ce3f44b445952f4ac"
-  integrity sha512-TxOxqX/fwBFLHz788PtB0OeVis1EDWCVK8CEE/fvxTzQqsgZNTw2UO1wEg1qt/uuldJps3G+DPv/FN9xIeQgcg==
+  version "4.11.6"
+  resolved "http://verdaccio.repository.codebuild.hu/docsify-server-renderer/-/docsify-server-renderer-4.11.6.tgz#619c1e36140884440cd474570e09b99f489ce1ac"
+  integrity sha512-IAEM+kKsDfo1qnrEdaBH5pCQFjAWA7B7jWWmfCKzDA/BPcHO+zCR4++Mw/NPR/huJKU58AzuGtEJ/NhF/l0Y6Q==
   dependencies:
     debug "^4.1.1"
-    docsify "^4.11.2"
+    docsify "^4.11.4"
     dompurify "^2.0.8"
     node-fetch "^2.6.0"
     resolve-pathname "^3.0.0"
 
-docsify@^4.10.2, docsify@^4.11.2:
-  version "4.11.4"
-  resolved "http://verdaccio.repository.codebuild.hu/docsify/-/docsify-4.11.4.tgz#cd1d4b4eaf84f1c9bf090c64fbc32e4b3bfc1dea"
-  integrity sha512-Qwt98y6ddM2Wb46gRH/zQpEAvw70AlIpzVlB9Wi2u2T2REg9O+bXMpJ27F5TaRTn2bD6SF1VyZYNUfimpihZwQ==
+docsify@^4.10.2, docsify@^4.11.4:
+  version "4.11.6"
+  resolved "http://verdaccio.repository.codebuild.hu/docsify/-/docsify-4.11.6.tgz#60334a398cf8b3abd7258863a9764f2518458684"
+  integrity sha512-6h3hB2Ni7gpOeu1fl1sDOmufuplIDmeFHsps17Qbg9VOS3h2tJ63FiW2w5oAydGyzaLrqu58FV7Mg4b6p0z9mg==
   dependencies:
     dompurify "^2.0.8"
-    marked "^0.7.0"
-    medium-zoom "^1.0.5"
+    marked "^1.1.1"
+    medium-zoom "^1.0.6"
     opencollective-postinstall "^2.0.2"
     prismjs "^1.19.0"
     strip-indent "^3.0.0"
-    tinydate "^1.0.0"
+    tinydate "^1.3.0"
     tweezer.js "^1.4.0"
 
 doctrine@0.7.2:
@@ -790,14 +774,14 @@ doctrine@0.7.2:
     isarray "0.0.1"
 
 dompurify@^2.0.8:
-  version "2.0.12"
-  resolved "http://verdaccio.repository.codebuild.hu/dompurify/-/dompurify-2.0.12.tgz#284a2b041e1c60b8e72d7b4d2fadad36141254ae"
-  integrity sha512-Fl8KseK1imyhErHypFPA8qpq9gPzlsJ/EukA6yk9o0gX23p1TzC+rh9LqNg1qvErRTc0UNMYlKxEGSfSh43NDg==
+  version "2.0.15"
+  resolved "http://verdaccio.repository.codebuild.hu/dompurify/-/dompurify-2.0.15.tgz#80e300fc3e89547bd0af1aff2eba88ce17fc9dea"
+  integrity sha512-8AnYW8iXOC7xC7K3FBvQ7+GdmtOsgDGZC5dDXaewCC674qcId7G5mhz5VIEnVShJVjQdlcaPjxpaOzaV9JC3Tg==
 
 dot-prop@^4.1.0:
-  version "4.2.0"
-  resolved "http://verdaccio.repository.codebuild.hu/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
-  integrity sha512-tUMXrxlExSW6U2EXiiKGSBVdYgtV8qlHL+C10TsW4PURY/ic+eaysnSkwB4kA/mBlCyy/IKDJ+Lc3wbWeaXtuQ==
+  version "4.2.1"
+  resolved "http://verdaccio.repository.codebuild.hu/dot-prop/-/dot-prop-4.2.1.tgz#45884194a71fc2cda71cbb4bceb3a4dd2f433ba4"
+  integrity sha512-l0p4+mIuJIua0mhxGoh4a+iNL9bmeK5DvnSVQa6T0OhrVmaEa1XScX5Etc673FePCJOArq/4Pa2cLGODUWTPOQ==
   dependencies:
     is-obj "^1.0.0"
 
@@ -1032,9 +1016,9 @@ get-stream@^4.1.0:
     pump "^3.0.0"
 
 get-stream@^5.1.0:
-  version "5.1.0"
-  resolved "http://verdaccio.repository.codebuild.hu/get-stream/-/get-stream-5.1.0.tgz#01203cdc92597f9b909067c3e656cc1f4d3c4dc9"
-  integrity sha512-EXr1FOzrzTfGeL0gQdeFEvOMm2mzMOglyiOXSTpPC+iAjAKftbr3jpCMWynogwYnM+eSj9sHGc6wjIcDvYiygw==
+  version "5.2.0"
+  resolved "http://verdaccio.repository.codebuild.hu/get-stream/-/get-stream-5.2.0.tgz#4966a1795ee5ace65e706c4b7beb71257d6e22d3"
+  integrity sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==
   dependencies:
     pump "^3.0.0"
 
@@ -1066,7 +1050,7 @@ global-dirs@^0.1.0:
 
 good-listener@^1.2.2:
   version "1.2.2"
-  resolved "https://registry.yarnpkg.com/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
+  resolved "http://verdaccio.repository.codebuild.hu/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
   integrity sha1-1TswzfkxPf+33JoNR3CWqm0UXFA=
   dependencies:
     delegate "^3.1.2"
@@ -1338,10 +1322,10 @@ json-buffer@3.0.0:
   resolved "http://verdaccio.repository.codebuild.hu/json-buffer/-/json-buffer-3.0.0.tgz#5b1f397afc75d677bde8bcfc0e47e1f9a3d9a898"
   integrity sha1-Wx85evx11ne96Lz8Dkfh+aPZqJg=
 
-json-parse-better-errors@^1.0.1:
-  version "1.0.2"
-  resolved "http://verdaccio.repository.codebuild.hu/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
-  integrity sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==
+json-parse-even-better-errors@^2.3.0:
+  version "2.3.1"
+  resolved "http://verdaccio.repository.codebuild.hu/json-parse-even-better-errors/-/json-parse-even-better-errors-2.3.1.tgz#7c47805a94319928e05777405dc12e1f7a4ee02d"
+  integrity sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==
 
 jsonfile@^4.0.0:
   version "4.0.0"
@@ -1370,9 +1354,9 @@ lines-and-columns@^1.1.6:
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
 livereload-js@^3.1.0:
-  version "3.2.3"
-  resolved "http://verdaccio.repository.codebuild.hu/livereload-js/-/livereload-js-3.2.3.tgz#64beff07ce5b2a74485d1a08c2ec04ac68e021bc"
-  integrity sha512-dXL/WgTGI2K3oeYX/z1lngFXSKtjCB2j7n9WSSluoU6/6+N4LWNoMiCBFNgn8dh3luBn4JBajVSvM5I7Xn6SLA==
+  version "3.3.1"
+  resolved "http://verdaccio.repository.codebuild.hu/livereload-js/-/livereload-js-3.3.1.tgz#61f887468086762e61fb2987412cf9d1dda99202"
+  integrity sha512-CBu1gTEfzVhlOK1WASKAAJ9Qx1fHECTq0SUB67sfxwQssopTyvzqTlgl+c0h9pZ6V+Fzd2rc510ppuNusg9teQ==
 
 livereload@^0.9.1:
   version "0.9.1"
@@ -1400,9 +1384,9 @@ locate-path@^5.0.0:
     p-locate "^4.1.0"
 
 lodash@^4.17.15:
-  version "4.17.19"
-  resolved "http://verdaccio.repository.codebuild.hu/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
-  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
+  version "4.17.20"
+  resolved "http://verdaccio.repository.codebuild.hu/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
+  integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
 
 lowercase-keys@^1.0.0, lowercase-keys@^1.0.1:
   version "1.0.1"
@@ -1453,17 +1437,17 @@ make-error@^1.1.1:
   resolved "http://verdaccio.repository.codebuild.hu/make-error/-/make-error-1.3.6.tgz#2eb2e37ea9b67c4891f684a1394799af484cf7a2"
   integrity sha512-s8UhlNe7vPKomQhC1qFelMokr/Sc3AgNbso3n74mVPA5LTZwkB9NlXf4XPamLxJE8h0gh73rM94xvwRT2CVInw==
 
-marked@^0.7.0:
-  version "0.7.0"
-  resolved "http://verdaccio.repository.codebuild.hu/marked/-/marked-0.7.0.tgz#b64201f051d271b1edc10a04d1ae9b74bb8e5c0e"
-  integrity sha512-c+yYdCZJQrsRjTPhUx7VKkApw9bwDkNbHUKo1ovgcfDjb2kc8rLuRbIFyXL5WOEUwzSSKo3IXpph2K6DqB/KZg==
+marked@^1.1.1:
+  version "1.1.1"
+  resolved "http://verdaccio.repository.codebuild.hu/marked/-/marked-1.1.1.tgz#e5d61b69842210d5df57b05856e0c91572703e6a"
+  integrity sha512-mJzT8D2yPxoPh7h0UXkB+dBj4FykPJ2OIfxAWeIHrvoHDkFxukV/29QxoFQoPM6RLEwhIFdJpmKBlqVM3s2ZIw==
 
 media-typer@0.3.0:
   version "0.3.0"
   resolved "http://verdaccio.repository.codebuild.hu/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
   integrity sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=
 
-medium-zoom@^1.0.5:
+medium-zoom@^1.0.6:
   version "1.0.6"
   resolved "http://verdaccio.repository.codebuild.hu/medium-zoom/-/medium-zoom-1.0.6.tgz#9247f21ca9313d8bbe9420aca153a410df08d027"
   integrity sha512-UdiUWfvz9fZMg1pzf4dcuqA0W079o0mpqbTnOz5ip4VGYX96QjmbM+OgOU/0uOzAytxC0Ny4z+VcYQnhdifimg==
@@ -1565,14 +1549,14 @@ node-bin-setup@^1.0.0:
   integrity sha512-uPIxXNis1CRbv1DwqAxkgBk5NFV3s7cMN/Gf556jSw6jBvV7ca4F9lRL/8cALcZecRibeqU+5dFYqFFmzv5a0Q==
 
 node-fetch@^2.6.0:
-  version "2.6.0"
-  resolved "http://verdaccio.repository.codebuild.hu/node-fetch/-/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
-  integrity sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==
+  version "2.6.1"
+  resolved "http://verdaccio.repository.codebuild.hu/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node@^14.4.0:
-  version "14.5.0"
-  resolved "http://verdaccio.repository.codebuild.hu/node/-/node-14.5.0.tgz#9b41f8e6790225a6ffae0ff3e355cad55c745c65"
-  integrity sha512-WxjuzzP5rI3yM/TUdajF4FzKUorUYIOtcNlsMh9a/JX5YsCBS/I2PdEe03F80Nnyfd9qZTjKnTV9XuQuuOYc6Q==
+  version "14.8.0"
+  resolved "http://verdaccio.repository.codebuild.hu/node/-/node-14.8.0.tgz#c9a165d8130c9901793f834113c5bbb10c308778"
+  integrity sha512-F3hndEpkL32EaxbNawsUdMjQfPGAWvIlK8lMdQykI4Rp3dw/p9X1e0OFa0Tyvz1+hGefgT6lQWJ8wj1g/YvO9g==
   dependencies:
     node-bin-setup "^1.0.0"
 
@@ -1620,9 +1604,9 @@ opencollective-postinstall@^2.0.2:
   integrity sha512-8AV/sCtuzUeTo8gQK5qDZzARrulB3egtLzFgteqB2tcT4Mw7B8Kt7JcDHmltjz6FOAHsvTevk70gZEbhM4ZS9Q==
 
 "opts@>= 1.2.0":
-  version "2.0.0"
-  resolved "http://verdaccio.repository.codebuild.hu/opts/-/opts-2.0.0.tgz#c0b2cebdf53eaeafc21ed844e34773758dcf41e2"
-  integrity sha512-rPleeyX48sBEc4aj7rAok5dCbvRdYpdbIdSRR4gnIK98a7Rvd4l3wlv4YHQr2mwPQTpKQiw8uipi/WoyItDINg==
+  version "2.0.2"
+  resolved "http://verdaccio.repository.codebuild.hu/opts/-/opts-2.0.2.tgz#a17e189fbbfee171da559edd8a42423bc5993ce1"
+  integrity sha512-k41FwbcLnlgnFh69f4qdUfvDQ+5vaSDnVPFI/y5XuhKRq97EnVVneO9F1ESVCdiVu4fCS2L8usX3mU331hB7pg==
 
 p-cancelable@^1.0.0:
   version "1.1.0"
@@ -1697,13 +1681,13 @@ parent-require@^1.0.0:
   integrity sha1-dGoWdjgIOoYLDu9nMssn7UbDKXc=
 
 parse-json@^5.0.0:
-  version "5.0.1"
-  resolved "http://verdaccio.repository.codebuild.hu/parse-json/-/parse-json-5.0.1.tgz#7cfe35c1ccd641bce3981467e6c2ece61b3b3878"
-  integrity sha512-ztoZ4/DYeXQq4E21v169sC8qWINGpcosGv9XhTDvg9/hWvx/zrFkc9BiWxR58OJLHGk28j5BL0SDLeV2WmFZlQ==
+  version "5.1.0"
+  resolved "http://verdaccio.repository.codebuild.hu/parse-json/-/parse-json-5.1.0.tgz#f96088cdf24a8faa9aea9a009f2d9d942c999646"
+  integrity sha512-+mi/lmVVNKFNVyLXV31ERiy2CY5E1/F6QtJFEzoChPRwwngMNXRDQ9GJ5WdE2Z2P4AujsOi0/+2qHID68KwfIQ==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     error-ex "^1.3.1"
-    json-parse-better-errors "^1.0.1"
+    json-parse-even-better-errors "^2.3.0"
     lines-and-columns "^1.1.6"
 
 parseurl@~1.3.3:
@@ -1782,7 +1766,7 @@ prepend-http@^2.0.0:
 
 prismjs@^1.19.0:
   version "1.21.0"
-  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.21.0.tgz#36c086ec36b45319ec4218ee164c110f9fc015a3"
+  resolved "http://verdaccio.repository.codebuild.hu/prismjs/-/prismjs-1.21.0.tgz#36c086ec36b45319ec4218ee164c110f9fc015a3"
   integrity sha512-uGdSIu1nk3kej2iZsLyDoJ7e9bnPzIgY0naW/HdknGj61zScaprVEVGHrPoXqI+M9sP0NDnTK2jpkvmldpuqDw==
   optionalDependencies:
     clipboard "^2.0.0"
@@ -1865,9 +1849,9 @@ reflect-metadata@^0.1.12, reflect-metadata@^0.1.13:
   integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 registry-auth-token@^4.0.0:
-  version "4.1.1"
-  resolved "http://verdaccio.repository.codebuild.hu/registry-auth-token/-/registry-auth-token-4.1.1.tgz#40a33be1e82539460f94328b0f7f0f84c16d9479"
-  integrity sha512-9bKS7nTl9+/A1s7tnPeGrUpRcVY+LUh7bfFgzpndALdPfXQBfQV77rQVtqgUV3ti4vc/Ik81Ex8UJDWDQ12zQA==
+  version "4.2.0"
+  resolved "http://verdaccio.repository.codebuild.hu/registry-auth-token/-/registry-auth-token-4.2.0.tgz#1d37dffda72bbecd0f581e4715540213a65eb7da"
+  integrity sha512-P+lWzPrsgfN+UEpDS3U8AQKg/UjZX6mQSJueZj3EK+vNESoqBSpBUD3gmu4sF9lOsjXWjF11dQKUqemf3veq1w==
   dependencies:
     rc "^1.2.8"
 
@@ -1913,9 +1897,9 @@ responselike@^1.0.2:
     lowercase-keys "^1.0.0"
 
 rxjs@^6.6.0:
-  version "6.6.0"
-  resolved "http://verdaccio.repository.codebuild.hu/rxjs/-/rxjs-6.6.0.tgz#af2901eedf02e3a83ffa7f886240ff9018bbec84"
-  integrity sha512-3HMA8z/Oz61DUHe+SdOiQyzIf4tOx5oQHmMir7IZEu6TMqCLHT4LRcmNaUS0NwOz8VLvmmBduMsoaUvMaIiqzg==
+  version "6.6.2"
+  resolved "http://verdaccio.repository.codebuild.hu/rxjs/-/rxjs-6.6.2.tgz#8096a7ac03f2cc4fe5860ef6e572810d9e01c0d2"
+  integrity sha512-BHdBMVoWC2sL26w//BCu3YzKT4s2jip/WhwsGEDmeKYBhKDZeYezVUnHatYB7L85v5xs0BAQmg6BEYJEKxBabg==
   dependencies:
     tslib "^1.9.0"
 
@@ -1936,7 +1920,7 @@ safe-buffer@~5.2.0:
 
 select@^1.1.2:
   version "1.1.2"
-  resolved "https://registry.yarnpkg.com/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
+  resolved "http://verdaccio.repository.codebuild.hu/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
   integrity sha1-DnNQrN7ICxEIUoeG7B1EGNEbOW0=
 
 semver-compare@^1.0.0:
@@ -2163,9 +2147,9 @@ supports-color@^5.3.0:
     has-flag "^3.0.0"
 
 supports-color@^7.1.0:
-  version "7.1.0"
-  resolved "http://verdaccio.repository.codebuild.hu/supports-color/-/supports-color-7.1.0.tgz#68e32591df73e25ad1c4b49108a2ec507962bfd1"
-  integrity sha512-oRSIpR8pxT1Wr2FquTNnGet79b3BWljqOuoW/h4oBhxJ/HUbX5nX6JSruTkvXDCFMwDPvsaTTbvMLKZWSy0R5g==
+  version "7.2.0"
+  resolved "http://verdaccio.repository.codebuild.hu/supports-color/-/supports-color-7.2.0.tgz#1b7dcdcb32b8138801b3e478ba6a51caa89648da"
+  integrity sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
   dependencies:
     has-flag "^4.0.0"
 
@@ -2178,10 +2162,10 @@ term-size@^1.2.0:
 
 tiny-emitter@^2.0.0:
   version "2.1.0"
-  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
+  resolved "http://verdaccio.repository.codebuild.hu/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
   integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
-tinydate@^1.0.0:
+tinydate@^1.3.0:
   version "1.3.0"
   resolved "http://verdaccio.repository.codebuild.hu/tinydate/-/tinydate-1.3.0.tgz#e6ca8e5a22b51bb4ea1c3a2a4fd1352dbd4c57fb"
   integrity sha512-7cR8rLy2QhYHpsBDBVYnnWXm8uRTr38RoZakFSW7Bs7PzfMPNZthuMLkwqZv7MTu8lhQ91cOFYS5a7iFj2oR3w==
@@ -2219,7 +2203,7 @@ tslib@1.9.0:
   resolved "http://verdaccio.repository.codebuild.hu/tslib/-/tslib-1.9.0.tgz#e37a86fda8cbbaf23a057f473c9f4dc64e5fc2e8"
   integrity sha512-f/qGG2tUkrISBlQZEjEqoZ3B2+npJjIf04H1wuAv9iA8i04Icp+61KRXxFdha22670NJopsZCIjhC3SnjPRKrQ==
 
-tslib@^1.10.0, tslib@^1.7.1, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
+tslib@^1.13.0, tslib@^1.7.1, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.13.0"
   resolved "http://verdaccio.repository.codebuild.hu/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
@@ -2259,9 +2243,9 @@ tslint-microsoft-contrib@~5.2.1:
     tsutils "^2.27.2 <2.29.0"
 
 tslint@^6.1.2:
-  version "6.1.2"
-  resolved "http://verdaccio.repository.codebuild.hu/tslint/-/tslint-6.1.2.tgz#2433c248512cc5a7b2ab88ad44a6b1b34c6911cf"
-  integrity sha512-UyNrLdK3E0fQG/xWNqAFAC5ugtFyPO4JJR1KyyfQAyzR8W0fTRrC91A8Wej4BntFzcvETdCSDa/4PnNYJQLYiA==
+  version "6.1.3"
+  resolved "http://verdaccio.repository.codebuild.hu/tslint/-/tslint-6.1.3.tgz#5c23b2eccc32487d5523bd3a470e9aa31789d904"
+  integrity sha512-IbR4nkT96EQOvKE2PW/djGz8iGNeJ4rF2mBfiYaR/nvUWYKJhLwimoJKgjIFEIDibBtOevj7BqCRL4oHeWWUCg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     builtin-modules "^1.1.1"
@@ -2274,7 +2258,7 @@ tslint@^6.1.2:
     mkdirp "^0.5.3"
     resolve "^1.3.2"
     semver "^5.3.0"
-    tslib "^1.10.0"
+    tslib "^1.13.0"
     tsutils "^2.29.0"
 
 "tsutils@^2.27.2 <2.29.0":
@@ -2374,9 +2358,9 @@ utils-merge@1.0.1:
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
 uuid@^8.1.0:
-  version "8.2.0"
-  resolved "http://verdaccio.repository.codebuild.hu/uuid/-/uuid-8.2.0.tgz#cb10dd6b118e2dada7d0cd9730ba7417c93d920e"
-  integrity sha512-CYpGiFTUrmI6OBMkAdjSDM0k5h8SkkiTP4WAjQgDgNB1S3Ou9VBEvr6q0Kv2H1mMk7IWfxYGpMH5sd5AvcIV2Q==
+  version "8.3.0"
+  resolved "http://verdaccio.repository.codebuild.hu/uuid/-/uuid-8.3.0.tgz#ab738085ca22dc9a8c92725e459b1d507df5d6ea"
+  integrity sha512-fX6Z5o4m6XsXBdli9g7DtWgAx+osMsRRZFKma1mIUsLCz6vRvv+pz5VNbyu9UEDzpMWulZfvpgb/cmDXVulYFQ==
 
 vary@~1.1.2:
   version "1.1.2"

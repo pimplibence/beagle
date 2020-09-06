@@ -8,10 +8,6 @@ export class Application extends BaseApplication {
     ];
 
     protected async configure(): Promise<void> {
-        const user = this.container.resolve<UserAdapter<SpecialUser>>(UserAdapter);
-
-        const u = await user.user.findById('5f5295afd2eeae1d53583cdd');
-
-        console.log(u);
+        //
     }
 }

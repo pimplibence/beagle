@@ -27,26 +27,26 @@ export class UserLib<T extends UserPresenter> {
         return this.findOne({ email: email });
     }
 
-    public findOne(query: any): Promise<T> {
-        return this.adapter.request('post', `/user/find-one`, { query: query })
+    public findOne(query: any = {}): Promise<T> {
+        return this.adapter.request('post', '/user/find-one', { query: query })
             .then((i) => new this.dao(i));
     }
 
-    public findMany(query: any, options: any): Promise<T> {
-        return this.adapter.request('post', `/user/find-many`, { query: query, options: options })
+    public findMany(query: any = {}, options: any = {}): Promise<T> {
+        return this.adapter.request('post', '/user/find-many', { query: query, options: options })
             .then((items) => items.map((i) => new this.dao(i)));
     }
 
-    public paginate(query: any, options: any): Promise<T> {
-        return this.adapter.request('post', `/user/paginate`, { query: query, options: options })
+    public paginate(query: any = {}, options: any = {}): Promise<T> {
+        return this.adapter.request('post', '/user/paginate', { query: query, options: options })
             .then((response) => ({
                 ...response,
                 items: response.items.map((i) => new this.dao(i))
             }));
     }
 
-    public create(options: any): Promise<T> {
-        return this.adapter.request('post', `/user`, options)
+    public create(options: any = {}): Promise<T> {
+        return this.adapter.request('post', '/user', options)
             .then((i) => new this.dao(i));
     }
 
