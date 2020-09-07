@@ -1,4 +1,5 @@
 import { Request } from '../injectables/controller';
+import { RequestTransformer } from './request-transformers/request-transformer';
 
 enum RequestQueryAttributes {
     LIMIT = 'limit',
@@ -13,6 +14,7 @@ export interface RequestParserOptions {
     defaults?: Record<RequestQueryAttributes, number | string>;
     enabledSortKeys?: string[];
     enabledQueryKeys?: string[];
+    transformer?: RequestTransformer<any>;
 }
 
 export class RequestParser {
@@ -21,6 +23,7 @@ export class RequestParser {
     public readonly request: Request;
     private readonly enabledSortKeys: string[] = [];
     private readonly enabledQueryKeys: string[] = [];
+    private readonly transformer: RequestTransformer<any>;
 
     private readonly attributes: Record<RequestQueryAttributes, string> = {
         [RequestQueryAttributes.LIMIT]: '_limit',
@@ -42,6 +45,7 @@ export class RequestParser {
         this.defaults = options?.defaults ?? this.defaults;
         this.enabledSortKeys = options?.enabledSortKeys ?? this.enabledSortKeys;
         this.enabledQueryKeys = options?.enabledQueryKeys ?? this.enabledQueryKeys;
+        this.transformer = options?.transformer;
     }
 
     public toJSON() {
@@ -173,5 +177,19 @@ export class RequestParser {
         }
 
         return query;
+    }
+
+    public transform(key: string) {
+        if (!this.transformer) {
+            return null;
+        }
+
+        if (!this.transformer.transformers[key]) {
+            return null;
+        }
+
+        this.transformer.setParser(this);
+
+        return this.transformer.transform(key);
     }
 }

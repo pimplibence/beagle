@@ -84,7 +84,7 @@ export class Controller {
     private _middleware(method: SupportedHandlerType, path: any, handler: any): void {
         this.app[method](path, async (req: any, res: any, next: any) => {
             try {
-                await handler(req, res, next);
+                await handler(req, res);
 
                 return next();
             } catch (e) {
