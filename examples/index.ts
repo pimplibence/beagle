@@ -1,5 +1,4 @@
-import * as express from 'express';
-import { createServer } from 'http';
+import { ObjectId } from 'bson';
 import { BaseApplication, Provider } from '../src/core/application/base-application';
 import { UserAdapter } from '../src/modules/codebuild/user-adapter/user.adapter';
 import { MongoTransformer } from '../src/modules/express/libs/request-transformers/mongo.transformer';
@@ -12,22 +11,15 @@ export class Application extends BaseApplication {
     ];
 
     protected async configure(): Promise<void> {
-        const app = express();
-        const server = createServer(app);
 
-        app.use((req, res) => {
-
-            const parser = new RequestParser(req, {
-                enabledQueryKeys: ['hello', 'bello'],
-                transformer: new MongoTransformer([
-                    (query) => query.hello ? { helloValue: query.hello } : null,
-                    (query) => query.bello ? { belloValue: query.bello } : null,
-                ])
-            });
-
-            res.send(parser.transform('options'));
+        const parser = new RequestParser({ query: { hello: '5f5280286850ef188dfebe32' } } as any, {
+            enabledQueryKeys: ['hello', 'bello'],
+            transformer: new MongoTransformer([
+                (query) => query.hello ? { helloValue: new ObjectId(query.hello) } : null,
+                (query) => query.bello ? { belloValue: query.bello } : null,
+            ])
         });
 
-        server.listen(3033);
+        console.log(parser.transform('andQuery'));
     }
 }
