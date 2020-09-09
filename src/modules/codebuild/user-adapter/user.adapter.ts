@@ -11,8 +11,11 @@ export interface UserAdapterOptions<T extends UserPresenter> extends AdapterOpti
 
 @injectable()
 export class UserAdapter<T extends UserPresenter> extends Adapter {
-    public dao: typeof UserPresenter;
+    public static mapDao(dao: typeof UserPresenter, options): any {
+        return options ? new dao(options) : null;
+    }
 
+    public dao: typeof UserPresenter;
     public user: UserLib<T>;
     public meta: MetaLib<T>;
     public validation: ValidationLib<T>;

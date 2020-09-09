@@ -1,4 +1,5 @@
 import { Adapter } from '../../libs/adapter';
+import { UserAdapter } from '../user.adapter';
 import { UserPresenter } from './user.presenter';
 
 export class MetaLib<T extends UserPresenter> {
@@ -12,11 +13,11 @@ export class MetaLib<T extends UserPresenter> {
 
     public set(user: any, key: string, value: any): Promise<T> {
         return this.adapter.request('post', `/meta/${user?._id || user}/set`, { key, value })
-            .then((i) => new this.dao(i));
+            .then((i) => UserAdapter.mapDao(this.dao, i));
     }
 
     public remove(user: any, key: string): Promise<T> {
         return this.adapter.request('post', `/meta/${user?._id || user}/set`, { key })
-            .then((i) => new this.dao(i));
+            .then((i) => UserAdapter.mapDao(this.dao, i));
     }
 }
