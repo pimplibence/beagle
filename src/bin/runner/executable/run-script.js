@@ -8,4 +8,5 @@ const environment = require(config.environmentPath);
 const application = require('./libs/create-application')(config, environment, true);
 
 application.bootHeadless()
-    .then((instance) => instance.runScript(script, args));
+    .then((instance) => instance.runScript(script, args))
+    .catch(() => process.exit());

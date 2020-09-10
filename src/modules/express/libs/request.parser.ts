@@ -14,7 +14,11 @@ export interface RequestParserOptions {
     defaults?: Record<RequestQueryAttributes, number | string>;
     enabledSortKeys?: string[];
     enabledQueryKeys?: string[];
-    transformer?: RequestTransformer<any>;
+    /**
+     * Transformers
+     */
+    query?: RequestTransformer<any>;
+    sort?: RequestTransformer<any>;
 }
 
 export class RequestParser {
@@ -23,7 +27,8 @@ export class RequestParser {
     public readonly request: Request;
     private readonly enabledSortKeys: string[] = [];
     private readonly enabledQueryKeys: string[] = [];
-    private readonly transformer: RequestTransformer<any>;
+    private readonly queryTransformer: RequestTransformer<any>;
+    private readonly sortTransformer: RequestTransformer<any>;
 
     private readonly attributes: Record<RequestQueryAttributes, string> = {
         [RequestQueryAttributes.LIMIT]: '_limit',
@@ -45,7 +50,8 @@ export class RequestParser {
         this.defaults = options?.defaults ?? this.defaults;
         this.enabledSortKeys = options?.enabledSortKeys ?? this.enabledSortKeys;
         this.enabledQueryKeys = options?.enabledQueryKeys ?? this.enabledQueryKeys;
-        this.transformer = options?.transformer;
+        this.queryTransformer = options?.query;
+        this.sortTransformer = options?.sort;
     }
 
     public toJSON() {
@@ -179,17 +185,31 @@ export class RequestParser {
         return query;
     }
 
-    public transform(key: string) {
-        if (!this.transformer) {
+    public transformQuery(key: string) {
+        if (!this.queryTransformer) {
+            return this.getQuery();
+        }
+
+        if (!this.queryTransformer.transformers[key]) {
             return null;
         }
 
-        if (!this.transformer.transformers[key]) {
+        this.queryTransformer.setParser(this);
+
+        return this.queryTransformer.transform(key);
+    }
+
+    public transformSort(key: string) {
+        if (!this.sortTransformer) {
+            return this.getSort();
+        }
+
+        if (!this.sortTransformer.transformers[key]) {
             return null;
         }
 
-        this.transformer.setParser(this);
+        this.sortTransformer.setParser(this);
 
-        return this.transformer.transform(key);
+        return this.sortTransformer.transform(key);
     }
 }
