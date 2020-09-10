@@ -6,8 +6,8 @@ export type MongoPartialQueryCallback = (query) => any;
 
 export class MongoTransformer extends RequestTransformer<MongoPartialQueryCallback[]> {
     public transformers = {
-        andQuery: (query) => this.and(query),
-        orQuery: (query) => this.or(query),
+        and: (query) => this.and(query),
+        or: (query) => this.or(query),
         options: (query) => this.paginationOptions(query)
     };
 
