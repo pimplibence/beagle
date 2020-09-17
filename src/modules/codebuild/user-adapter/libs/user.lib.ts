@@ -19,6 +19,11 @@ export class UserLib<T extends UserPresenter> {
         this.dao = dao;
     }
 
+    public refresh(user: any) {
+        return this.adapter.request('get', `/user/${user?._id || user}`, null)
+            .then((i) => UserAdapter.mapDao(this.dao, i));
+    }
+
     public findById(user: any): Promise<T> {
         return this.adapter.request('get', `/user/${user?._id || user}`, null)
             .then((i) => UserAdapter.mapDao(this.dao, i));

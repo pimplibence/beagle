@@ -17,7 +17,7 @@ export class MetaLib<T extends UserPresenter> {
     }
 
     public remove(user: any, key: string): Promise<T> {
-        return this.adapter.request('post', `/meta/${user?._id || user}/set`, { key })
+        return this.adapter.request('post', `/meta/${user?._id || user}/remove`, { key })
             .then((i) => UserAdapter.mapDao(this.dao, i));
     }
 }
