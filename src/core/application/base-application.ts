@@ -42,6 +42,7 @@ export class BaseApplication {
     }
 
     public async boot(): Promise<BaseApplication> {
+        await this.initialize();
         await this.loadInjectables();
         await this.configure();
 
@@ -49,6 +50,7 @@ export class BaseApplication {
     }
 
     public async bootHeadless(): Promise<BaseApplication> {
+        await this.initialize();
         await this.loadInjectables();
         await this.configureHeadless();
 
@@ -65,6 +67,15 @@ export class BaseApplication {
         const instance: BaseScript = this.container.resolve(script.injectable);
 
         return instance.run(args);
+    }
+
+    /**
+     * Initialize application
+     * - this method will be called before application loads and/or boot injectables
+     * - this is method runs almost firstly
+     */
+    protected async initialize(): Promise<void> {
+        //
     }
 
     /**

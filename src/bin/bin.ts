@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
-import { interval } from 'rxjs';
 import * as yargs from 'yargs';
 import { Start } from './commands/start';
 
 const startCommandBuilder: yargs.BuilderCallback<any, any> = (builder) => {
 
     builder.default({
-        config: 'config.json'
+        config: 'config'
     });
 
     builder.alias({
