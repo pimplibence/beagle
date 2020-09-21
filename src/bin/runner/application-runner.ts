@@ -11,7 +11,6 @@ export enum ApplicationRunnerError {
 export class ApplicationRunner {
     public static readonly EXECUTABLES = {
         start: resolve(__dirname, './executable/start.js'),
-        startHeadless: resolve(__dirname, './executable/start-headless.js'),
         script: resolve(__dirname, './executable/run-script.js')
     };
 
@@ -23,14 +22,6 @@ export class ApplicationRunner {
 
     public async run(): Promise<void> {
         new WorkerThreads.Worker(ApplicationRunner.EXECUTABLES.start, {
-            workerData: {
-                config: this.config.getCompiledConfig()
-            }
-        });
-    }
-
-    public async runHeadless(): Promise<void> {
-        new WorkerThreads.Worker(ApplicationRunner.EXECUTABLES.startHeadless, {
             workerData: {
                 config: this.config.getCompiledConfig()
             }

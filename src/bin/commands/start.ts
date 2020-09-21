@@ -7,22 +7,16 @@ import { ApplicationRunner } from '../runner/application-runner';
 export enum StartError {}
 
 export class Start {
-    public static async run(options: Arguments<any>): Promise<void> {
+    public static async run(args: Arguments<any>): Promise<void> {
         const instance = new Start();
 
-        return instance.run(options);
+        return instance.run(args);
     }
 
-    public static async runHeadless(options: Arguments<any>): Promise<void> {
+    public static async runScript(args: Arguments<any>): Promise<void> {
         const instance = new Start();
 
-        return instance.runHeadless(options);
-    }
-
-    public static async runScript(options: Arguments<any>): Promise<void> {
-        const instance = new Start();
-
-        return instance.runScript(options);
+        return instance.runScript(args);
     }
 
     public async run(args: Arguments): Promise<void> {
@@ -31,14 +25,6 @@ export class Start {
         const instance = new ApplicationRunner(config);
 
         await instance.run();
-    }
-
-    public async runHeadless(args: Arguments): Promise<void> {
-        const config = this.extractConfig(args);
-
-        const instance = new ApplicationRunner(config);
-
-        await instance.runHeadless();
     }
 
     public async runScript(args: Arguments): Promise<void> {
@@ -64,7 +50,7 @@ export class Start {
         /**
          * Load Config file | Fail if does not exist
          */
-        const config = new Config(require(configPath));
+        const config = new Config(require(configPath), args);
 
         config.validate();
 

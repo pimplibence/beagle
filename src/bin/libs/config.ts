@@ -2,7 +2,8 @@ import { resolve } from 'path';
 import * as process from 'process';
 
 export enum ConfigError {
-    MissingEntity = 'ConfigErrorMissingEntity'
+    MissingEntity = 'ConfigErrorMissingEntity',
+    MissingMode = 'ConfigErrorMissingMode',
 }
 
 interface TypescriptOptions {
@@ -19,6 +20,7 @@ interface TypescriptOptions {
 }
 
 export interface CompiledConfig {
+    mode?: string;
     app?: string;
     restart?: boolean;
     restartDelay?: number;
@@ -31,49 +33,37 @@ export interface CompiledConfig {
 }
 
 export class Config {
-    /**
-     * Entry file
-     * - it contains the Application
-     * - its extension can be .(js|ts|jsx|tsx) (depends on tsconfig)
-     */
     public entry: string;
-
-    /**
-     * Entry file
-     * - it contains the Application
-     * - its extension can be .(js|ts|jsx|tsx) (depends on tsconfig)
-     */
     public environment?: string;
-
-    /**
-     * Name of application
-     * - it is an informative name
-     * - it will be used as third party statistics title, debugger title, etc...
-     */
     public app?: string;
-
+    public mode?: string;
     public typescript?: TypescriptOptions;
     public restart?: boolean;
     public restartDelay?: number;
 
-    constructor(options: any) {
-        this.entry = options?.entry;
-        this.app = options?.app;
-        this.environment = options?.environment;
-        this.restart = !!options?.restart;
-        this.restartDelay = options?.restartDelay || 1000;
+    constructor(options: any = null, cliArgs: any = null) {
+        this.entry = cliArgs?.entry ?? options?.entry;
+        this.app = cliArgs?.app ?? options?.app;
+        this.mode = cliArgs?.mode ?? options?.mode ?? 'default';
+        this.environment = cliArgs?.environment ?? options?.environment;
+        this.restart = cliArgs?.restart ?? !!options?.restart;
+        this.restartDelay = cliArgs?.restartDelay ?? options?.restartDelay ?? 1000;
 
         this.typescript = {
             ...options?.typescript,
-            lint: options?.typescript?.lint ?? false,
-            tslint: options?.typescript?.tslint ?? './tslint.json',
-            tsconfig: options?.typescript?.tsconfig ?? './tsconfig.json'
+            lint: cliArgs?.typescript?.lint ?? options?.typescript?.lint ?? false,
+            tslint: cliArgs?.typescript?.tslint ?? options?.typescript?.tslint ?? './tslint.json',
+            tsconfig: cliArgs?.typescript?.tsconfig ?? options?.typescript?.tsconfig ?? './tsconfig.json'
         };
     }
 
     public validate() {
         if (!this.entry) {
             throw new Error(ConfigError.MissingEntity);
+        }
+
+        if (!this.mode) {
+            throw new Error(ConfigError.MissingMode);
         }
     }
 
@@ -100,6 +90,7 @@ export class Config {
     public getCompiledConfig(): CompiledConfig {
         return {
             app: this.app,
+            mode: this.mode,
             restart: this.restart,
             restartDelay: this.restartDelay,
             entryPath: this.getEntryPath(),

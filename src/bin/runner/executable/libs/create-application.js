@@ -1,4 +1,4 @@
-module.exports = (config, environment, headless) => {
+module.exports = (config, environment) => {
     require('./register-tsnode')(config);
 
     const entry = require(config.entryPath);
@@ -9,8 +9,7 @@ module.exports = (config, environment, headless) => {
 
     const compiledConfig = {
         runnerConfig: config,
-        environment: environment,
-        headless: headless
+        environment: environment
     };
 
     entry.Application.prototype.config = compiledConfig;

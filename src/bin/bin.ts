@@ -10,11 +10,13 @@ const startCommandBuilder: yargs.BuilderCallback<any, any> = (builder) => {
     });
 
     builder.alias({
-        c: 'config'
+        c: 'config',
+        m: 'mode'
     });
 
     builder.describe({
-        config: 'Custom config file path'
+        config: 'Custom config file path',
+        mode: 'Runtime mode of Application'
     });
 };
 
@@ -34,12 +36,6 @@ yargs
         'Start Application',
         (builder) => startCommandBuilder(builder),
         (args) => Start.run(args)
-    )
-    .command(
-        'start-headless',
-        'Start Application Headless',
-        (builder) => startCommandBuilder(builder),
-        (args) => Start.runHeadless(args)
     )
     .command(
         'script [scriptName]',

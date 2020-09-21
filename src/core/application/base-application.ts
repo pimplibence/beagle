@@ -1,11 +1,11 @@
 import { CompiledConfig } from '../../bin/libs/config';
 import { Container } from '../container/container';
 import { BaseScript } from './base-script';
+import { getConfigAll } from './libs/application';
 
 export interface BaseApplicationOptions {
     runnerConfig: CompiledConfig;
     environment: any;
-    headless: boolean;
 }
 
 export interface Provider {
@@ -33,7 +33,6 @@ export class BaseApplication {
      * - scripts
      */
     protected container = new Container();
-
     protected providers: Provider[] = [];
     protected scripts: Script[] = [];
 
@@ -42,17 +41,36 @@ export class BaseApplication {
     }
 
     public async boot(): Promise<BaseApplication> {
-        await this.initialize();
-        await this.loadInjectables();
-        await this.configure();
+        const initializers = getConfigAll(this).initializers;
+        const configurators = getConfigAll(this).configurators;
 
-        return this;
-    }
+        for (const item of initializers) {
+            switch (item.mode) {
+                case this.config.runnerConfig.mode:
+                    await this[item.key]();
+                    break;
+                case '*':
+                    await this[item.key]();
+                    break;
+                default:
+                // Silence is golden
+            }
+        }
 
-    public async bootHeadless(): Promise<BaseApplication> {
-        await this.initialize();
         await this.loadInjectables();
-        await this.configureHeadless();
+
+        for (const item of configurators) {
+            switch (item.mode) {
+                case this.config.runnerConfig.mode:
+                    await this[item.key]();
+                    break;
+                case '*':
+                    await this[item.key]();
+                    break;
+                default:
+                // Silence is golden
+            }
+        }
 
         return this;
     }
@@ -67,34 +85,6 @@ export class BaseApplication {
         const instance: BaseScript = this.container.resolve(script.injectable);
 
         return instance.run(args);
-    }
-
-    /**
-     * Initialize application
-     * - this method will be called before application loads and/or boot injectables
-     * - this is method runs almost firstly
-     */
-    protected async initialize(): Promise<void> {
-        //
-    }
-
-    /**
-     * Configure application
-     * - this method will be called after start application by default
-     * - in this step you can define runtime behaviuors, like "start http server", "run jobs". etc...
-     */
-    protected async configure(): Promise<void> {
-        //
-    }
-
-    /**
-     * Configure application headless
-     * - this method will be called after start headless application
-     * - this method will be called if you triggered a script running for example
-     * - IMPORTANT! In this step DO NOT start http servers or other jobs, because they will conflict with the normally started application
-     */
-    protected async configureHeadless(): Promise<void> {
-        //
     }
 
     /**

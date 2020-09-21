@@ -5,8 +5,8 @@ const script = workerThread.workerData.script;
 const args = workerThread.workerData.args;
 
 const environment = require(config.environmentPath);
-const application = require('./libs/create-application')(config, environment, true);
+const application = require('./libs/create-application')(config, environment);
 
-application.bootHeadless()
+application.boot()
     .then((instance) => instance.runScript(script, args))
     .catch(() => process.exit());

@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 /**
  * Metadata key of store of injectable
  */
-const storeMetadataKey = 'Injectable(store)';
+const storeMetadataKey = 'Injectable(injectable-store)';
 
 /**
  * Descriptor of an injectable member of a class/injectable
