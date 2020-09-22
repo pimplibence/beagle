@@ -1,36 +1,19 @@
-import { BaseApplication } from '../src/core/application/base-application';
+import { BaseApplication, Provider } from '../src/core/application/base-application';
 import { appConfigurator } from '../src/core/application/decorators/app-configurator';
-import { appInitializer } from '../src/core/application/decorators/app-initializer';
+import { RedisService } from '../src/modules/cache/redis.service';
 
 export class Application extends BaseApplication {
-
-    @appInitializer()
-    protected async init0(): Promise<void> {
-        console.log('Init0 - Default');
-    }
-
-    @appInitializer('*')
-    protected async init1(): Promise<void> {
-        console.log('Init1 - Wildcard');
-    }
-
-    @appInitializer('custom')
-    protected async init2(): Promise<void> {
-        console.log('Init2 - Custom Mode');
-    }
-
-    @appConfigurator()
-    protected async config0(): Promise<void> {
-        console.log('Config0 - Default');
-    }
+    protected providers: Provider[] = [
+        { injectable: RedisService, options: { hostname: 'localhost:6379' } }
+    ];
 
     @appConfigurator('*')
     protected async config1(): Promise<void> {
-        console.log('Config1 - Wildcard');
-    }
+        const redis = this.container.resolve<RedisService>(RedisService);
 
-    @appConfigurator('custom')
-    protected async config2(): Promise<void> {
-        console.log('Config2 - Custom Mode');
+        await redis.set('example', 123);
+        const value = await redis.get('example');
+
+        console.log(value);
     }
 }

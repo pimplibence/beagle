@@ -1,5 +1,5 @@
 import * as superagent from 'superagent';
-import { injectable } from '../../core/container/decorators/injectable';
+import { injectable } from '../../../core/container/decorators/injectable';
 
 /**
  * Captcha service for Google reCAPTCHA v3
