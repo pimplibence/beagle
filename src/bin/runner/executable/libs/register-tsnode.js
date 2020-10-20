@@ -1,14 +1,14 @@
 module.exports = (config) => {
-    const tsNode = require('ts-node');
-
     /**
      * Register typescript runtime
      */
-    if (config.typescript) {
+    if (!config.skipTsNode) {
+        const tsNode = require('ts-node');
+
         tsNode.register({
             pretty: true,
             logError: true,
-            project: config.typescript.tsConfigPath
+            project: config.typescript && config.typescript.tsConfigPath
         });
 
         return tsNode;
