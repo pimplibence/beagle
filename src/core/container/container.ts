@@ -91,7 +91,7 @@ export class Container {
         const instance = new record.injectable(record.options);
 
         for (const callbackKey of record.config.onInitCallbacks) {
-            // await instance[callbackKey]();
+            await instance[callbackKey]();
         }
 
         this.addInitializedRecord(record.config, instance);
