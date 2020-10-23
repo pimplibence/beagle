@@ -41,8 +41,8 @@ export class BaseApplication {
     }
 
     public async boot(): Promise<BaseApplication> {
-        const initializers = getConfigAll(this).initializers;
-        const configurators = getConfigAll(this).configurators;
+        const initializers = getConfigAll(this)?.initializers || [];
+        const configurators = getConfigAll(this)?.configurators || [];
 
         for (const item of initializers) {
             switch (item.mode) {

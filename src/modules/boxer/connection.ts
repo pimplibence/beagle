@@ -6,10 +6,6 @@ import { onInit } from '../../core/container/decorators/on-init';
 export class Connection extends BoxerConnection {
     @onInit()
     public async initialize() {
-        try {
-            await this.connect();
-        } catch (e) {
-            return Promise.reject(e);
-        }
+        return this.connect();
     }
 }
