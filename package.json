@@ -1,12 +1,12 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.3.0",
+  "version": "0.3.2",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",
   "author": "Bence Pimpli <pimplibence@gmail.com>",
   "dependencies": {
-    "@kifly/boxer": "^0.3.1",
+    "@kifly/boxer": "^0.3.2",
     "@sentry/node": "^5.27.1",
     "@types/express": "^4.17.7",
     "@types/ioredis": "^4.17.6",

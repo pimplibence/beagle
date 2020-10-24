@@ -42,24 +42,24 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
-"@kifly/boxer@^0.3.1":
-  version "0.3.1"
-  resolved "http://verdaccio.repository.codebuild.hu/@kifly%2fboxer/-/boxer-0.3.1.tgz#eb36b9693adaadba8ab99d03ca9decb5622b6db2"
-  integrity sha512-QpP4W5ktuw75wF2OqiuJSBmjG+ji9dAPrEHXB4oMlkkNTnlr3Ajshu4dtpjN55w8gWT5/zid/+LDBG9HPlnVOw==
+"@kifly/boxer@^0.3.2":
+  version "0.3.2"
+  resolved "http://verdaccio.repository.codebuild.hu/@kifly%2fboxer/-/boxer-0.3.2.tgz#ee5d879ce481cfa8c911a4c48062a2d364415be6"
+  integrity sha512-5587SC6+CJB0ge7YOgL8pkYsf8OiqQfbtC6GAsDwskQg8CNc+Mh7+1cHTb2JYO4bYIgARXMl2tptJtnLyuQovA==
   dependencies:
-    "@types/bson" "^4.0.1"
-    "@types/lodash" "^4.14.146"
+    "@types/bson" "^4.0.3"
+    "@types/lodash" "^4.14.162"
     "@types/microtime" "^2.1.0"
-    "@types/mongodb" "^3.3.9"
-    "@types/node" "^14.11.2"
+    "@types/mongodb" "^3.5.31"
+    "@types/node" "^14.14.2"
     "@types/uuid" "^8.3.0"
-    bson "^4.0.3"
+    bson "^4.2.0"
     class-validator "^0.12.2"
     lodash "^4.17.15"
     microtime "^3.0.0"
-    moment "^2.27.0"
+    moment "^2.29.1"
     mongodb "^3.3.2"
-    nodemon "^2.0.4"
+    nodemon "^2.0.6"
     reflect-metadata "^0.1.13"
     ts-node "^9.0.0"
     typescript "^4.0.3"
@@ -152,7 +152,7 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/bson@*", "@types/bson@^4.0.1":
+"@types/bson@*", "@types/bson@^4.0.3":
   version "4.0.3"
   resolved "http://verdaccio.repository.codebuild.hu/@types%2fbson/-/bson-4.0.3.tgz#30889d2ffde6262abbe38659364c631454999fbf"
   integrity sha512-mVRvYnTOZJz3ccpxhr3wgxVmSeiYinW+zlzQz3SXWaJmD1DuL05Jeq7nKw3SnbKmbleW5qrLG5vdyWe/A9sXhw==
@@ -202,7 +202,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash@^4.14.146", "@types/lodash@^4.14.162":
+"@types/lodash@^4.14.162":
   version "4.14.162"
   resolved "http://verdaccio.repository.codebuild.hu/@types%2flodash/-/lodash-4.14.162.tgz#65d78c397e0d883f44afbf1f7ba9867022411470"
   integrity sha512-alvcho1kRUnnD1Gcl4J+hK0eencvzq9rmzvFPRmP5rPHx9VVsJj6bKLTATPVf9ktgv4ujzh7T+XWKp+jhuODig==
@@ -224,7 +224,7 @@
   dependencies:
     moment "*"
 
-"@types/mongodb@^3.3.9":
+"@types/mongodb@^3.5.31":
   version "3.5.31"
   resolved "http://verdaccio.repository.codebuild.hu/@types%2fmongodb/-/mongodb-3.5.31.tgz#3678fa5d96a90b565fe6a86974a492fc32eb967a"
   integrity sha512-Yu4F73rJaSuHb7mi35xoRdrzKr74kC8l5cR/yW6vI7L7Ag4OiBIdgh8estsVi0VAjlRAzHV8N3us2YIzKHDTzw==
@@ -237,7 +237,7 @@
   resolved "http://verdaccio.repository.codebuild.hu/@types%2fnode/-/node-14.6.4.tgz#a145cc0bb14ef9c4777361b7bbafa5cf8e3acb5a"
   integrity sha512-Wk7nG1JSaMfMpoMJDKUsWYugliB2Vy55pdjLpmLixeyMi7HizW2I/9QoxsPCkXl3dO+ZOVqPumKaDUv5zJu2uQ==
 
-"@types/node@^14.11.2", "@types/node@^14.14.2":
+"@types/node@^14.14.2":
   version "14.14.2"
   resolved "http://verdaccio.repository.codebuild.hu/@types%2fnode/-/node-14.14.2.tgz#d25295f9e4ca5989a2c610754dc02a9721235eeb"
   integrity sha512-jeYJU2kl7hL9U5xuI/BhKPZ4vqGM/OmK6whiFAXVhlstzZhVamWhDSmHyGLIp+RVyuF9/d0dqr2P85aFj4BvJg==
@@ -492,7 +492,7 @@ bson@^1.1.4:
   resolved "http://verdaccio.repository.codebuild.hu/bson/-/bson-1.1.5.tgz#2aaae98fcdf6750c0848b0cba1ddec3c73060a34"
   integrity sha512-kDuEzldR21lHciPQAIulLs1LZlCXdLziXI6Mb/TDkwXhb//UORJNPXgcRs2CuO4H0DcMkpfT3/ySsP3unoZjBg==
 
-bson@^4.0.3, bson@^4.2.0:
+bson@^4.2.0:
   version "4.2.0"
   resolved "http://verdaccio.repository.codebuild.hu/bson/-/bson-4.2.0.tgz#15b5beffed6e44883de9922a2e1896fba4042cd4"
   integrity sha512-c3MlJqdROnCRvDr/+MLfaDvQ7CvGI4p1hKX45/fvgzSwKRdOjsfRug1NJJ8ty5mXCNtUdjJEWzoZWcBQxV4TyA==
@@ -1825,7 +1825,7 @@ mkdirp@^0.5.3:
   dependencies:
     minimist "^1.2.5"
 
-moment@*, moment@^2.27.0:
+moment@*:
   version "2.27.0"
   resolved "http://verdaccio.repository.codebuild.hu/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
   integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
@@ -1900,7 +1900,7 @@ node@^14.4.0:
   dependencies:
     node-bin-setup "^1.0.0"
 
-nodemon@^2.0.4:
+nodemon@^2.0.6:
   version "2.0.6"
   resolved "http://verdaccio.repository.codebuild.hu/nodemon/-/nodemon-2.0.6.tgz#1abe1937b463aaf62f0d52e2b7eaadf28cc2240d"
   integrity sha512-4I3YDSKXg6ltYpcnZeHompqac4E6JeAMpGm8tJnB9Y3T0ehasLa4139dJOcCrB93HHrUMsCrKtoAlXTqT5n4AQ==
