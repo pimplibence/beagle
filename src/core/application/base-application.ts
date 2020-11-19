@@ -84,6 +84,8 @@ export class BaseApplication {
 
         const instance: BaseScript = this.container.resolve(script.injectable);
 
+        instance.setApplication(this);
+
         return instance.run(args);
     }
 
