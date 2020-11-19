@@ -11,7 +11,7 @@ export interface PaginationResponse<D> {
 }
 
 export interface PaginationOptions<D> extends FindManyOptions<D> {
-    skip?: never;
+    skip?: number;
     page?: number;
 }
 
