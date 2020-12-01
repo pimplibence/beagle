@@ -10,6 +10,7 @@
     "resolveJsonModule": true,
     "declaration": true,
     "allowJs": true,
+    "skipLibCheck": true,
     "lib": [
       "es2020"
     ]

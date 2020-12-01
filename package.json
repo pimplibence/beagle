@@ -38,7 +38,8 @@
   },
   "scripts": {
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
-    "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist",
+    "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json",
+    "postdist": "cp ./package.json ./dist && cp -r ./_templates ./dist",
     "start-bin": "ts-node ./src/bin/bin.ts"
   },
   "husky": {
