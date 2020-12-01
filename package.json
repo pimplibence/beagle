@@ -1,13 +1,13 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",
   "author": "Bence Pimpli <pimplibence@gmail.com>",
   "dependencies": {
     "@kifly/boxer": "^0.3.2",
-    "@sentry/node": "^5.27.6",
+    "@sentry/node": "^5.28.0",
     "@types/express": "^4.17.9",
     "@types/ioredis": "^4.17.8",
     "@types/lodash": "^4.14.165",
@@ -16,8 +16,9 @@
     "@types/superagent": "^4.1.10",
     "@types/uuid": "^8.0.0",
     "@types/yargs": "^15.0.10",
-    "bson": "^4.2.0",
+    "bson": "^4.2.1",
     "express": "^4.17.1",
+    "hygen": "^6.0.4",
     "ioredis": "^4.19.2",
     "lodash": "^4.17.15",
     "moment": "^2.29.1",
@@ -31,14 +32,12 @@
     "yargs": "^16.1.1"
   },
   "devDependencies": {
-    "docsify-cli": "^4.4.2",
     "husky": "^4.3.0",
     "tslint": "^6.1.2",
     "tslint-config-airbnb": "^5.11.2"
   },
   "scripts": {
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
-    "docs": "./node_modules/docsify-cli/bin/docsify serve docs",
     "dist": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json && cp ./package.json ./dist",
     "start-bin": "ts-node ./src/bin/bin.ts"
   },
@@ -48,6 +47,7 @@
     }
   },
   "bin": {
-    "kifly-beagle": "./bin/bin.js"
+    "kifly-beagle": "./bin/bin.js",
+    "kifly-beagle-generator": "./node_modules/hygen/dist/bin.js"
   }
 }
