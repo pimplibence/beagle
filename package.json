@@ -1,6 +1,6 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",
@@ -49,6 +49,6 @@
   },
   "bin": {
     "kifly-beagle": "./bin/bin.js",
-    "kifly-beagle-generator": "./node_modules/hygen/dist/bin.js"
+    "kifly-beagle-generator": "HYGEN_TMPLS=$(pwd) ./node_modules/hygen/dist/bin.js"
   }
 }
