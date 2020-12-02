@@ -25,7 +25,7 @@ export interface CompiledConfig {
     restart?: boolean;
     restartDelay?: number;
     entryPath?: string;
-    environmentPath?: string;
+    environment?: any;
     skipTsNode?: boolean;
     typescript?: {
         tsLintPath?: string;
@@ -98,7 +98,7 @@ export class Config {
             restartDelay: this.restartDelay,
             skipTsNode: this.skipTsNode,
             entryPath: this.getEntryPath(),
-            environmentPath: this.getEnvironmentPath(),
+            environment: require(this.getEnvironmentPath()),
             typescript: {
                 tsLintPath: this.getTsLintPath(),
                 tsConfigPath: this.getTsConfigPath()

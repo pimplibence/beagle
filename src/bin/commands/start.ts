@@ -2,7 +2,7 @@ import { resolve } from 'path';
 import * as process from 'process';
 import { Arguments } from 'yargs';
 import { Config } from '../libs/config';
-import { ApplicationRunner } from '../runner/application-runner';
+import { Runner } from '../runner';
 
 export enum StartError {}
 
@@ -22,7 +22,7 @@ export class Start {
     public async run(args: Arguments): Promise<void> {
         const config = this.extractConfig(args);
 
-        const instance = new ApplicationRunner(config);
+        const instance = new Runner(config);
 
         await instance.run();
     }
@@ -30,7 +30,7 @@ export class Start {
     public async runScript(args: Arguments): Promise<void> {
         const config = this.extractConfig(args);
 
-        const instance = new ApplicationRunner(config);
+        const instance = new Runner(config);
 
         await instance.runScript(args);
     }

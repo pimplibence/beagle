@@ -3,11 +3,6 @@ import { Container } from '../container/container';
 import { BaseScript } from './base-script';
 import { getConfigAll } from './libs/application';
 
-export interface BaseApplicationOptions {
-    runnerConfig: CompiledConfig;
-    environment: any;
-}
-
 export interface Provider {
     injectable: Function;
     options?: any;
@@ -25,7 +20,7 @@ export class BaseApplication {
      *
      * This value will be available before this class constructed (init hack in runner)
      */
-    protected config: BaseApplicationOptions;
+    protected config: CompiledConfig;
 
     /**
      * Container to initialize
@@ -36,7 +31,7 @@ export class BaseApplication {
     protected providers: Provider[] = [];
     protected scripts: Script[] = [];
 
-    constructor(config: BaseApplicationOptions) {
+    constructor(config: CompiledConfig) {
         this.config = config;
     }
 
@@ -46,7 +41,7 @@ export class BaseApplication {
 
         for (const item of initializers) {
             switch (item.mode) {
-                case this.config.runnerConfig.mode:
+                case this.config.mode:
                     await this[item.key]();
                     break;
                 case '*':
@@ -61,7 +56,7 @@ export class BaseApplication {
 
         for (const item of configurators) {
             switch (item.mode) {
-                case this.config.runnerConfig.mode:
+                case this.config.mode:
                     await this[item.key]();
                     break;
                 case '*':
