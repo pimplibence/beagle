@@ -43,6 +43,10 @@ export class Runner {
      * Helper Region
      */
     private registerTsNode(config: CompiledConfig) {
+        if (!config.useTsNode) {
+            return;
+        }
+
         const tsNodeSymbol = Symbol.for('ts-node.register.instance');
 
         if (!!process[tsNodeSymbol]) {
