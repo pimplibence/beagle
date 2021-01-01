@@ -4,8 +4,6 @@ import { Arguments } from 'yargs';
 import { Config } from '../libs/config';
 import { Runner } from '../runner';
 
-export enum StartError {}
-
 export class Start {
     public static async run(args: Arguments<any>): Promise<void> {
         const instance = new Start();

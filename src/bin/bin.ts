@@ -4,6 +4,7 @@ import { execSync } from 'child_process';
 import * as hygen from 'hygen';
 import { resolve } from 'path';
 import * as yargs from 'yargs';
+import { Generate } from './commands/generate';
 import { Start } from './commands/start';
 
 const startCommandBuilder: yargs.BuilderCallback<any, any> = (builder) => {
@@ -56,12 +57,6 @@ yargs
         'generate',
         'Generate framework components',
         (builder) => generateCommandBuilder(builder),
-        (args) => hygen.runner(process.argv.splice(3), {
-            cwd: process.env.PWD,
-            templates: resolve(__dirname, '..', './_templates'),
-            logger: new hygen.Logger(console.log.bind(console)),
-            createPrompter: () => require('enquirer'),
-            exec: (action) => execSync(action)
-        })
+        (args) => Generate.generate(args)
     )
     .argv;
