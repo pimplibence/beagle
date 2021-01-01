@@ -1,6 +1,6 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.4.1",
+  "version": "0.4.3",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",
@@ -18,6 +18,7 @@
     "@types/uuid": "^8.0.0",
     "@types/yargs": "^15.0.10",
     "bson": "^4.2.1",
+    "execa": "^5.0.0",
     "express": "^4.17.1",
     "hygen": "^6.0.4",
     "ioredis": "^4.19.2",
@@ -50,7 +51,6 @@
     }
   },
   "bin": {
-    "kifly-beagle": "./bin/bin.js",
-    "kifly-beagle-generator": "HYGEN_TMPLS=$(pwd) ./node_modules/hygen/dist/bin.js"
+    "kifly-beagle": "./bin/bin.js"
   }
 }

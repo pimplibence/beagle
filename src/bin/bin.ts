@@ -1,32 +1,41 @@
 #!/usr/bin/env node
 
+import { execSync } from 'child_process';
+import * as hygen from 'hygen';
+import { resolve } from 'path';
 import * as yargs from 'yargs';
 import { Start } from './commands/start';
 
 const startCommandBuilder: yargs.BuilderCallback<any, any> = (builder) => {
-
-    builder.default({
-        config: 'config'
+    builder.option('config', {
+        alias: 'c',
+        default: 'config',
+        type: 'string',
+        description: 'Config file path'
     });
 
-    builder.alias({
-        c: 'config',
-        m: 'mode'
-    });
-
-    builder.describe({
-        config: 'Custom config file path',
-        mode: 'Runtime mode of Application'
+    builder.option('mode', {
+        alias: 'm',
+        type: 'string',
+        description: 'Runtime mode of Application'
     });
 };
 
 const scriptCommandBuilder: yargs.BuilderCallback<any, any> = (builder) => {
+    builder.option('script', {
+        describe: 'Name of registered script',
+        type: 'string',
+        required: true
+    });
 
     startCommandBuilder(builder);
+};
 
-    builder.positional('scriptName', {
-        describe: 'Name of registered script',
-        type: 'string'
+const generateCommandBuilder: yargs.BuilderCallback<any, any> = (builder) => {
+    builder.option('name', {
+        required: true,
+        type: 'string',
+        description: 'Name of object'
     });
 };
 
@@ -38,9 +47,21 @@ yargs
         (args) => Start.run(args)
     )
     .command(
-        'script [scriptName]',
-        'Execute Application Script',
+        'script',
+        'Start Script of Application',
         (builder) => scriptCommandBuilder(builder),
         (args) => Start.runScript(args)
+    )
+    .command(
+        'generate',
+        'Generate framework components',
+        (builder) => generateCommandBuilder(builder),
+        (args) => hygen.runner(process.argv.splice(3), {
+            cwd: process.env.PWD,
+            templates: resolve(__dirname, '..', './_templates'),
+            logger: new hygen.Logger(console.log.bind(console)),
+            createPrompter: () => require('enquirer'),
+            exec: (action) => execSync(action)
+        })
     )
     .argv;
