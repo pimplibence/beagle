@@ -19,8 +19,8 @@ sh: cd <%= name %> && yarn install
     "tslint-config-airbnb": "^5.11.2"
   },
   "scripts": {
-    "start": "./node_modules/@kifly/beagle/bin/bin.js start --config config.js",
-    "script": "./node_modules/@kifly/beagle/bin/bin.js script --config config.js --mode script",
+    "start": "./node_modules/@kifly/beagle/bin/bin.js start --config config/config.js",
+    "script": "./node_modules/@kifly/beagle/bin/bin.js script --config config/config.js --mode script",
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
     "build": "./node_modules/typescript/bin/tsc -p ./tsconfig.json"
   }

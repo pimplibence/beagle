@@ -16,21 +16,36 @@ export class ValidationLib<T extends UserPresenter> {
         this.dao = dao;
     }
 
-    public setPassword(user: any, password: string): Promise<T> {
-        return this.adapter.request('post', `/validation/${user?._id || user}/password/set`, { password })
-            .then((i) => UserAdapter.mapDao(this.dao, i));
+    public async setPassword(user: any, password: string): Promise<T> {
+        try {
+            const response = await this.adapter.request('post', `/validation/${user?._id || user}/password/set`, { password });
+
+            return UserAdapter.mapDao(this.dao, response);
+        } catch (e) {
+            return Promise.reject(e);
+        }
     }
 
-    public validatePassword(user: any, password: string): Promise<ValidationResponse<T>> {
-        return this.adapter.request('post', `/validation/${user?._id || user}/password/validate`, { password })
-            .then((i) => ({
-                isValid: i.isValid,
-                user: UserAdapter.mapDao(this.dao, i.user)
-            }));
+    public async validatePassword(user: any, password: string): Promise<ValidationResponse<T>> {
+        try {
+            const response = await this.adapter.request('post', `/validation/${user?._id || user}/password/validate`, { password });
+
+            return {
+                isValid: response.isValid,
+                user: UserAdapter.mapDao(this.dao, response.user)
+            };
+        } catch (e) {
+            return Promise.reject(e);
+        }
     }
 
-    public removePassword(user: any): Promise<T> {
-        return this.adapter.request('post', `/validation/${user?._id || user}/password/remove`, null)
-            .then((i) => UserAdapter.mapDao(this.dao, i));
+    public async removePassword(user: any): Promise<T> {
+        try {
+            const response = await this.adapter.request('post', `/validation/${user?._id || user}/password/remove`, null);
+
+            return UserAdapter.mapDao(this.dao, response);
+        } catch (e) {
+            return Promise.reject(e);
+        }
     }
 }

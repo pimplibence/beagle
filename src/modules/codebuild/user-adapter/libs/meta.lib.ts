@@ -11,13 +11,23 @@ export class MetaLib<T extends UserPresenter> {
         this.dao = dao;
     }
 
-    public set(user: any, key: string, value: any): Promise<T> {
-        return this.adapter.request('post', `/meta/${user?._id || user}/set`, { key, value })
-            .then((i) => UserAdapter.mapDao(this.dao, i));
+    public async set(user: any, key: string, value: any): Promise<T> {
+        try {
+            const response = await this.adapter.request('post', `/meta/${user?._id || user}/set`, { key, value });
+
+            return UserAdapter.mapDao(this.dao, response);
+        } catch (e) {
+            return Promise.reject(e);
+        }
     }
 
-    public remove(user: any, key: string): Promise<T> {
-        return this.adapter.request('post', `/meta/${user?._id || user}/remove`, { key })
-            .then((i) => UserAdapter.mapDao(this.dao, i));
+    public async remove(user: any, key: string): Promise<T> {
+        try {
+            const response = await this.adapter.request('post', `/meta/${user?._id || user}/remove`, { key });
+
+            return UserAdapter.mapDao(this.dao, response);
+        } catch (e) {
+            return Promise.reject(e);
+        }
     }
 }

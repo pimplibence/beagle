@@ -22,14 +22,14 @@ export class Adapter {
             return result.body;
         } catch (e) {
             if (e.errno === 'ECONNREFUSED') {
-                return new InternalServerError('ICEConnection', e);
+                throw new InternalServerError('ICEConnection', e);
             }
 
             if (e?.response?.body) {
-                return new InternalServerError(e?.response?.body?.message || 'ICEUnknownResponse', e?.response?.body?.payload);
+                throw new InternalServerError(e?.response?.body?.message || 'ICEUnknownResponse', e?.response?.body?.payload);
             }
 
-            return new InternalServerError('ICEUnknown', e);
+            throw new InternalServerError('ICEUnknown', e);
         }
     }
 }
