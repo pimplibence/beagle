@@ -1,6 +1,6 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.5.0",
+  "version": "0.5.2",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",
@@ -20,6 +20,7 @@
     "bson": "^4.2.1",
     "execa": "^5.0.0",
     "express": "^4.17.1",
+    "googleapis": "^67.0.0",
     "hygen": "^6.0.4",
     "ioredis": "^4.19.2",
     "lodash": "^4.17.15",
