@@ -3,8 +3,10 @@ import { PaginationOptions } from '../../../boxer/repository/repository';
 import { Request } from '../../injectables/controller';
 
 export abstract class MongoTransformer {
-    public static paginationOptions = (options: PaginationOptions<any> = {}) => {
-        return (req: Request): PaginationOptions<any> => {
+    public static async paginationOptions(optionsCallback: (req: Request) => Promise<PaginationOptions<any>>) {
+        return async (req: Request): Promise<PaginationOptions<any>> => {
+            const options = await optionsCallback(req);
+
             const page = parseInt(req.query._page as any, 10) || 0;
             const limit = parseInt(req.query._limit as any, 10) || 50;
             const sort = mapValues(req.query._sort || {}, (item) => MongoTransformer
@@ -17,13 +19,13 @@ export abstract class MongoTransformer {
                 ...options,
                 page: page,
                 limit: limit,
-                sort: sort as any
+                sort: { ...(sort as any), ...(options.sort || {}) }
             };
         };
     }
 
-    public static query = (qcb: any = (req: Request) => ({})) => {
-        return (req: Request): any => qcb(req);
+    public static async query(optionsCallback: any = (req: Request) => Promise.resolve({})) {
+        return (req: Request): any => optionsCallback(req);
     }
 
     private static sortValues = [

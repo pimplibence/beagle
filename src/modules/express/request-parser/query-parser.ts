@@ -13,13 +13,15 @@ export class QueryParser {
         this.options = options;
     }
 
-    public transform(key: string, options: any = {}) {
+    public async transform(key: string, optionsCallback: (...args) => Promise<any> = () => Promise.resolve({})) {
         const transformer = get(this.options.transform, key);
 
         if (!transformer) {
             return null;
         }
 
-        return transformer(options)(this.options.request);
+        const transformerResult = await transformer(optionsCallback);
+
+        return transformerResult(this.options.request);
     }
 }
