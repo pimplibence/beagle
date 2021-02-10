@@ -13,11 +13,13 @@ export class Adapter {
         this.endpoint = options.endpoint;
     }
 
-    public async request(method: string, path: string, body: any): Promise<any> {
+    public async request(method: string, path: string, body: any, query: any = {}): Promise<any> {
         const url = resolve(this.endpoint, path);
 
         try {
-            const result = await superagent[method](url).send(body);
+            const result = await superagent[method](url)
+                .query(query)
+                .send(body);
 
             return result.body;
         } catch (e) {
