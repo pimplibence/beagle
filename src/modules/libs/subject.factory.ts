@@ -1,8 +1,16 @@
 export class FactoryBuilder {
     public factories: Array<(...args: any) => Promise<any>> = [];
 
-    public build(...args): Promise<any> {
-        return Promise.all(this.factories.map(async (factory) => factory(...args)));
+    public async build(...args): Promise<any> {
+        const results = [];
+
+        for (const factory of this.factories) {
+            const result = await factory(...args);
+
+            results.push(result);
+        }
+
+        return results;
     }
 
     public register(factory: (...args: any) => Promise<any>) {
