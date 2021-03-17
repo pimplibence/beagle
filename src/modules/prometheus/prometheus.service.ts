@@ -17,15 +17,20 @@ export class PrometheusService {
     public app = express();
     public server = createServer(this.app);
 
+    public register = register;
+
     constructor(options: PrometheusServiceOptions) {
         this.options = options;
 
-        register.setDefaultLabels({
+        this.register.setDefaultLabels({
             app: this.options.appName
         });
 
         if (this.options.collectDefaultMetrics) {
-            collectDefaultMetrics(this.options.defaultMetricsOptions);
+            collectDefaultMetrics({
+                ...(this.options.defaultMetricsOptions || {}),
+                register: this.register
+            });
         }
     }
 
