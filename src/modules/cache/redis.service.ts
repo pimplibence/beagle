@@ -18,7 +18,7 @@ export class RedisService implements CacheService {
     }
 
     public async exists(key: string): Promise<boolean> {
-        return this.get(key)
+        return this.instance.exists(key)
             .then((result) => !!result);
     }
 
