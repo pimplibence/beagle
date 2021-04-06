@@ -10,7 +10,7 @@ export class ArchiveRepository<D extends ArchiveDocument<any>> extends Repositor
 
         item.deletedAt = new Date();
 
-        return item.save();
+        return item.save(false);
     }
 
     public async restore(id: string | ObjectId, options: FindOneOptions<D> = {}) {
@@ -20,6 +20,6 @@ export class ArchiveRepository<D extends ArchiveDocument<any>> extends Repositor
 
         item.deletedAt = null;
 
-        return item.save();
+        return item.save(false);
     }
 }
