@@ -1,14 +1,23 @@
 import { BaseApplication } from '../src/core/application/base-application';
-import { PrometheusService } from '../src/modules/prometheus/prometheus.service';
+import { appConfigurator } from '../src/core/application/decorators/app-configurator';
+import { MeshService } from '../src/modules/mesh/mesh.service';
 
 export class Application extends BaseApplication {
     protected providers = [
         {
-            injectable: PrometheusService,
+            injectable: MeshService,
             options: {
-                collectDefaultMetrics: true,
-                appName: 'test_prometheus_app'
+                api: 'http://localhost:3043'
             }
         }
     ];
+
+    @appConfigurator()
+    public async init() {
+        const mesh = this.container.resolve<MeshService>(MeshService);
+
+        const response = await mesh.client('api').get('/catalog');
+
+        console.log(response);
+    }
 }
