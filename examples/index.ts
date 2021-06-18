@@ -1,22 +1,23 @@
 import { BaseApplication } from '../src/core/application/base-application';
 import { appConfigurator } from '../src/core/application/decorators/app-configurator';
-import { MeshService } from '../src/modules/mesh/mesh.service';
+import { MeshAdapter } from '../src/modules/codebuild/core-mesh/mesh.adapter';
 
 export class Application extends BaseApplication {
     protected providers = [
         {
-            injectable: MeshService,
+            injectable: MeshAdapter,
             options: {
-                api: 'http://localhost:3043'
+                url: 'http://localhost:3043',
+                endpoint: 'shit'
             }
         }
     ];
 
     @appConfigurator()
     public async init() {
-        const mesh = this.container.resolve<MeshService>(MeshService);
+        const mesh = this.container.resolve<MeshAdapter>(MeshAdapter);
 
-        const response = await mesh.client('api').get('/catalog');
+        const response = await mesh.get('/items');
 
         console.log(response);
     }
