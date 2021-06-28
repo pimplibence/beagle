@@ -1,9 +1,103 @@
 // tslint:disable max-classes-per-file
 
-class HttpError extends Error {
+export class HttpError extends Error {
+    public static createError(statusCode: number, message: string, payload: string) {
+        switch (statusCode) {
+            case 400:
+                return new BadRequest(message, payload);
+            case 401:
+                return new Unauthorized(message, payload);
+            case 402:
+                return new PaymentRequired(message, payload);
+            case 403:
+                return new Forbidden(message, payload);
+            case 404:
+                return new NotFound(message, payload);
+            case 405:
+                return new MethodNotAllowed(message, payload);
+            case 406:
+                return new NotAcceptable(message, payload);
+            case 407:
+                return new ProxyAuthenticationRequired(message, payload);
+            case 408:
+                return new RequestTimeout(message, payload);
+            case 409:
+                return new Conflict(message, payload);
+            case 410:
+                return new Gone(message, payload);
+            case 411:
+                return new LengthRequired(message, payload);
+            case 412:
+                return new PreconditionFailed(message, payload);
+            case 413:
+                return new RequestEntityTooLarge(message, payload);
+            case 414:
+                return new RequestURITooLong(message, payload);
+            case 415:
+                return new UnsupportedMediaType(message, payload);
+            case 416:
+                return new RequestedRangeNotSatisfiable(message, payload);
+            case 417:
+                return new ExpectationFailed(message, payload);
+            case 420:
+                return new EnhanceYourCalm(message, payload);
+            case 422:
+                return new UnprocessableEntity(message, payload);
+            case 423:
+                return new Locked(message, payload);
+            case 424:
+                return new FailedDependency(message, payload);
+            case 425:
+                return new UnorderedCollection(message, payload);
+            case 426:
+                return new UpgradeRequired(message, payload);
+            case 428:
+                return new PreconditionRequired(message, payload);
+            case 429:
+                return new TooManyRequests(message, payload);
+            case 431:
+                return new RequestHeaderFieldsTooLarge(message, payload);
+            case 444:
+                return new NoResponse(message, payload);
+            case 449:
+                return new RetryWith(message, payload);
+            case 450:
+                return new BlockedByWindowsParentalControls(message, payload);
+            case 499:
+                return new ClientClosedRequest(message, payload);
+            case 500:
+                return new InternalServerError(message, payload);
+            case 501:
+                return new NotImplemented(message, payload);
+            case 502:
+                return new BadGateway(message, payload);
+            case 503:
+                return new ServiceUnavailable(message, payload);
+            case 504:
+                return new GatewayTimeout(message, payload);
+            case 505:
+                return new HTTPVersionNotSupported(message, payload);
+            case 506:
+                return new VariantAlsoNegotiates(message, payload);
+            case 507:
+                return new InsufficientStorage(message, payload);
+            case 508:
+                return new LoopDetected(message, payload);
+            case 509:
+                return new BandwidthLimitExceeded(message, payload);
+            case 510:
+                return new NotExtended(message, payload);
+            case 511:
+                return new NetworkAuthenticationRequired(message, payload);
+            default:
+                return new InternalServerError(message, payload);
+        }
+    }
+
     public isHttpError = true;
     public statusCode: number;
     public payload: any;
+
 }
 
 export class BadRequest extends HttpError {

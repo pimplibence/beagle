@@ -1,6 +1,6 @@
 {
   "name": "@kifly/beagle",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "",
   "main": "examples/index.ts",
   "license": "MIT",

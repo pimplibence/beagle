@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 import { injectable } from '../../../core/container/decorators/injectable';
-import { InternalServerError } from '../../express/errors';
+import { HttpError, InternalServerError } from '../../express/errors';
 
 @injectable()
 export class MeshAdapter {
@@ -23,10 +23,18 @@ export class MeshAdapter {
     }
 
     public async request(options: axios.AxiosRequestConfig = {}): Promise<any> {
-        const client = this.client(options);
-        const response = await client.request(options);
+        try {
+            const client = this.client(options);
+            const response = await client.request(options);
 
-        return response.data;
+            return response.data;
+        } catch (e) {
+            if (e?.response?.data) {
+                throw HttpError.createError(e?.response?.satus, e?.response?.data?.message, e?.response?.data?.payload);
+            }
+
+            throw e;
+        }
     }
 
     public async get(path: string, options: axios.AxiosRequestConfig = {}) {
