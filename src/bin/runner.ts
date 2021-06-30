@@ -1,7 +1,7 @@
 import { existsSync } from 'fs';
 import * as tsNode from 'ts-node';
 import { Arguments } from 'yargs';
-import { CompiledConfig, Config } from './libs/config';
+import { CompiledConfig, Config, ConfigError } from './libs/config';
 
 export class Runner {
     public config: Config;
@@ -24,7 +24,7 @@ export class Runner {
         const script = args.script;
 
         if (!script) {
-            throw new Error('MissingScript');
+            throw new Error(ConfigError.MissingScript);
         }
 
         const config = this.config.getCompiledConfig();
@@ -69,7 +69,7 @@ export class Runner {
         const entryExists = existsSync(config.entryPath);
 
         if (!entryExists) {
-            throw new Error('MissingEntry');
+            throw new Error(ConfigError.MissingEntry);
         }
 
         const app = require(config.entryPath);

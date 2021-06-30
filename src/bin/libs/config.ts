@@ -2,7 +2,8 @@ import { resolve } from 'path';
 import * as process from 'process';
 
 export enum ConfigError {
-    MissingEntity = 'ConfigErrorMissingEntity',
+    MissingScript = 'ConfigErrorMissingScript',
+    MissingEntry = 'ConfigErrorMissingEntry',
     MissingMode = 'ConfigErrorMissingMode',
 }
 
@@ -62,7 +63,7 @@ export class Config {
 
     public validate() {
         if (!this.entry) {
-            throw new Error(ConfigError.MissingEntity);
+            throw new Error(ConfigError.MissingEntry);
         }
 
         if (!this.mode) {
