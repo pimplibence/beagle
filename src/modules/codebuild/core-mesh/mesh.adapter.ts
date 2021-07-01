@@ -30,7 +30,7 @@ export class MeshAdapter {
             return response.data;
         } catch (e) {
             if (e?.response?.data) {
-                throw HttpError.createError(e?.response?.satus, e?.response?.data?.message, e?.response?.data?.payload);
+                throw HttpError.createError(e?.response?.status, e?.response?.data?.message, e?.response?.data?.payload);
             }
 
             throw e;
