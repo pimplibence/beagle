@@ -38,7 +38,7 @@ export class CaptchaService {
             return superagent.post(CaptchaService.ENDPOINT)
                 .query(query)
                 .send()
-                .then((response) => !!response?.body as any);
+                .then((response) => response?.body as any);
         } catch (e) {
             return Promise.reject(e);
         }
