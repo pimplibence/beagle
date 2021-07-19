@@ -13,6 +13,7 @@ export interface PaginationResponse<D> {
 export interface PaginationOptions<D> extends FindManyOptions<D> {
     skip?: number;
     page?: number;
+    estimate?: boolean;
 }
 
 export class Repository<D extends BaseDocument<any>> {
@@ -103,7 +104,8 @@ export class Repository<D extends BaseDocument<any>> {
 
             const countOptions: CountOptions<D> = {
                 scope: options.scope,
-                options: options.options as any
+                options: options.options as any,
+                estimate: options?.estimate
             };
 
             const count = await this.getCollection().count(query, countOptions);
