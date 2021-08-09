@@ -1,7 +1,7 @@
 import { AggregateOptions, Collection, CountOptions, FindManyOptions, FindOneOptions } from '@kifly/boxer/src/collections/collection';
 import { Connection } from '@kifly/boxer/src/connection/connection';
 import { BaseDocument } from '@kifly/boxer/src/document/base.document';
-import { FilterQuery, ObjectId } from 'mongodb';
+import { FilterQuery, MongoDistinctPreferences, ObjectId } from 'mongodb';
 
 export interface PaginationResponse<D> {
     total: number;
@@ -42,6 +42,18 @@ export class Repository<D extends BaseDocument<any>> {
             }
 
             return this.findOne({ _id: new ObjectId(did) as any }, options);
+        } catch (err) {
+            return Promise.reject(err);
+        }
+    }
+
+    public async distinct(field: string, query?: FilterQuery<D>, options: MongoDistinctPreferences = {}): Promise<any[]> {
+        try {
+            await this.check();
+
+            const result = await this.getCollection().distinct(field, query, options);
+
+            return Promise.resolve(result);
         } catch (err) {
             return Promise.reject(err);
         }
