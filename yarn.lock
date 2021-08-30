@@ -42,10 +42,10 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
-"@kifly/boxer@^0.4.0":
-  version "0.4.0"
-  resolved "http://verdaccio.repository.codebuild.hu/@kifly%2fboxer/-/boxer-0.4.0.tgz#53c10b7226f45a691ed15d1471800927dc4e5293"
-  integrity sha512-pqFvjiuqLG+ZQQjMJdUK+xQHGxm09TNvtWyu/Y7D9oj/2sCHvW4ci6doUUly8Kn+bZOHomCW2EmNGTb1ZN+3yw==
+"@kifly/boxer@^0.4.1":
+  version "0.4.1"
+  resolved "http://verdaccio.repository.codebuild.hu/@kifly%2fboxer/-/boxer-0.4.1.tgz#44775d3bafc4929eb9028ac99f4bd66a6cf8586e"
+  integrity sha512-9fhTvS5L62z7GIm3nl+1cms6R7fgR9sQk2drAQZhyp62g82BAb3nHpg7pjVupDdSRLPtbYRa4xRJakQRciJkNQ==
   dependencies:
     "@types/bson" "^4.0.3"
     "@types/lodash" "^4.14.165"
