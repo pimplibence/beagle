@@ -19,8 +19,8 @@ export class BaseApplication {
      * - providers
      * - scripts
      */
-    protected container = new Container();
-    protected providers: Provider[] = [];
+    public container = new Container();
+    public providers: Provider[] = [];
 
     public async boot(): Promise<BaseApplication> {
         const initializers = getConfigAll(this)?.initializers || [];

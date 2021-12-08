@@ -5,5 +5,5 @@ export const applicationRunner = async (app: typeof BaseApplication, environment
 
     const instance: BaseApplication = new (app as any)();
 
-    return instance.boot();
+    await instance.boot();
 };
