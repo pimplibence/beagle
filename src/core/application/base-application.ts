@@ -12,7 +12,7 @@ export class BaseApplication {
      *
      * This value will be available before this class constructed (init hack in runner)
      */
-    public environment: any = {};
+    public environment: any;
 
     /**
      * Container to initialize

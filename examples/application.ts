@@ -1,5 +1,6 @@
 import { BaseApplication } from '../src/core/application/base-application';
 import { appConfigurator } from '../src/core/application/decorators/app-configurator';
+import { applicationRunner } from '../src/runner/application-runner';
 
 export class Application extends BaseApplication {
     @appConfigurator()
@@ -7,3 +8,5 @@ export class Application extends BaseApplication {
         console.log('Hello Bello', this.environment);
     }
 }
+
+applicationRunner(Application, process.env);
