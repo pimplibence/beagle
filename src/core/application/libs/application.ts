@@ -30,24 +30,18 @@ export function getConfigAll(prototype: object) {
     return cloneDeep(Reflect.getMetadata(storeMetadataKey, prototype));
 }
 
-export function addInitializer(prototype: object, key: string, mode: string): void {
+export function addInitializer(prototype: object, key: string): void {
     const config = getConfig(prototype);
 
-    config.initializers.push({
-        key: key,
-        mode: mode
-    });
+    config.initializers.push({ key: key });
 
     return saveConfig(prototype, config);
 }
 
-export function addConfigurator(prototype: object, key: string, mode: string): void {
+export function addConfigurator(prototype: object, key: string): void {
     const config = getConfig(prototype);
 
-    config.configurators.push({
-        key: key,
-        mode: mode
-    });
+    config.configurators.push({ key: key });
 
     return saveConfig(prototype, config);
 }
