@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "build",
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es6",
@@ -16,7 +16,7 @@
     ]
   },
   "include": [
-    "./src"
+    "./src",
   ],
   "exclude": [
     "./dist"
