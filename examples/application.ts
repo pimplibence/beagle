@@ -5,7 +5,7 @@ import { applicationRunner } from '../src/runner/application-runner';
 export class Application extends BaseApplication {
     @appConfigurator()
     public async init() {
-        console.log('Hello Bello', this.environment);
+        console.log('Hello', this.environment);
     }
 }
 
