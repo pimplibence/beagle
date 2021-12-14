@@ -4,6 +4,6 @@ import { appConfigurator } from '../src/core/application/decorators/app-configur
 export class Application extends BaseApplication {
     @appConfigurator()
     public async init() {
-        console.log('Hello World!', this.env);
+        console.log('Hello World!');
     }
 }

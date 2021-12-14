@@ -16,6 +16,11 @@ export class BaseApplication {
     }
 
     /**
+     * True after container initialized
+     */
+    public initialized: boolean = false;
+
+    /**
      * Environment from Application Runner
      *
      * This value will be available before this class constructed (init hack in runner)
@@ -58,5 +63,7 @@ export class BaseApplication {
         }
 
         await this.container.boot();
+
+        this.initialized = true;
     }
 }

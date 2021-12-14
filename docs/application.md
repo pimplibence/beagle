@@ -11,12 +11,12 @@ When you run an application, the following steps will be running:
 2. Create a Container instance (see /docs/container)
 3. Load Providers
     - at this step you can configure providers with ***this.env***
-4. Configuring Itself
-    - call @appConfigurator() methods in application.
-5. Initializing providers
-    - initialize and run provider lifecycle (see /docs/container)
-6. Initializing Itself
+4. Initializing Itself
     - call @appInitializer() methods in application.
+5. Configuring providers
+    - initialize and run provider lifecycle (see /docs/container)
+6. Configuring Itself
+    - call @appConfigurator() methods in application.
 
 > There is an example for a fully configured and mocked application
 
@@ -52,10 +52,10 @@ class Application extends BaseApplication {
         { injectable: WithoutConfigProvider }
     ];
 
-    @appConfigurator()
-    public async fooConfigurator(): Promise<void> {
+    @appInitializer()
+    public async barInitializer(): Promise<void> {
         /**
-         * At this step you can configure the application, for example:
+         * At this step you can initialize the application, for example:
          *  - add sentry, bugsnag, ..etc
          *  - init loggers, debug tools
          *
@@ -70,17 +70,18 @@ class Application extends BaseApplication {
          */
         console.log('This message will appear at first time');
     }
-
-    @appInitializer()
-    public async barInitializer(): Promise<void> {
+    
+    @appConfigurator()
+    public async fooConfigurator(): Promise<void> {
         /**
-         * At this step you can initialalize the application, for example:
+         * At this step you can configure the application, for example:
          *  - start any bussiness logic
          *  - start services
          *  - start http server
          *
          *  Application lifecycle will move forward whe this function returns
          */
+        
         console.log('This message will appear at first time after container initialization');
     }
 
@@ -89,6 +90,16 @@ class Application extends BaseApplication {
      *
      * All methods with decorator will run in order of its definition
      */
+    @appInitializer()
+    public async init1(): Promise<void> {
+        /**/
+    }
+
+    @appInitializer()
+    public async init2(): Promise<void> {
+        /**/
+    }
+
     @appConfigurator()
     public async conf1(): Promise<void> {
         /**/
@@ -99,28 +110,17 @@ class Application extends BaseApplication {
         /**/
     }
 
-    @appInitializer()
-    public async init1(): Promise<void> {
-        /**/
-    }
-
-    @appInitializer()
-    public async init2(): Promise<void> {
-        /**/
-    }
-    
     /**
-     * You can access to contain in application (see /docs/container)
+     * You can access to the container in application (see /docs/container)
      */
-    @appInitializer()
+    @appConfigurator()
     public async accessToContainer(): Promise<void> {
         /**
-         * This provider will be initialized, because "accessToContainer" method decorated with @appInitializer()
+         * This provider will be already initialized, because "accessToContainer" method decorated with @appInitializer()
          */
         const instanceOfFooProvider = this.container.resolve<FooProvider>(FooProvider);
 
         await instanceOfFooProvider.somePublicMethod();
     }
 }
-
 ```
