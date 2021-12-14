@@ -7,12 +7,20 @@ export interface Provider {
 }
 
 export class BaseApplication {
+    public static run(env: any = {}) {
+        this.prototype.env = env || {};
+
+        const instance: BaseApplication = new this();
+
+        return instance.boot();
+    }
+
     /**
      * Environment from Application Runner
      *
      * This value will be available before this class constructed (init hack in runner)
      */
-    public environment: any;
+    public env: any;
 
     /**
      * Container to initialize
