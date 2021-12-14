@@ -8,6 +8,7 @@ Beagle is an unopinionated framework to make NodeJs applications, based on types
 
 - you have to initialize a NodeJs project based on typescript
 - add these lines to your tsconfig
+
 ```
 "experimentalDecorators": true,
 "emitDecoratorMetadata": true,
@@ -49,7 +50,7 @@ Application.run();
  */
 ```
 
-> Start your application
+#### 2. Run application
 
 ```bash
 ts-node ./src/index.ts
