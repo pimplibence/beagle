@@ -26,12 +26,21 @@ interface InitializedRecords {
     [key: string]: InitializedRecord;
 }
 
+interface ContainerOptions {
+    debug?: boolean;
+}
+
 export class Container {
+    public debug: boolean = false;
     public injectables: InjectableRecords = {};
     public initialized: InitializedRecords = {};
 
+    constructor(options?: ContainerOptions) {
+        this.debug = !!options?.debug;
+    }
+
     public register(injectable: Function, options?: any): void {
-        const config = getCurrentConfig(injectable.prototype);
+        const config = getCurrentConfig(injectable?.prototype);
 
         if (!config) {
             throw new Error(ContainerError.IncompatibleInjectable);
@@ -63,7 +72,9 @@ export class Container {
     }
 
     public async boot() {
-        const records = Object.keys(this.injectables).map((key: string) => this.injectables[key]);
+        const records = Object
+            .keys(this.injectables)
+            .map((key: string) => this.injectables[key]);
 
         for (const record of records) {
             await this.bootInjectable(record);

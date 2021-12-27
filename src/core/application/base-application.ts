@@ -1,38 +1,42 @@
 import { Container } from '../container/container';
 import { getConfigAll } from './libs/application';
 
+export interface BaseApplicationRunOptions {
+    env: any;
+    debug?: boolean;
+}
+
 export interface Provider {
     injectable: Function;
     options?: any;
 }
 
 export class BaseApplication {
-    public static run(env: any = {}) {
-        this.prototype.env = env || {};
+    /**
+     * Please use this method to construct a new BaseApplication instead of "new BaseApplication()"
+     *  It is important! Only with this static function will the lifecycle work!
+     */
+    public static run(options?: BaseApplicationRunOptions) {
+        const env = options?.env;
+        const debug = !!options?.debug;
+
+        this.prototype.env = env;
+        this.prototype.debug = debug;
+
+        this.prototype.container = new Container({
+            debug: debug
+        });
 
         const instance: BaseApplication = new this();
 
         return instance.boot();
     }
 
-    /**
-     * True after container initialized
-     */
-    public initialized: boolean = false;
-
-    /**
-     * Environment from Application Runner
-     *
-     * This value will be available before this class constructed (init hack in runner)
-     */
     public env: any;
+    public initialized: boolean = false;
+    public debug: boolean = false;
 
-    /**
-     * Container to initialize
-     * - providers
-     * - scripts
-     */
-    public container = new Container();
+    public container: Container;
     public providers: Provider[] = [];
 
     public async boot(): Promise<BaseApplication> {
@@ -52,11 +56,6 @@ export class BaseApplication {
         return this;
     }
 
-    /**
-     * Load all injectables
-     * - providers
-     * - scripts
-     */
     protected async loadInjectables() {
         for (const provider of this.providers) {
             this.container.register(provider.injectable, provider.options);
