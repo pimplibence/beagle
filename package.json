@@ -26,12 +26,7 @@
   },
   "scripts": {
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
-    "build": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json",
-    "postdist": "cp ./package.json"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
+    "build": "yarn lint && rm -rf build && ./node_modules/typescript/bin/tsc -p ./tsconfig.json",
+    "postbuild": "cp ./package.json"
   }
 }
