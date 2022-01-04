@@ -13,6 +13,6 @@ export class Application extends BaseApplication {
 
     @appConfigurator()
     public async init() {
-        console.log('Hello World!', this.container);
+        console.log('Hello World!');
     }
 }

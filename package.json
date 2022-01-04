@@ -27,7 +27,7 @@
   "scripts": {
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
     "build": "yarn lint && rm -rf dist && ./node_modules/typescript/bin/tsc -p ./tsconfig.json",
-    "postdist": "cp ./package.json ./dist && cp -r ./_templates ./dist"
+    "postdist": "cp ./package.json"
   },
   "husky": {
     "hooks": {
