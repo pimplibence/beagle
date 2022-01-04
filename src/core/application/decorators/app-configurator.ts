@@ -1,6 +1,6 @@
 import { addConfigurator, initConfig } from '../libs/application';
 
-export const appConfigurator = (mode: string = 'default') => {
+export const appConfigurator = () => {
     return (target: object, key: string) => {
         initConfig(target);
 
@@ -10,6 +10,6 @@ export const appConfigurator = (mode: string = 'default') => {
             configurable: true
         });
 
-        addConfigurator(target, key, mode);
+        addConfigurator(target, key);
     };
 };

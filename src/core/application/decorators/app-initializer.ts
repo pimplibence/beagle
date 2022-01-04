@@ -1,6 +1,6 @@
 import { addInitializer, initConfig } from '../libs/application';
 
-export const appInitializer = (mode: string = 'default') => {
+export const appInitializer = () => {
     return (target: object, key: string) => {
         initConfig(target);
 
@@ -10,6 +10,6 @@ export const appInitializer = (mode: string = 'default') => {
             configurable: true
         });
 
-        addInitializer(target, key, mode);
+        addInitializer(target, key);
     };
 };
