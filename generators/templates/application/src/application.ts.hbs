@@ -1,0 +1,11 @@
+import { BaseApplication, Provider } from '@kifly/beagle/core/application/base-application';
+import { appConfigurator } from '@kifly/beagle/core/application/decorators/app-configurator';
+
+export class Application extends BaseApplication {
+    public providers: Provider[] = [];
+
+    @appConfigurator()
+    public async init() {
+        console.log('Hello World!');
+    }
+}

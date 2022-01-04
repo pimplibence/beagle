@@ -55,7 +55,7 @@ class Application extends BaseApplication {
     @appInitializer()
     public async barInitializer(): Promise<void> {
         /**
-         * At this step you can initialize the application, for example:
+         * At this step you can initialize the application, for application:
          *  - add sentry, bugsnag, ..etc
          *  - init loggers, debug tools
          *
@@ -74,7 +74,7 @@ class Application extends BaseApplication {
     @appConfigurator()
     public async fooConfigurator(): Promise<void> {
         /**
-         * At this step you can configure the application, for example:
+         * At this step you can configure the application, for application:
          *  - start any bussiness logic
          *  - start services
          *  - start http server

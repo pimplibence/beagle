@@ -5,7 +5,7 @@ import * as yaml from 'yaml';
 export const loadEnvYaml = () => {
     const configs = [
         resolve(process.cwd(), 'env.yaml'),
-        resolve(process.cwd(), 'env.yml')
+        resolve(process.cwd(), 'env.yml.hbs')
     ];
 
     for (const config of configs) {
@@ -19,5 +19,5 @@ export const loadEnvYaml = () => {
         return yaml.parse(content);
     }
 
-    throw new Error('MissingYamlConfigFile (env.yml or env.yaml)');
+    throw new Error('MissingYamlConfigFile (env.yml.hbs or env.yaml)');
 };
