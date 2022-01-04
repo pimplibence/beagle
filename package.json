@@ -27,6 +27,6 @@
   "scripts": {
     "lint": "./node_modules/tslint/bin/tslint -c tslint.json './src/**/*.ts'",
     "build": "yarn lint && rm -rf build && ./node_modules/typescript/bin/tsc -p ./tsconfig.json",
-    "postbuild": "cp ./package.json"
+    "postbuild": "cp ./package.json ./build"
   }
 }
