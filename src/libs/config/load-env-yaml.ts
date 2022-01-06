@@ -5,7 +5,7 @@ import * as yaml from 'yaml';
 export const loadEnvYaml = () => {
     const configs = [
         resolve(process.cwd(), 'env.yaml'),
-        resolve(process.cwd(), 'env.yml.hbs')
+        resolve(process.cwd(), 'env.yml')
     ];
 
     for (const config of configs) {
