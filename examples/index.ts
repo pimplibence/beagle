@@ -1,24 +1,31 @@
 import { BaseApplication } from '../src/core/application/base-application';
 import { appConfigurator } from '../src/core/application/decorators/app-configurator';
-import { MeshAdapter } from '../src/modules/codebuild/core-mesh/mesh.adapter';
+import { FacebookServiceV12 } from '../src/modules/facebook/facebook-v12.service';
+import { GoogleService } from '../src/modules/google/google.service';
 
 export class Application extends BaseApplication {
     protected providers = [
         {
-            injectable: MeshAdapter,
-            options: {
-                url: 'http://localhost:3043',
-                endpoint: 'shit'
-            }
+            injectable: FacebookServiceV12,
+            options: this.config.environment.facebook
+        },
+        {
+            injectable: GoogleService,
+            options: this.config.environment.google
         }
     ];
 
     @appConfigurator()
-    public async init() {
-        const mesh = this.container.resolve<MeshAdapter>(MeshAdapter);
+    public async testFacebook() {
+        const facebookService = this.container.resolve<FacebookServiceV12>(FacebookServiceV12);
+        const me = await facebookService.me('---');
+        console.log(me);
+    }
 
-        const response = await mesh.get('/items');
-
-        console.log(response);
+    @appConfigurator()
+    public async testGoogle() {
+        const googleService = this.container.resolve<GoogleService>(GoogleService);
+        const me = await googleService.me('---');
+        console.log(me);
     }
 }
