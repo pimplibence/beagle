@@ -1,13 +1,13 @@
 {
   "name": "@kifly/beagle",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "examples/application.ts",
   "license": "MIT",
   "author": "Bence Pimpli <pimplibence@gmail.com>",
   "dependencies": {
     "@types/lodash": "^4.14.177",
-    "@types/node": "^17.0.16",
+    "@types/node": "^17.0.21",
     "@types/uuid": "^8.3.4",
     "@types/yaml": "^1.9.7",
     "dotenv": "^16.0.0",
