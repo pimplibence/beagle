@@ -1,8 +1,8 @@
 import { Container } from '../container/container';
 import { getConfigAll } from './libs/application';
 
-export interface BaseApplicationRunOptions {
-    env: any;
+export interface ApplicationRunOptions {
+    environment: any;
     debug?: boolean;
 }
 
@@ -11,35 +11,36 @@ export interface Provider {
     options?: any;
 }
 
-export class BaseApplication {
+export class Application {
     /**
      * Please use this method to construct a new BaseApplication instead of "new BaseApplication()"
      *  It is important! Only with this static function will the lifecycle work!
      */
-    public static run(options?: BaseApplicationRunOptions) {
-        const env = options?.env;
+    public static run(options?: ApplicationRunOptions) {
+        const environment = options?.environment;
         const debug = !!options?.debug;
 
-        this.prototype.env = env;
+        this.prototype.environment = environment;
         this.prototype.debug = debug;
 
         this.prototype.container = new Container({
-            debug: debug
+            debug: debug,
+            environment: environment
         });
 
-        const instance: BaseApplication = new this();
+        const instance: Application = new this();
 
         return instance.boot();
     }
 
-    public env: any;
+    public environment: any;
     public initialized: boolean = false;
     public debug: boolean = false;
 
     public container: Container;
     public providers: Provider[] = [];
 
-    public async boot(): Promise<BaseApplication> {
+    public async boot(): Promise<Application> {
         const initializers = getConfigAll(this)?.initializers || [];
         const configurators = getConfigAll(this)?.configurators || [];
 

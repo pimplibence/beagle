@@ -1,3 +1,5 @@
-import { Application } from './application';
+import { DefaultApplication } from './default-application';
 
-Application.run();
+DefaultApplication.run({
+    environment: 'Hello Environment'
+});

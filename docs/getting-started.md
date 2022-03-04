@@ -16,15 +16,15 @@ Beagle is an unopinionated framework to make NodeJs applications, based on types
 
 #### 2. Create "Hello World"
 
-- at this step you have to create an application.ts and an index.ts as entry point of your application
+- at this step you have to create an default-application.ts and an index.ts as entry point of your application
 
 ```typescript
-// Content of application.ts
+// Content of default-application.ts
 
-import { BaseApplication } from '../src/core/application/base-application';
+import { Application } from '../src/core/application/base-application';
 import { appConfigurator } from '../src/core/application/decorators/app-configurator';
 
-export class Application extends BaseApplication {
+export class Application extends Application {
     @appConfigurator()
     public async init() {
         console.log('Hello World!');
@@ -32,7 +32,7 @@ export class Application extends BaseApplication {
 }
 
 /**
- * Where application is a BaseApplication (see bellow at /docs/application)
+ * Where application is a Application (see bellow at /docs/application)
  *  and init method is a lifecycle callback (see bellow at /docs/application-lifecycle)
  *  that is going to be called after initialization
  */

@@ -24,7 +24,7 @@ When you run an application, the following steps will be running:
 import { appConfigurator } from './app-configurator';
 import { appInitializer } from './app-initializer';
 
-class Application extends BaseApplication {
+class Application extends Application {
     /**
      * These are the providers. (see /docs/container)
      *  this way you can register providers to the container

@@ -28,15 +28,18 @@ interface InitializedRecords {
 
 interface ContainerOptions {
     debug?: boolean;
+    environment?: any;
 }
 
 export class Container {
+    public environment: any;
     public debug: boolean = false;
     public injectables: InjectableRecords = {};
     public initialized: InitializedRecords = {};
 
     constructor(options?: ContainerOptions) {
         this.debug = !!options?.debug;
+        this.environment = options?.environment;
     }
 
     public register(injectable: Function, options?: any): void {
@@ -99,7 +102,7 @@ export class Container {
         }
 
         // @ts-ignore
-        const instance = new record.injectable(record.options);
+        const instance = new record.injectable(record.options, this.environment);
 
         for (const callbackKey of record.config.onInitCallbacks) {
             await instance[callbackKey]();
