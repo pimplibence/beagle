@@ -12,7 +12,7 @@
     "@types/yaml": "^1.9.7",
     "dotenv": "^16.0.0",
     "lodash": "^4.17.21",
-    "minimist": "^1.2.5",
+    "minimist": "^1.2.6",
     "node": "^17.5.0",
     "plop": "^3.0.5",
     "reflect-metadata": "^0.1.13",
