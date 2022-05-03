@@ -29,6 +29,7 @@ export interface InjectableConfig {
     identifier: string;
     injects: InjectableInject[];
     onInitCallbacks: string[];
+    onTerminateCallbacks: string[];
 }
 
 /**
@@ -41,7 +42,8 @@ export function generateConfig(prototype: object): InjectableConfig {
         identifier: v4(),
         name: prototype.constructor.name,
         injects: [],
-        onInitCallbacks: []
+        onInitCallbacks: [],
+        onTerminateCallbacks: []
     };
 }
 
@@ -83,6 +85,10 @@ export function mergeConfigs(current: InjectableConfig, parent: InjectableConfig
         onInitCallbacks: cloneDeep([
             ...parent?.onInitCallbacks ?? [],
             ...current.onInitCallbacks
+        ]),
+        onTerminateCallbacks: cloneDeep([
+            ...parent?.onTerminateCallbacks ?? [],
+            ...current.onTerminateCallbacks
         ])
     };
 }
@@ -95,7 +101,7 @@ export function mergeConfigs(current: InjectableConfig, parent: InjectableConfig
 export function getConfig(prototype: object) {
     return {
         current: cloneDeep(Reflect.getOwnMetadata(storeMetadataKey, prototype)),
-        parent: cloneDeep(Reflect.getOwnMetadata(storeMetadataKey, Object.getPrototypeOf(prototype))),
+        parent: cloneDeep(Reflect.getOwnMetadata(storeMetadataKey, Object.getPrototypeOf(prototype)))
     };
 }
 
@@ -134,3 +140,15 @@ export function addOnInitCallback(prototype: object, key: string): void {
 
     return saveConfig(prototype, config);
 }
+
+/*
+TODO -> Termination feature
+
+export function addOnTerminateCallback(prototype: object, key: string): void {
+    const config = getCurrentConfig(prototype);
+
+    config.onTerminateCallbacks.push(key);
+
+    return saveConfig(prototype, config);
+}
+ */

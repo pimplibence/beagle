@@ -136,3 +136,24 @@ export class Container {
         return this.initialized[config.identifier];
     }
 }
+
+/*
+    TODO -> Name: Termination feature
+    TODO -> Create method to get service dependecy tree to start termination from top of the tree
+
+    private async terminateInjectable(record: InjectableRecord): Promise<any> {
+        const instance = this.resolve(record.injectable);
+
+        for (const callbackKey of record.config.onTerminateCallbacks) {
+            await instance[callbackKey]();
+        }
+
+        for (const inject of record.config.injects) {
+            const injectRecord = this.getInjectableRecord(inject.config);
+
+            if (injectRecord) {
+                await this.terminateInjectable(injectRecord);
+            }
+        }
+    }
+ */

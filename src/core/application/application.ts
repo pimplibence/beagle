@@ -40,6 +40,24 @@ export class Application {
     public container: Container;
     public providers: Provider[] = [];
 
+    public async terminate(force: boolean = false, exitCode: number = 0): Promise<void> {
+        /*
+        TODO -> Name: Termination feature
+
+        await this.container.terminate();
+         */
+
+        const terminators = getConfigAll(this)?.terminators || [];
+
+        for (const item of terminators) {
+            await this[item.key]();
+        }
+
+        if (force) {
+            process.exit(exitCode);
+        }
+    }
+
     public async boot(): Promise<Application> {
         const initializers = getConfigAll(this)?.initializers || [];
         const configurators = getConfigAll(this)?.configurators || [];

@@ -8,7 +8,8 @@ const storeMetadataKey = 'Injectable(application-store)';
 export function generateConfig(prototype: object): any {
     return {
         initializers: [],
-        configurators: []
+        configurators: [],
+        terminators: []
     };
 }
 
@@ -42,6 +43,14 @@ export function addConfigurator(prototype: object, key: string): void {
     const config = getConfig(prototype);
 
     config.configurators.push({ key: key });
+
+    return saveConfig(prototype, config);
+}
+
+export function addTerminator(prototype: object, key: string): void {
+    const config = getConfig(prototype);
+
+    config.terminators.push({ key: key });
 
     return saveConfig(prototype, config);
 }
