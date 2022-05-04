@@ -12,6 +12,13 @@ export class DefaultApplication extends Application {
         { injectable: CService }
     ];
 
+    constructor() {
+        super();
+
+        process.on('SIGTERM', async () => this.terminate(true));
+        process.on('SIGINT', async () => this.terminate(true));
+    }
+
     @appConfigurator()
     public async init() {
         console.log('Hello World!');
