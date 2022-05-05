@@ -140,15 +140,3 @@ export function addOnInitCallback(prototype: object, key: string): void {
 
     return saveConfig(prototype, config);
 }
-
-/*
-TODO -> Termination feature
-
-export function addOnTerminateCallback(prototype: object, key: string): void {
-    const config = getCurrentConfig(prototype);
-
-    config.onTerminateCallbacks.push(key);
-
-    return saveConfig(prototype, config);
-}
- */

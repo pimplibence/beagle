@@ -41,12 +41,6 @@ export class Application {
     public providers: Provider[] = [];
 
     public async terminate(force: boolean = false, exitCode: number = 0): Promise<void> {
-        /*
-        TODO -> Name: Termination feature
-
-        await this.container.terminate();
-         */
-
         const terminators = getConfigAll(this)?.terminators || [];
 
         for (const item of terminators) {
