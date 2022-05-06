@@ -15,8 +15,8 @@ export class DefaultApplication extends Application {
     constructor() {
         super();
 
-        process.on('SIGTERM', async () => this.terminate(true));
-        process.on('SIGINT', async () => this.terminate(true));
+        process.on('SIGTERM', async (signal) => this.terminate({ signal }));
+        process.on('SIGINT', async (signal) => this.terminate({ signal }));
     }
 
     @appConfigurator()

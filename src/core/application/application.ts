@@ -11,6 +11,14 @@ export interface Provider {
     options?: any;
 }
 
+export interface TerminateOptions {
+    signal?: NodeJS.Signals;
+
+    exit?: boolean;
+    // Only if force is true
+    exitCode?: number;
+}
+
 export class Application {
     /**
      * Please use this method to construct a new BaseApplication instead of "new BaseApplication()"
@@ -40,15 +48,15 @@ export class Application {
     public container: Container;
     public providers: Provider[] = [];
 
-    public async terminate(force: boolean = false, exitCode: number = 0): Promise<void> {
+    public async terminate(options?: TerminateOptions): Promise<void> {
         const terminators = getConfigAll(this)?.terminators || [];
 
         for (const item of terminators) {
-            await this[item.key]();
+            await this[item.key](options);
         }
 
-        if (force) {
-            process.exit(exitCode);
+        if (options?.exit) {
+            process.exit(options?.exitCode || 0);
         }
     }
 
