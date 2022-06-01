@@ -1,7 +1,7 @@
 import { Application, Provider } from '@kifly/beagle/core/application/application';
 import { appConfigurator } from '@kifly/beagle/core/application/decorators/app-configurator';
 
-export class BasicApplication extends Application {
+export class BaseApplication extends Application {
     public providers: Provider[] = [];
 
     @appConfigurator()

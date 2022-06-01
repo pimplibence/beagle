@@ -1,19 +1,11 @@
 const cwd = process.cwd();
 
 module.exports = (plop) => ({
-    description: 'Generate basic application',
+    description: 'Generate an application',
     prompts: [
         {
             type: 'input',
             name: 'name'
-        },
-        {
-            type: 'input',
-            name: 'slug'
-        },
-        {
-            type: 'input',
-            name: 'author'
         }
     ],
     actions: [
@@ -24,8 +16,8 @@ module.exports = (plop) => ({
         },
         {
             type: 'add',
-            path: `${cwd}/{{name}}/src/application.ts`,
-            templateFile: './templates/application/src/application.ts.hbs',
+            path: `${cwd}/{{name}}/src/applications/base-application.ts`,
+            templateFile: './templates/application/src/applications/base-application.ts.hbs',
         },
         {
             type: 'add',

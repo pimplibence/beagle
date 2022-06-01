@@ -1,15 +1,14 @@
 {
-    "name": "{{kebabCase slug}}",
+    "name": "{{kebabCase name}}",
     "version": "0.0.1",
     "description": "",
-    "main": "src/default-application.ts",
+    "main": "src/index.ts",
     "license": "MIT",
-    "author": "{{titleCase author}}",
     "dependencies": {
-        "@kifly/beagle": "^1.0.7",
-        "@types/node": "^17.0.25",
-        "node": "^17.7.2",
-        "typescript": "^4.6.3",
+        "@kifly/beagle": "{{package_json 'version'}}",
+        "@types/node": "{{package_json 'dependencies.@types/node'}}",
+        "node": "{{package_json 'dependencies.node'}}",
+        "typescript": "{{package_json 'dependencies.typescript'}}"
     },
     "scripts": {
         "build": "./node_modules/typescript/bin/tsc -p ./tsconfig.json"
