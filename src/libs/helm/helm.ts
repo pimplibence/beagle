@@ -1,7 +1,8 @@
-import { Command } from './command';
+import { Command } from './libs/command';
+import { defaultExecutable } from './libs/default-executable';
 
 export interface HelmOptions {
-    executable: string;
+    executable?: string;
 }
 
 export interface ListOptions {
@@ -30,7 +31,7 @@ export class Helm {
         this.options = options;
 
         this.command = new Command({
-            executable: options.executable
+            executable: options.executable || defaultExecutable()
         });
     }
 
