@@ -1,9 +1,5 @@
-import { defaultExecutable } from '../src/libs/helm/libs/default-executable';
+import { DefaultApplication } from './default-application';
 
-/*
 DefaultApplication.run({
     environment: 'Hello Environment'
 });
- */
-
-console.log(defaultExecutable());

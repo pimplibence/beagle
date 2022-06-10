@@ -1,17 +1,9 @@
 import { Application, Provider } from '../src/core/application/application';
 import { appConfigurator } from '../src/core/application/decorators/app-configurator';
-import { appTerminator } from '../src/core/application/decorators/app-terminator';
-import { defaultExecutable } from '../src/libs/helm/libs/default-executable';
-import { AService } from './service/a.service';
-import { BService } from './service/b.service';
-import { CService } from './service/c-service/c.service';
+import { Helm } from '../src/libs/helm/helm';
 
 export class DefaultApplication extends Application {
-    public providers: Provider[] = [
-        { injectable: AService },
-        { injectable: BService },
-        { injectable: CService }
-    ];
+    public providers: Provider[] = [];
 
     constructor() {
         super();
@@ -22,11 +14,6 @@ export class DefaultApplication extends Application {
 
     @appConfigurator()
     public async init() {
-        console.log('Hello World!');
-    }
-
-    @appTerminator()
-    public async beforeKill() {
-        console.log('Good Bye!');
+        const helm = new Helm();
     }
 }
