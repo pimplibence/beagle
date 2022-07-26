@@ -18,6 +18,7 @@ export class Adapter {
 
         try {
             const result = await superagent[method](url)
+                .maxResponseSize(20000000000) // 18gb
                 .query(query)
                 .send(body);
 
