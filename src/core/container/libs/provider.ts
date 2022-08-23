@@ -29,6 +29,7 @@ export interface InjectableConfig {
     identifier: string;
     injects: InjectableInject[];
     onInitCallbacks: string[];
+    onInitAsyncCallbacks: string[];
     onTerminateCallbacks: string[];
 }
 
@@ -43,6 +44,7 @@ export function generateConfig(prototype: object): InjectableConfig {
         name: prototype.constructor.name,
         injects: [],
         onInitCallbacks: [],
+        onInitAsyncCallbacks: [],
         onTerminateCallbacks: []
     };
 }
@@ -85,6 +87,10 @@ export function mergeConfigs(current: InjectableConfig, parent: InjectableConfig
         onInitCallbacks: cloneDeep([
             ...parent?.onInitCallbacks ?? [],
             ...current.onInitCallbacks
+        ]),
+        onInitAsyncCallbacks: cloneDeep([
+            ...parent?.onInitAsyncCallbacks ?? [],
+            ...current.onInitAsyncCallbacks
         ]),
         onTerminateCallbacks: cloneDeep([
             ...parent?.onTerminateCallbacks ?? [],
@@ -137,6 +143,14 @@ export function addOnInitCallback(prototype: object, key: string): void {
     const config = getCurrentConfig(prototype);
 
     config.onInitCallbacks.push(key);
+
+    return saveConfig(prototype, config);
+}
+
+export function addOnInitAsyncCallback(prototype: object, key: string): void {
+    const config = getCurrentConfig(prototype);
+
+    config.onInitAsyncCallbacks.push(key);
 
     return saveConfig(prototype, config);
 }

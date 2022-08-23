@@ -121,6 +121,10 @@ export class Container {
             await instance[callbackKey]();
         }
 
+        for (const callbackKey of record.config.onInitAsyncCallbacks) {
+            instance[callbackKey]();
+        }
+
         this.addInitializedRecord(record.config, instance);
 
         return instance;

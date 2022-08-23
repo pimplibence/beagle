@@ -1,4 +1,4 @@
-import { addOnInitCallback, initConfig } from '../libs/provider';
+import { addOnInitAsyncCallback, addOnInitCallback, initConfig } from '../libs/provider';
 
 /**
  * OnInit class-member decorator
@@ -16,5 +16,19 @@ export const onInit = () => {
         });
 
         addOnInitCallback(target, key);
+    };
+};
+
+export const onInitAsync = () => {
+    return (target: object, key: string) => {
+        initConfig(target);
+
+        Object.defineProperty(target, key, {
+            writable: true,
+            enumerable: true,
+            configurable: true
+        });
+
+        addOnInitAsyncCallback(target, key);
     };
 };
