@@ -1,7 +1,7 @@
 import { addConfigurator, initConfig } from '../libs/application';
 
 export const appConfigurator = () => {
-    return (target: object, key: string) => {
+    return (target: object, key: string): any => {
         initConfig(target);
 
         Object.defineProperty(target, key, {
@@ -11,5 +11,7 @@ export const appConfigurator = () => {
         });
 
         addConfigurator(target, key);
+
+        return target.constructor;
     };
 };

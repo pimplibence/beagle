@@ -1,7 +1,7 @@
 import { addInitializer, initConfig } from '../libs/application';
 
 export const appInitializer = () => {
-    return (target: object, key: string) => {
+    return (target: object, key: string): any => {
         initConfig(target);
 
         Object.defineProperty(target, key, {
@@ -11,5 +11,7 @@ export const appInitializer = () => {
         });
 
         addInitializer(target, key);
+
+        return target.constructor;
     };
 };

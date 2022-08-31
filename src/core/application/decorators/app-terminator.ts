@@ -1,7 +1,7 @@
 import { addTerminator, initConfig } from '../libs/application';
 
 export const appTerminator = () => {
-    return (target: object, key: string) => {
+    return (target: object, key: string): any => {
         initConfig(target);
 
         Object.defineProperty(target, key, {
@@ -11,5 +11,7 @@ export const appTerminator = () => {
         });
 
         addTerminator(target, key);
+
+        return target.constructor;
     };
 };

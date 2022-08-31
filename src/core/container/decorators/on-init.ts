@@ -6,7 +6,7 @@ import { addOnInitAsyncCallback, addOnInitCallback, initConfig } from '../libs/p
  * - run after construction
  */
 export const onInit = () => {
-    return (target: object, key: string) => {
+    return (target: object, key: string): any => {
         initConfig(target);
 
         Object.defineProperty(target, key, {
@@ -16,11 +16,13 @@ export const onInit = () => {
         });
 
         addOnInitCallback(target, key);
+
+        return target.constructor;
     };
 };
 
 export const onInitAsync = () => {
-    return (target: object, key: string) => {
+    return (target: object, key: string): any => {
         initConfig(target);
 
         Object.defineProperty(target, key, {
@@ -30,5 +32,7 @@ export const onInitAsync = () => {
         });
 
         addOnInitAsyncCallback(target, key);
+
+        return target.constructor;
     };
 };

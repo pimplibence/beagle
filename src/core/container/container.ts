@@ -117,11 +117,11 @@ export class Container {
         // @ts-ignore
         const instance = new record.injectable(record.options, this.environment);
 
-        for (const callbackKey of record.config.onInitCallbacks) {
+        for (const callbackKey of record.config?.onInitCallbacks || []) {
             await instance[callbackKey]();
         }
 
-        for (const callbackKey of record.config.onInitAsyncCallbacks) {
+        for (const callbackKey of record.config?.onInitAsyncCallbacks || []) {
             instance[callbackKey]();
         }
 

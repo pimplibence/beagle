@@ -9,7 +9,7 @@ export enum InjectError {
  * With this decorator you can inject another injectable into an injectable
  */
 export const inject = () => {
-    return (target: object, key: string) => {
+    return (target: object, key: string): any => {
         initConfig(target);
 
         Object.defineProperty(target, key, {
@@ -25,5 +25,7 @@ export const inject = () => {
         }
 
         addInject(target, type, key);
+
+        return target.constructor;
     };
 };
