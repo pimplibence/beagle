@@ -3,7 +3,6 @@ import { getConfigAll } from './libs/application';
 
 export interface ApplicationRunOptions {
     environment: any;
-    debug?: boolean;
 }
 
 export interface Provider {
@@ -13,10 +12,8 @@ export interface Provider {
 
 export interface TerminateOptions {
     signal?: NodeJS.Signals;
-
     exit?: boolean;
-    // Only if force is true
-    exitCode?: number;
+    code?: number;
 }
 
 export class Application {
@@ -26,13 +23,10 @@ export class Application {
      */
     public static run(options?: ApplicationRunOptions) {
         const environment = options?.environment;
-        const debug = !!options?.debug;
 
         this.prototype.environment = environment;
-        this.prototype.debug = debug;
 
         this.prototype.container = new Container({
-            debug: debug,
             environment: environment
         });
 
@@ -43,7 +37,6 @@ export class Application {
 
     public environment: any;
     public initialized: boolean = false;
-    public debug: boolean = false;
 
     public container: Container;
     public providers: Provider[] = [];
@@ -56,7 +49,7 @@ export class Application {
         }
 
         if (options?.exit) {
-            process.exit(options?.exitCode || 0);
+            process.exit(options?.code || 0);
         }
     }
 

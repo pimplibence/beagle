@@ -27,7 +27,6 @@ interface InitializedRecords {
 }
 
 interface ContainerOptions {
-    debug?: boolean;
     environment?: any;
 }
 
@@ -38,12 +37,10 @@ interface ResolveOptions {
 
 export class Container {
     public environment: any;
-    public debug: boolean = false;
     public injectables: InjectableRecords = {};
     public initialized: InitializedRecords = {};
 
     constructor(options?: ContainerOptions) {
-        this.debug = !!options?.debug;
         this.environment = options?.environment;
     }
 
