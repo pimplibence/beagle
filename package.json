@@ -1,6 +1,6 @@
 {
   "name": "@kifly/beagle",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "",
   "main": "examples/application.ts",
   "license": "MIT",
@@ -8,10 +8,9 @@
   "dependencies": {
     "@types/lodash": "^4.14.188",
     "@types/node": "^18.11.9",
-    "@types/uuid": "^8.3.4",
+    "@types/uuid": "^9.0.0",
     "@types/yaml": "^1.9.7",
     "lodash": "^4.17.21",
-    "node": "^19.0.1",
     "reflect-metadata": "^0.1.13",
     "uuid": "^9.0.0",
     "yaml": "^2.1.3"
