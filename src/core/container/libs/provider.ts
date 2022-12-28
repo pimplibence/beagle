@@ -1,6 +1,7 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep, uniqBy } from 'lodash';
 import 'reflect-metadata';
-import { v4 } from 'uuid';
+import { randomId } from '../../../libs/random';
+import { InjectableOptions } from '../decorators/injectable';
 
 /**
  * Metadata key of store of injectable
@@ -31,6 +32,7 @@ export interface InjectableConfig {
     onInitCallbacks: string[];
     onInitAsyncCallbacks: string[];
     onTerminateCallbacks: string[];
+    dependencies: InjectableOptions['dependencies'] | null;
 }
 
 /**
@@ -40,12 +42,13 @@ export interface InjectableConfig {
  */
 export function generateConfig(prototype: object): InjectableConfig {
     return {
-        identifier: v4(),
+        identifier: randomId(),
         name: prototype.constructor.name,
         injects: [],
         onInitCallbacks: [],
         onInitAsyncCallbacks: [],
-        onTerminateCallbacks: []
+        onTerminateCallbacks: [],
+        dependencies: null
     };
 }
 
@@ -95,7 +98,11 @@ export function mergeConfigs(current: InjectableConfig, parent: InjectableConfig
         onTerminateCallbacks: cloneDeep([
             ...parent?.onTerminateCallbacks ?? [],
             ...current.onTerminateCallbacks
-        ])
+        ]),
+        dependencies: (options: any) => uniqBy([
+            ...cloneDeep(parent?.dependencies?.(options) || []),
+            ...cloneDeep(current?.dependencies?.(options) || [])
+        ], (item) => getCurrentConfig(item.injectable.prototype).identifier)
     };
 }
 
