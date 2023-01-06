@@ -51,6 +51,12 @@ export class Container {
             throw new Error(ContainerError.IncompatibleInjectable);
         }
 
+        const dependencies = config.dependencies?.(options) || [];
+
+        for (const dep of dependencies) {
+            this.register(dep.injectable, dep.options);
+        }
+
         const exists = !!this.getInjectableRecord(config);
 
         if (exists) {
